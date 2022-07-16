@@ -1,0 +1,243 @@
+export const LogoIcon = ({ width, height }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.1"
+        width={width}
+        height={height}
+        viewBox="0 0 256 256"
+    >
+        <g transform="translate(128 128) scale(0.72 0.72)">
+            <g
+                style={{
+                    stroke: 'none',
+                    strokeWidth: 0,
+                    strokeDasharray: 'none',
+                    strokeLinecap: 'butt',
+                    strokeLinejoin: 'miter',
+                    strokeMiterlimit: 10,
+                    fill: 'none',
+                    fillRule: 'nonzero',
+                    opacity: 1,
+                }}
+                transform="translate(-175.05 -175.05000000000004) scale(3.89 3.89)"
+            >
+                <path
+                    d="M 76.302 57.898 l 11.903 7.155 C 88.995 65.527 90 64.959 90 64.037 V 43.524 c 0 -0.921 -1.005 -1.49 -1.795 -1.015 l -11.903 7.155 C 72.274 52.408 72.274 55.153 76.302 57.898 z"
+                    style={{
+                        stroke: 'none',
+                        strokeWidth: 0,
+                        strokeDasharray: 'none',
+                        strokeLinecap: 'butt',
+                        strokeLinejoin: 'miter',
+                        strokeMiterlimit: 10,
+                        fill: 'none',
+                        fillRule: 'nonzero',
+                        opacity: 1,
+                    }}
+                    transform=" matrix(1 0 0 1 0 0) "
+                    strokeLinecap="round"
+                />
+                <circle
+                    cx="54.971999999999994"
+                    cy="18.762"
+                    r="18.312"
+                    style={{
+                        stroke: 'none',
+                        strokeWidth: 0,
+                        strokeDasharray: 'none',
+                        strokeLinecap: 'butt',
+                        strokeLinejoin: 'miter',
+                        strokeMiterlimit: 10,
+                        fill: 'none',
+                        fillRule: 'nonzero',
+                        opacity: 1,
+                    }}
+                    transform="  matrix(1 0 0 1 0 0) "
+                />
+                <circle
+                    cx="25.183"
+                    cy="24.573"
+                    r="12.493"
+                    style={{
+                        stroke: 'none',
+                        strokeWidth: 0,
+                        strokeDasharray: 'none',
+                        strokeLinecap: 'butt',
+                        strokeLinejoin: 'miter',
+                        strokeMiterlimit: 10,
+                        fill: 'none',
+                        fillRule: 'nonzero',
+                        opacity: 1,
+                    }}
+                    transform="  matrix(1 0 0 1 0 0) "
+                />
+                <circle
+                    cx="54.967"
+                    cy="18.756999999999998"
+                    r="8.837"
+                    style={{
+                        stroke: 'none',
+                        strokeWidth: 1,
+                        strokeDasharray: 'none',
+                        strokeLinecap: 'butt',
+                        strokeLinejoin: 'miter',
+                        strokeMiterlimit: 10,
+                        fill: 'rgb(104,116,146)',
+                        fillRule: 'nonzero',
+                        opacity: 1,
+                    }}
+                    transform="  matrix(1 0 0 1 0 0) "
+                />
+                <circle
+                    cx="25.19"
+                    cy="24.57"
+                    r="5.05"
+                    style={{
+                        stroke: 'none',
+                        strokeWidth: 1,
+                        strokeDasharray: 'none',
+                        strokeLinecap: 'butt',
+                        strokeLinejoin: 'miter',
+                        strokeMiterlimit: 10,
+                        fill: 'rgb(104,116,146)',
+                        fillRule: 'nonzero',
+                        opacity: 1,
+                    }}
+                    transform="  matrix(1 0 0 1 0 0) "
+                />
+                <path
+                    d="M 60.466 86.002 l -17.46 -15.994 c -0.029 -0.027 -0.063 -0.045 -0.094 -0.07 c -0.055 -0.045 -0.111 -0.088 -0.17 -0.127 c -0.055 -0.036 -0.11 -0.067 -0.167 -0.098 c -0.062 -0.033 -0.124 -0.063 -0.188 -0.089 c -0.059 -0.024 -0.119 -0.044 -0.18 -0.062 c -0.065 -0.019 -0.13 -0.036 -0.197 -0.049 c -0.062 -0.012 -0.124 -0.02 -0.187 -0.026 c -0.068 -0.007 -0.134 -0.011 -0.202 -0.01 c -0.063 0 -0.125 0.004 -0.187 0.01 c -0.068 0.006 -0.135 0.015 -0.202 0.028 c -0.062 0.012 -0.123 0.028 -0.184 0.046 c -0.065 0.019 -0.129 0.04 -0.192 0.066 c -0.061 0.025 -0.12 0.053 -0.179 0.084 c -0.059 0.031 -0.117 0.064 -0.174 0.101 c -0.057 0.038 -0.112 0.08 -0.166 0.124 c -0.031 0.025 -0.066 0.044 -0.095 0.071 l -17.46 15.994 c -0.833 0.763 -0.889 2.056 -0.126 2.889 c 0.403 0.44 0.955 0.664 1.509 0.664 c 0.493 0 0.989 -0.178 1.381 -0.537 L 41.624 74.29 l 16.079 14.728 c 0.393 0.36 0.887 0.537 1.38 0.537 c 0.554 0 1.106 -0.224 1.509 -0.664 C 61.356 88.058 61.299 86.765 60.466 86.002 z"
+                    style={{
+                        stroke: 'none',
+                        strokeWidth: 1,
+                        strokeDasharray: 'none',
+                        strokeLinecap: 'butt',
+                        strokeLinejoin: 'miter',
+                        strokeMiterlimit: 10,
+                        fill: 'rgb(104,116,146)',
+                        fillRule: 'nonzero',
+                        opacity: 1,
+                    }}
+                    transform=" matrix(1 0 0 1 0 0) "
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M 1.712 46.6 h 5.233 c 2.43 4.787 2.43 9.574 0 14.361 H 1.712 C 0.767 60.961 0 60.195 0 59.249 V 48.312 C 0 47.367 0.767 46.6 1.712 46.6 z"
+                    style={{
+                        stroke: 'none',
+                        strokeWidth: 0,
+                        strokeDasharray: 'none',
+                        strokeLinecap: 'butt',
+                        strokeLinejoin: 'miter',
+                        strokeMiterlimit: 10,
+                        fill: 'none',
+                        fillRule: 'nonzero',
+                        opacity: 1,
+                    }}
+                    transform=" matrix(1 0 0 1 0 0) "
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M 74.51 71.516 H 8.737 c -0.989 0 -1.791 -0.802 -1.791 -1.791 V 37.837 c 0 -0.989 0.802 -1.791 1.791 -1.791 H 74.51 c 0.989 0 1.791 0.802 1.791 1.791 v 31.887 C 76.302 70.714 75.5 71.516 74.51 71.516 z"
+                    style={{
+                        stroke: 'none',
+                        strokeWidth: 1,
+                        strokeDasharray: 'none',
+                        strokeLinecap: 'butt',
+                        strokeLinejoin: 'miter',
+                        strokeMiterlimit: 10,
+                        fill: 'rgb(104,116,146)',
+                        fillRule: 'nonzero',
+                        opacity: 1,
+                    }}
+                    transform=" matrix(1 0 0 1 0 0) "
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M 39.293 55.787 H 16.193 c -0.613 0 -1.11 -0.497 -1.11 -1.11 V 47.71 c 0 -0.613 0.497 -1.11 1.11 -1.11 h 23.101 c 0.613 0 1.11 0.497 1.11 1.11 v 6.966 C 40.404 55.29 39.907 55.787 39.293 55.787 z"
+                    style={{
+                        stroke: 'none',
+                        strokeWidth: 1,
+                        strokeDasharray: 'none',
+                        strokeLinecap: 'butt',
+                        strokeLinejoin: 'miter',
+                        strokeMiterlimit: 10,
+                        fill: 'rgb(239,196,26)',
+                        fillRule: 'nonzero',
+                        opacity: 1,
+                    }}
+                    transform=" matrix(1 0 0 1 0 0) "
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M 54.969 61.984 H 16.105 c -0.565 0 -1.023 -0.457 -1.023 -1.023 s 0.458 -1.023 1.023 -1.023 h 38.864 c 0.565 0 1.023 0.457 1.023 1.023 S 55.534 61.984 54.969 61.984 z"
+                    style={{
+                        stroke: 'none',
+                        strokeWidth: 1,
+                        strokeDasharray: 'none',
+                        strokeLinecap: 'butt',
+                        strokeLinejoin: 'miter',
+                        strokeMiterlimit: 10,
+                        fill: 'rgb(239,196,26)',
+                        fillRule: 'nonzero',
+                        opacity: 1,
+                    }}
+                    transform=" matrix(1 0 0 1 0 0) "
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M 66.044 61.984 h -3.779 c -0.565 0 -1.023 -0.457 -1.023 -1.023 s 0.457 -1.023 1.023 -1.023 h 3.779 c 0.565 0 1.023 0.457 1.023 1.023 S 66.609 61.984 66.044 61.984 z"
+                    style={{
+                        stroke: 'none',
+                        strokeWidth: 1,
+                        strokeDasharray: 'none',
+                        strokeLinecap: 'butt',
+                        strokeLinejoin: 'miter',
+                        strokeMiterlimit: 10,
+                        fill: 'rgb(239,196,26)',
+                        fillRule: 'nonzero',
+                        opacity: 1,
+                    }}
+                    transform=" matrix(1 0 0 1 0 0) "
+                    strokeLinecap="round"
+                />
+            </g>
+        </g>
+    </svg>
+);
+
+export const SearchIcon = ({ width, height }) => (
+    <svg
+        width={width}
+        height={height}
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={2}
+    >
+        <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        />
+    </svg>
+);
+
+export const CloseIcon = ({ width, height }) => (
+    <svg
+        width={width}
+        height={height}
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={2}
+    >
+        <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M6 18L18 6M6 6l12 12"
+        />
+    </svg>
+);
