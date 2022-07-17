@@ -21,7 +21,7 @@ const Header = () => {
             {/* Actions */}
             <div className="flex flex-1 justify-end items-center gap-4">
                 <Button primary rounded>
-                    Button
+                    Login
                 </Button>
                 {/* <Avatar
                     to="/"

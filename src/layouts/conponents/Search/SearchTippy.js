@@ -1,24 +1,41 @@
+import axios from 'axios';
+import classNames from 'classnames/bind';
+import { useEffect, useState, useTransition } from 'react';
 import { Link } from 'react-router-dom';
 import { SearchIcon, SpinnerIcon } from '~/components/Icons';
-import SearchTippyItem from './SearchTippyItem';
-import classNames from 'classnames/bind';
+import config from '~/config';
+import { useDebounce } from '~/hooks';
 import styles from './Search.module.scss';
-import { useEffect, useState } from 'react';
+import SearchTippyItem from './SearchTippyItem';
 
 const cx = classNames.bind(styles);
 
 const SearchTippy = ({ value, ...props }) => {
+    const valueDebounce = useDebounce(value, 500);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [, startTransition] = useTransition();
 
     useEffect(() => {
-        setData([]);
-        setLoading(true);
-        setTimeout(() => {
-            setData([1, 2, 3]);
-            setLoading(false);
-        }, 1000);
+        if (!value) setData([]);
     }, [value]);
+
+    useEffect(() => {
+        setLoading(true);
+        startTransition(async () => {
+            if (valueDebounce)
+                try {
+                    const res = await axios.get(config.movieDB.movie, {
+                        params: { query: `'${valueDebounce}'` },
+                    });
+                    setData(res?.data?.results.slice(0, 5));
+                    setLoading(false);
+                } catch (error) {
+                    console.error(error);
+                    setLoading(false);
+                }
+        });
+    }, [valueDebounce]);
 
     return (
         <div
@@ -50,25 +67,29 @@ const SearchTippy = ({ value, ...props }) => {
                         {(loading && 'Find') ||
                             (data.length > 0 && 'Results for') ||
                             'No results for'}
-                        ' {value}'
+                        &nbsp;'{value}'
                     </span>
                 </div>
-                {data.length > 0 && (
+                {data?.length > 0 && (
                     <div>
                         <div className="flex justify-between items-center pt-6 pb-3 mb-[6px] border-b border-[rgba(0,0,0,.05)]">
                             <h4 className="text-[#333] text-sm leading-sm font-medium uppercase">
                                 Movies
                             </h4>
                             <Link
-                                className="text-desc transition-all hover:text-primary"
+                                className="text-desc text-sm leading-sm transition-all hover:text-primary"
                                 to=""
                             >
                                 See more
                             </Link>
                         </div>
-                        <SearchTippyItem />
-                        <SearchTippyItem />
-                        <SearchTippyItem />
+                        {data.map((movie) => (
+                            <SearchTippyItem
+                                key={movie.id}
+                                data={movie}
+                                to="/"
+                            />
+                        ))}
                     </div>
                 )}
             </div>
