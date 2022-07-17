@@ -1,10 +1,14 @@
 import Header from './Header';
+import Navbar from './Navbar';
 
 const DefaultLayout = ({ children }) => {
     return (
         <div>
             <Header />
-            {children}
+            <div className="flex">
+                <Navbar />
+                {children}
+            </div>
         </div>
     );
 };
