@@ -4,11 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import * as httpRequest from '~/utils/httpRequest';
 import BannerItem from './BannerItem';
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-
 const Banner = () => {
     const [banner, setBanner] = useState([]);
 

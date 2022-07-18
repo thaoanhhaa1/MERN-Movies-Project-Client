@@ -6,7 +6,7 @@ import Search from '~/layouts/conponents/Search';
 
 const Header = () => {
     return (
-        <div className="border-b border-[#e8ebed] h-header-pc flex items-center justify-between px-7">
+        <div className="border-b border-[#e8ebed] h-header-pc flex items-center justify-between px-7 sticky top-0 z-10 bg-white">
             {/* Logo */}
             <div className="flex flex-1 items-center">
                 <Link to={config.routes.home}>

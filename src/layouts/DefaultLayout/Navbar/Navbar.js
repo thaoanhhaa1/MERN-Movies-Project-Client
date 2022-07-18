@@ -9,17 +9,19 @@ const cx = classNames.bind(styles);
 
 const Navbar = ({ className }) => {
     return (
-        <div
-            className={`${cx('navbar', {
-                [className]: className,
-            })} flex-shrink-0 px-2 pt-4`}
-        >
-            <NavItem
-                to={config.routes.home}
-                icon={<HomeSolidIcon width="20px" height="20px" />}
+        <div>
+            <div
+                className={`${cx('navbar', {
+                    [className]: className,
+                })} flex-shrink-0 px-2 py-4 sticky top-[var(--header-pc-height)]`}
             >
-                Home
-            </NavItem>
+                <NavItem
+                    to={config.routes.home}
+                    icon={<HomeSolidIcon width="20px" height="20px" />}
+                >
+                    Home
+                </NavItem>
+            </div>
         </div>
     );
 };

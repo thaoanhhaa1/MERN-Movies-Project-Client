@@ -28,6 +28,9 @@ module.exports = {
                 ease: 'ease',
             },
         },
+        screens: {
+            gx: '1112px',
+        },
     },
     plugins: [require('@tailwindcss/line-clamp')],
 };

@@ -5,6 +5,12 @@ import App from '~/App';
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
 
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>

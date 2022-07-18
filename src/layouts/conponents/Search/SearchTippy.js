@@ -72,7 +72,7 @@ const SearchTippy = ({ value, ...props }) => {
                 </div>
                 {data?.length > 0 && (
                     <div>
-                        <div className="flex justify-between items-center pt-6 pb-3 mb-[6px] border-b border-[rgba(0,0,0,.05)]">
+                        <div className="flex justify-between items-center pt-5 pb-3 mb-[6px] border-b border-[rgba(0,0,0,.05)]">
                             <h4 className="text-[#333] text-sm leading-sm font-medium uppercase">
                                 Movies
                             </h4>
