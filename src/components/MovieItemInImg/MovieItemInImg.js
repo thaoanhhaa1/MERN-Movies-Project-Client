@@ -17,7 +17,7 @@ const MovieItemInImg = ({ className, data }) => {
     return (
         <Link
             className={`${className} relative block mb-5 rounded-2xl overflow-hidden`}
-            to={`/${slugTitle}?id=${data.id}`}
+            to={`/movie/${slugTitle}?id=${data.id}`}
         >
             <Image
                 alt=""

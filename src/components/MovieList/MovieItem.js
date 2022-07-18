@@ -22,7 +22,7 @@ const MovieItem = ({ data, className }) => {
     return (
         <div className={className}>
             <Link
-                to={`/${slugTitle}?id=${data.id}`}
+                to={`/movie/${slugTitle}?id=${data.id}`}
                 className="group relative block rounded-2xl overflow-hidden"
             >
                 <Image
@@ -45,7 +45,7 @@ const MovieItem = ({ data, className }) => {
                 <h3 className="inline-block">
                     <Link
                         className="my-[0.625em] leading-[1.4] text-base font-semibold text-[#292929] line-clamp-1  ease-linear duration-300 hover:text-primary"
-                        to={`/${slugTitle}?id=${data.id}`}
+                        to={`/movie/${slugTitle}?id=${data.id}`}
                     >
                         {data.title}
                     </Link>
