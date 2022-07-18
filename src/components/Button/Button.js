@@ -1,10 +1,14 @@
-const Button = ({ children, rounded, primary, outline }) => {
+import PropTypes from 'prop-types';
+
+const Button = ({ children, rounded, primary, outline, className }) => {
     let style = '';
 
     if (primary) {
         style += `bg-primary text-white`;
     } else if (outline) {
-        style += `border border-primary text-primary`;
+        const type = outline?.split?.('-')?.[1];
+        if (type) style += `border border-${type} text-${type}`;
+        else style += `border border-primary text-primary`;
     } else {
     }
 
@@ -16,11 +20,19 @@ const Button = ({ children, rounded, primary, outline }) => {
 
     return (
         <button
-            className={`${style} font-semibold text-sm leading-sm px-5 py-[9px]`}
+            className={`${style} ${className} transition-all w-fit font-semibold text-sm leading-sm px-5 py-[9px]`}
         >
             {children}
         </button>
     );
+};
+
+Button.propTypes = {
+    children: PropTypes.string,
+    rounded: PropTypes.bool,
+    primary: PropTypes.bool,
+    outline: PropTypes.any,
+    className: PropTypes.string,
 };
 
 export default Button;
