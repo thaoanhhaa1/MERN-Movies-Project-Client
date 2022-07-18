@@ -24,6 +24,9 @@ module.exports = {
             lineHeight: {
                 sm: '1.15',
             },
+            transitionTimingFunction: {
+                ease: 'ease',
+            },
         },
     },
     plugins: [require('@tailwindcss/line-clamp')],
