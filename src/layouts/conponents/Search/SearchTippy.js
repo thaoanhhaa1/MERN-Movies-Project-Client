@@ -1,10 +1,9 @@
-import axios from 'axios';
 import classNames from 'classnames/bind';
 import { useEffect, useState, useTransition } from 'react';
 import { Link } from 'react-router-dom';
 import { SearchIcon, SpinnerIcon } from '~/components/Icons';
-import config from '~/config';
 import { useDebounce } from '~/hooks';
+import * as httpRequest from '~/utils/httpRequest';
 import styles from './Search.module.scss';
 import SearchTippyItem from './SearchTippyItem';
 
@@ -25,10 +24,11 @@ const SearchTippy = ({ value, ...props }) => {
         startTransition(async () => {
             if (valueDebounce)
                 try {
-                    const res = await axios.get(config.movieDB.movie, {
+                    const res = await httpRequest.get('/search', {
                         params: { query: `'${valueDebounce}'` },
                     });
-                    setData(res?.data?.results.slice(0, 5));
+                    console.log('🚀 ~ startTransition ~ res', res);
+                    setData(res?.results.slice(0, 5));
                     setLoading(false);
                 } catch (error) {
                     console.error(error);

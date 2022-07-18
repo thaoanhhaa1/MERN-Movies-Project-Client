@@ -1,22 +1,21 @@
+import { useEffect, useState } from 'react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import * as httpRequest from '~/utils/httpRequest';
+import BannerItem from './BannerItem';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import BannerItem from './BannerItem';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import config from '~/config';
 
 const Banner = () => {
     const [banner, setBanner] = useState([]);
 
     useEffect(() => {
         async function getData() {
-            const result = await axios.get(config.movieDB.upcoming);
-            setBanner(result.data.results.slice(0, 4));
+            const result = await httpRequest.get('/banner');
+            setBanner(result.results.slice(0, 4));
         }
 
         getData();
