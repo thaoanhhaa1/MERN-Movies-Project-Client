@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
+import MovieBackdropList from '~/components/MovieBackdropList';
 import MovieDetailsInfo from '~/components/MovieDetailsInfo';
 import MovieDetailsReviews from '~/components/MovieDetailsReviews';
 import Video from '~/components/Video';
 import MovieDetailsProvider from '~/context/MovieDetails';
 import * as httpRequest from '~/utils/httpRequest';
+import PageNotFound from './PageNotFound';
 
 const MovieDetailPage = () => {
     const { slug } = useParams();
     const [params] = useSearchParams();
     const [movieDetail, setMovieDetail] = useState();
+    const [loading, setLoading] = useState(false);
     const [video, setVideo] = useState();
     const [credits, setCredits] = useState();
-    const [reviews, setReviews] = useState();
 
     const movieId = params.get('id');
 
@@ -22,8 +24,9 @@ const MovieDetailPage = () => {
 
     useEffect(() => {
         async function getData() {
+            setLoading(true);
             try {
-                const [movieDetail, videos, credits, reviews] =
+                const [movieDetail, videos, credits, similar] =
                     await Promise.all([
                         httpRequest.get(`/movie/${movieId}`),
                         httpRequest.get(`/movie/videos`, {
@@ -36,7 +39,7 @@ const MovieDetailPage = () => {
                                 id: movieId,
                             },
                         }),
-                        httpRequest.get(`/movie/reviews`, {
+                        httpRequest.get(`/movie/similar`, {
                             params: {
                                 id: movieId,
                             },
@@ -51,17 +54,19 @@ const MovieDetailPage = () => {
                 setMovieDetail(movieDetail);
                 setVideo(video);
                 setCredits(credits);
-                setReviews(reviews);
             } catch (error) {
                 console.log('🚀 ~ getData ~ error', error);
+            } finally {
+                setLoading(false);
             }
         }
 
         getData();
     }, [movieId]);
 
-    if (!slug || !movieId || !movieDetail || !video || !credits || !reviews)
-        return null;
+    if (!slug || !movieId || !movieDetail || !video || !credits)
+        if (loading) return null;
+        else return <PageNotFound />;
 
     return (
         <MovieDetailsProvider
@@ -70,14 +75,14 @@ const MovieDetailPage = () => {
                 movieDetail,
                 video,
                 credits,
-                reviews,
                 movieId,
             }}
         >
             <div className="flex-1 pr-10 pl-5 mt-4 pb-20">
                 <Video videoId={video?.key}></Video>
                 <MovieDetailsInfo />
-                <MovieDetailsReviews />
+                <MovieDetailsReviews className="mb-12" />
+                <MovieBackdropList>Similar Movies</MovieBackdropList>
             </div>
         </MovieDetailsProvider>
     );

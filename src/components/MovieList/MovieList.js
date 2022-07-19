@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FreeMode, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { ChevronRightIcon } from '~/components/Icons';
 import { useWindowDimensions } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
 import MovieItemInImg from '../MovieItemInImg';
+import MovieHeader from './MovieHeader';
 import MovieItem from './MovieItem';
+import MovieSeeDetails from './MovieSeeDetails';
 
 const MovieList = ({ children, type, className }) => {
     const [movieList, setMovieList] = useState([]);
@@ -54,18 +54,8 @@ const MovieList = ({ children, type, className }) => {
     return (
         <div className={className}>
             <header className="mb-4 flex gap-5 justify-between items-center">
-                <h1 className="font-black text-2xl leading-sm">
-                    <Link className="text-black" to="/">
-                        {children}
-                    </Link>
-                </h1>
-                <Link
-                    className="whitespace-nowrap group flex items-center font-semibold text-[15px] text-primary leading-sm"
-                    to="/"
-                >
-                    <span className="group-hover:underline">See details</span>
-                    <ChevronRightIcon className="w-4 h-4 ml-1 font-bold group-hover:translate-x-1 ease-linear duration-300" />
-                </Link>
+                <MovieHeader>{children}</MovieHeader>
+                <MovieSeeDetails />
             </header>
             {renderMovieList}
         </div>

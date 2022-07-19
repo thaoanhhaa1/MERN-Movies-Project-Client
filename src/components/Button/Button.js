@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const Button = ({ children, rounded, primary, outline, className }) => {
+const Button = ({ children, rounded, primary, outline, link, className }) => {
     let style = '';
 
     if (primary) {
@@ -9,6 +9,8 @@ const Button = ({ children, rounded, primary, outline, className }) => {
         const type = outline?.split?.('-')?.[1];
         if (type) style += `border border-${type} text-${type}`;
         else style += `border border-primary text-primary`;
+    } else if (link) {
+        style += `font-normal text-sm`;
     } else {
     }
 
