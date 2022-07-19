@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -27,10 +29,18 @@ module.exports = {
             transitionTimingFunction: {
                 ease: 'ease',
             },
+            transitionDuration: {
+                300: '300ms',
+            },
         },
         screens: {
             gx: '1112px',
         },
     },
-    plugins: [require('@tailwindcss/line-clamp')],
+    plugins: [
+        require('@tailwindcss/line-clamp'),
+        plugin(function ({ addVariant }) {
+            addVariant('not-last-child', '&:not(:last-child)');
+        }),
+    ],
 };

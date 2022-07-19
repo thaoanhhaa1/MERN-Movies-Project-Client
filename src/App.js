@@ -5,26 +5,24 @@ import routes from './routes';
 
 function App() {
     return (
-        <>
-            <Routes>
-                {routes.map((route) => {
-                    const Component = route.element;
-                    let Layout = DefaultLayout;
+        <Routes>
+            {routes.map((route) => {
+                const Component = route.element;
+                let Layout = DefaultLayout;
 
-                    return (
-                        <Route
-                            key={v4()}
-                            path={route.path}
-                            element={
-                                <Layout>
-                                    <Component />
-                                </Layout>
-                            }
-                        />
-                    );
-                })}
-            </Routes>
-        </>
+                return (
+                    <Route
+                        key={v4()}
+                        path={route.path}
+                        element={
+                            <Layout>
+                                <Component />
+                            </Layout>
+                        }
+                    />
+                );
+            })}
+        </Routes>
     );
 }
 

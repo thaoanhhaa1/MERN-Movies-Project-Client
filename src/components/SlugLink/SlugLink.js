@@ -9,7 +9,13 @@ const SlugLink = ({ children, className }) => {
     });
 
     return (
-        <Link className={className} to={slug}>
+        <Link
+            className={
+                className +
+                "transition-all duration-200 hover:text-primary not-last-child:after:content-[',_']"
+            }
+            to={`/${slug}`}
+        >
             {children}
         </Link>
     );
