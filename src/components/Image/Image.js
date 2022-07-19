@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 
-const Image = ({ src, alt, className }) => {
+const Image = ({ src, alt, className = '', onError }) => {
     return (
         <img
             className={`${className} w-full h-full object-cover`}
             src={src}
             alt={alt}
+            onError={onError}
         />
     );
 };

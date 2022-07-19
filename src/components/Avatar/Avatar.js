@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Image from '~/components/Image';
 import PropTypes from 'prop-types';
 
-const Avatar = ({ src, alt, to, href, className }) => {
+const Avatar = ({ src, alt, to, href, className = '', onError }) => {
     let Component = 'span';
     const props = {};
 
@@ -19,7 +19,7 @@ const Avatar = ({ src, alt, to, href, className }) => {
             {...props}
             className={`${className} block rounded-full overflow-hidden`}
         >
-            <Image src={src} alt={alt} />
+            <Image onError={onError} src={src} alt={alt} />
         </Component>
     );
 };
