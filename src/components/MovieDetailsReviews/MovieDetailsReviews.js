@@ -27,7 +27,6 @@ const MovieDetailsReviews = ({ className = '' }) => {
                     },
                 });
                 reviewsNew.results.unshift(...reviews.results);
-                console.log('🚀 ~ getData ~ reviewsNew', reviewsNew);
 
                 setReviews(reviewsNew);
             } catch (error) {
@@ -93,7 +92,8 @@ const MovieDetailsReviews = ({ className = '' }) => {
                         className="-ml-5 hover:text-primary"
                         link
                     >
-                        See previous comments
+                        {(loading && 'Loading comments') ||
+                            'See previous comments'}
                     </Button>
                 )}
             </div>

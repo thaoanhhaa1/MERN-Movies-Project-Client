@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const PageNotFound = () => {
     return (
-        <section className="flex-1 py-10 bg-white font-['Arvo',_serif]">
+        <section className="py-10 bg-white font-['Arvo',_serif]">
             <div className="container">
                 <div className="row">
                     <div className="col-sm-12 ">
@@ -20,7 +20,7 @@ const PageNotFound = () => {
 
                                 <Link
                                     to="/"
-                                    className="py-[10px] inline-block my-5 px-5 bg-[#39ac31]"
+                                    className="text-white rounded-xl overflow-hidden py-[10px] inline-block my-5 px-5 bg-[#39ac31]"
                                 >
                                     Go to Home
                                 </Link>

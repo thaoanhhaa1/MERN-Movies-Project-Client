@@ -8,7 +8,7 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div className="flex-1 pr-10 pl-5 mt-4 pb-20">
+        <div>
             <Banner />
             <MovieList className="mt-10" type="now_playing">
                 Now Playing

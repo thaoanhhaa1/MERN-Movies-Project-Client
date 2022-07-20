@@ -32,7 +32,7 @@
         @apply rounded-none h-2 w-2;
     }
     html ::-webkit-scrollbar-thumb {
-        @apply bg-[#d6d6d6] rounded-none;
+        @apply bg-[#d6d6d6] rounded;
     }
     html ::-webkit-scrollbar-track {
         @apply bg-transparent rounded-none;

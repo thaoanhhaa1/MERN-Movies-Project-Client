@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
+import Casts from '~/components/Casts';
 import MovieBackdropList from '~/components/MovieBackdropList';
 import MovieDetailsInfo from '~/components/MovieDetailsInfo';
 import MovieDetailsReviews from '~/components/MovieDetailsReviews';
 import Video from '~/components/Video';
 import MovieDetailsProvider from '~/context/MovieDetails';
 import * as httpRequest from '~/utils/httpRequest';
-import PageNotFound from './PageNotFound';
+import PageNotFound from '~/pages/PageNotFound';
 
 const MovieDetailPage = () => {
     const { slug } = useParams();
@@ -18,33 +19,27 @@ const MovieDetailPage = () => {
 
     const movieId = params.get('id');
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         document.title = movieDetail?.title || 'WMovies';
     }, [movieDetail]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         async function getData() {
             setLoading(true);
             try {
-                const [movieDetail, videos, credits, similar] =
-                    await Promise.all([
-                        httpRequest.get(`/movie/${movieId}`),
-                        httpRequest.get(`/movie/videos`, {
-                            params: {
-                                id: movieId,
-                            },
-                        }),
-                        httpRequest.get(`/movie/credits`, {
-                            params: {
-                                id: movieId,
-                            },
-                        }),
-                        httpRequest.get(`/movie/similar`, {
-                            params: {
-                                id: movieId,
-                            },
-                        }),
-                    ]);
+                const [movieDetail, videos, credits] = await Promise.all([
+                    httpRequest.get(`/movie/${movieId}`),
+                    httpRequest.get(`/movie/videos`, {
+                        params: {
+                            id: movieId,
+                        },
+                    }),
+                    httpRequest.get(`/movie/credits`, {
+                        params: {
+                            id: movieId,
+                        },
+                    }),
+                ]);
 
                 const video =
                     videos.results.find((video) =>
@@ -78,11 +73,14 @@ const MovieDetailPage = () => {
                 movieId,
             }}
         >
-            <div className="flex-1 pr-10 pl-5 mt-4 pb-20">
+            <div>
                 <Video videoId={video?.key}></Video>
                 <MovieDetailsInfo />
                 <MovieDetailsReviews className="mb-12" />
-                <MovieBackdropList>Similar Movies</MovieBackdropList>
+                <MovieBackdropList className="mb-6">
+                    Similar Movies
+                </MovieBackdropList>
+                <Casts />
             </div>
         </MovieDetailsProvider>
     );

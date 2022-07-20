@@ -1,7 +1,27 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const Button = ({ children, rounded, primary, outline, link, className }) => {
+const Button = ({
+    to,
+    href,
+    children,
+    rounded,
+    primary,
+    outline,
+    link,
+    className,
+}) => {
     let style = '';
+    const props = {};
+    let Component = 'button';
+
+    if (to) {
+        Component = Link;
+        props.to = to;
+    } else if (href) {
+        Component = 'a';
+        props.href = href;
+    }
 
     if (primary) {
         style += `bg-primary text-white`;
@@ -21,11 +41,12 @@ const Button = ({ children, rounded, primary, outline, link, className }) => {
     }
 
     return (
-        <button
-            className={`${style} ${className} transition-all w-fit font-semibold text-sm leading-sm px-5 py-[9px]`}
+        <Component
+            {...props}
+            className={`${style} ${className} transition-all w-fit font-semibold text-sm text-center leading-sm px-5 py-[9px]`}
         >
             {children}
-        </button>
+        </Component>
     );
 };
 
