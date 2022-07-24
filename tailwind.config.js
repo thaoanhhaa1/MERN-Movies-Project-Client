@@ -34,7 +34,7 @@ module.exports = {
             },
             backgroundImage: {
                 '404-page':
-                    'url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif)',
+                    'url("https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif")',
             },
         },
         screens: {
