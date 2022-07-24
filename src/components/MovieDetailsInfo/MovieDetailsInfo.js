@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import slugify from 'slugify';
 import config from '~/config';
 import { useMovieDetails } from '~/context/MovieDetails';
 import getDMY from '~/utils/getDMY';
@@ -65,7 +66,19 @@ const MovieDetailsInfo = () => {
                             )
                             ?.slice(0, 4)
                             ?.map((cast) => (
-                                <SlugLink key={cast.id}>{cast.name}</SlugLink>
+                                <SlugLink
+                                    to={`/cast/${cast.id}&${slugify(
+                                        cast?.name || '',
+                                        {
+                                            locale: 'vi',
+                                            lower: true,
+                                            strict: true,
+                                        },
+                                    )}`}
+                                    key={cast.id}
+                                >
+                                    {cast.name}
+                                </SlugLink>
                             ))}
                     </span>
                 </div>

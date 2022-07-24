@@ -1,5 +1,5 @@
 import config from '~/config';
-import { HomePage, MovieDetailPage } from '~/pages';
+import { CastDetailsPage, HomePage, MovieDetailPage } from '~/pages';
 
 const routes = [
     {
@@ -12,7 +12,7 @@ const routes = [
     },
     {
         path: config.routes.cast,
-        element: <div>Cast</div>,
+        element: CastDetailsPage,
     },
 ];
 
