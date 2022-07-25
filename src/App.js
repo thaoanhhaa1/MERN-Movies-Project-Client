@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { v4 } from 'uuid';
 import DefaultLayout from './layouts/DefaultLayout';
@@ -9,6 +10,8 @@ function App() {
             {routes.map((route) => {
                 const Component = route.element;
                 let Layout = DefaultLayout;
+
+                if (route.layout === null) Layout = Fragment;
 
                 return (
                     <Route

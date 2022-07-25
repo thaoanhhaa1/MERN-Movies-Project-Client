@@ -1,5 +1,11 @@
 import config from '~/config';
-import { CastDetailsPage, HomePage, MovieDetailPage } from '~/pages';
+import {
+    CastDetailsPage,
+    HomePage,
+    LoginPage,
+    MovieDetailPage,
+    RegisterPage,
+} from '~/pages';
 
 const routes = [
     {
@@ -13,6 +19,16 @@ const routes = [
     {
         path: config.routes.cast,
         element: CastDetailsPage,
+    },
+    {
+        path: config.routes.login,
+        element: LoginPage,
+        layout: null,
+    },
+    {
+        path: config.routes.register,
+        element: RegisterPage,
+        layout: null,
     },
 ];
 

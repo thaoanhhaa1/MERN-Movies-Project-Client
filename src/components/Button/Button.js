@@ -10,6 +10,7 @@ const Button = ({
     outline,
     link,
     className,
+    large,
 }) => {
     let style = '';
     const props = {};
@@ -23,14 +24,17 @@ const Button = ({
         props.href = href;
     }
 
+    if (large) style += ` py-[14px]`;
+    else style += ` py-[9px]`;
+
     if (primary) {
-        style += `bg-primary text-white`;
+        style += ` bg-primary text-white`;
     } else if (outline) {
         const type = outline?.split?.('-')?.[1];
-        if (type) style += `border border-${type} text-${type}`;
-        else style += `border border-primary text-primary`;
+        if (type) style += ` border border-${type} text-${type}`;
+        else style += ` border border-primary text-primary`;
     } else if (link) {
-        style += `font-normal text-sm`;
+        style += ` font-normal text-sm`;
     } else {
     }
 
@@ -43,7 +47,7 @@ const Button = ({
     return (
         <Component
             {...props}
-            className={`${style} ${className} transition-all w-fit font-semibold text-sm text-center leading-sm px-5 py-[9px]`}
+            className={`${style} ${className} transition-all w-fit font-semibold text-sm text-center leading-sm px-5`}
         >
             {children}
         </Component>
@@ -54,6 +58,7 @@ Button.propTypes = {
     children: PropTypes.string,
     rounded: PropTypes.bool,
     primary: PropTypes.bool,
+    large: PropTypes.bool,
     outline: PropTypes.any,
     className: PropTypes.string,
 };

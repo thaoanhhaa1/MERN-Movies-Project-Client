@@ -21,6 +21,7 @@ module.exports = {
             },
             colors: {
                 primary: '#4AC6D2',
+                text: '#292929',
                 desc: '#0000008a',
             },
             lineHeight: {
@@ -35,6 +36,8 @@ module.exports = {
             backgroundImage: {
                 '404-page':
                     'url("https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif")',
+                'linear-primary':
+                    'linear-gradient(107.61deg, #00A7B4 15.59%, #A4D96C 87.25%)',
             },
         },
         screens: {

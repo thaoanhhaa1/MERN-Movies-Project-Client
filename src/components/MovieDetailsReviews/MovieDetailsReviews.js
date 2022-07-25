@@ -37,7 +37,7 @@ const MovieDetailsReviews = ({ className = '' }) => {
         }
 
         getData();
-    }, [movieId, page]);
+    }, [movieId, page, reviews.results]);
 
     return (
         <div className={className + ' mt-12'}>
