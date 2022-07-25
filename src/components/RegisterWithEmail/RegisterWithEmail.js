@@ -7,13 +7,14 @@ import Input from '~/components/Input';
 import Label from '~/components/Label';
 import * as httpRequest from '~/utils/httpRequest';
 
-const LoginWithEmail = () => {
-    const { control, handleSubmit } = useForm();
+const RegisterWithEmail = () => {
+    const { control, handleSubmit, reset } = useForm();
 
     const handleValid = async (values) => {
         try {
-            await httpRequest.post('user/sign-in', values);
-            toast.success('Login successfully!');
+            await httpRequest.post('user/signup', values);
+            reset();
+            toast.success('User created successfully');
         } catch (error) {
             toast.error(error?.response?.data?.message || error.message);
         }
@@ -21,6 +22,14 @@ const LoginWithEmail = () => {
 
     return (
         <Form onSubmit={handleSubmit(handleValid)}>
+            <FormGroup>
+                <Label htmlFor="email">Your name?</Label>
+                <Input
+                    control={control}
+                    name="name"
+                    placeholder="Your name"
+                ></Input>
+            </FormGroup>
             <FormGroup>
                 <Label htmlFor="email">Email Address</Label>
                 <Input
@@ -39,10 +48,10 @@ const LoginWithEmail = () => {
                 ></Input>
             </FormGroup>
             <Button className="w-full" large primary>
-                Login
+                Register
             </Button>
         </Form>
     );
 };
 
-export default LoginWithEmail;
+export default RegisterWithEmail;

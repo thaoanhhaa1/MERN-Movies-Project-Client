@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeftIcon, LogoIcon } from '~/components/Icons';
+import BackModal from '~/components/BackModal';
+import { LogoIcon } from '~/components/Icons';
 import LoginGroupBtn from '~/components/LoginGroupBtn';
 import LoginWithEmail from '~/components/LoginWithEmail';
 import config from '~/config';
@@ -25,20 +26,12 @@ const LoginPage = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-linear-primary">
-            <div className="relative py-12 w-[640px] min-h-[600px] bg-white rounded-lg">
-                {loginMenu.length > 1 && (
-                    <span
-                        onClick={() => {
-                            setLoginMenu((prev) =>
-                                prev.slice(0, prev.length - 1),
-                            );
-                        }}
-                        className="cursor-pointer absolute top-0 left-0 flex items-center justify-center w-[70px] h-[70px]"
-                    >
-                        <ChevronLeftIcon width="20px" height="20px" />
-                    </span>
-                )}
-
+            <BackModal
+                onBack={() => {
+                    setLoginMenu((prev) => prev.slice(0, prev.length - 1));
+                }}
+                isShowBack={loginMenu.length > 1}
+            >
                 <header>
                     <div className="text-center">
                         <Link className="inline-flex" to={config.routes.home}>
@@ -49,11 +42,9 @@ const LoginPage = () => {
                         Login to WMovies
                     </h1>
                 </header>
-
                 <section className="pt-[37px]">
                     {loginMenu[loginMenu.length - 1]}
                 </section>
-
                 <footer className="mt-8 text-center">
                     <div className="text-sm leading-relaxed">
                         <span>Do not have an account?</span>
@@ -66,7 +57,7 @@ const LoginPage = () => {
                         </Link>
                     </div>
                 </footer>
-            </div>
+            </BackModal>
         </div>
     );
 };
