@@ -4,14 +4,18 @@ import { auth } from '~/firebase/firebaseConfig';
 
 const AuthContext = createContext();
 
-function AuthProvider(props) {
-    const [user, setUser] = useState({});
+function AuthProvider({ children, ...props }) {
+    const [user, setUser] = useState(null);
 
     onAuthStateChanged(auth, (user) => {
-        setUser(user ?? {});
+        setUser(user);
     });
 
-    return <AuthContext.Provider value={{ user, setUser }} {...props} />;
+    return (
+        <AuthContext.Provider value={{ user, setUser }} {...props}>
+            {children}
+        </AuthContext.Provider>
+    );
 }
 
 function useAuth() {

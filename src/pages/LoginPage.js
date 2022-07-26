@@ -5,8 +5,10 @@ import { LogoIcon } from '~/components/Icons';
 import LoginGroupBtn from '~/components/LoginGroupBtn';
 import LoginWithEmail from '~/components/LoginWithEmail';
 import config from '~/config';
+import { useSignInWithGoogle } from '~/hooks';
 
 const LoginPage = () => {
+    const handleSignInWithGoogle = useSignInWithGoogle();
     const [loginMenu, setLoginMenu] = useState(() => [
         <>
             <LoginGroupBtn className="mt-[14px]">
@@ -15,7 +17,7 @@ const LoginPage = () => {
                         setLoginMenu((prev) => [...prev, <LoginWithEmail />]);
                     }}
                 />
-                <LoginGroupBtn.Google />
+                <LoginGroupBtn.Google onClick={handleSignInWithGoogle} />
             </LoginGroupBtn>
         </>,
     ]);

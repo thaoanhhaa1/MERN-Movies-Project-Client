@@ -12,7 +12,7 @@ const UserActionsPopup = (props) => {
     const { user } = useAuth();
 
     const handleSignOut = async () => {
-        await signOut(auth);
+        signOut(auth);
         navigate(config.routes.login);
     };
 
@@ -23,7 +23,10 @@ const UserActionsPopup = (props) => {
                     <Avatar
                         className="w-[50px] h-[50px] my-[10px]"
                         alt="Avatar"
-                        src="https://graph.facebook.com/2563055210655657/picture?width=400&height=400"
+                        src={
+                            user?.photoURL ??
+                            'https://graph.facebook.com/2563055210655657/picture?width=400&height=400'
+                        }
                     ></Avatar>
                     <div>
                         <h4 className="font-semibold text-base text-[#292929] leading-sm">

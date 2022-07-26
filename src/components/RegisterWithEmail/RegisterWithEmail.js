@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -37,7 +37,10 @@ const RegisterWithEmail = () => {
 
             const result = await httpRequest.post('/user/signup', values);
 
-            await setDoc(doc(db, 'users', user.uid), result.data);
+            await setDoc(doc(db, 'users', user.uid), {
+                ...result.data,
+                createdAt: serverTimestamp(),
+            });
 
             reset();
             setUser(user);

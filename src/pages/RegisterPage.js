@@ -5,8 +5,10 @@ import { LogoIcon } from '~/components/Icons';
 import LoginGroupBtn from '~/components/LoginGroupBtn';
 import RegisterWithEmail from '~/components/RegisterWithEmail';
 import config from '~/config';
+import { useSignInWithGoogle } from '~/hooks';
 
 const RegisterPage = () => {
+    const handleSignInWithGoogle = useSignInWithGoogle();
     const [registerMenu, setRegisterMenu] = useState(() => [
         <>
             <LoginGroupBtn className="mt-[14px]">
@@ -18,7 +20,7 @@ const RegisterPage = () => {
                         ]);
                     }}
                 />
-                <LoginGroupBtn.Google />
+                <LoginGroupBtn.Google onClick={handleSignInWithGoogle} />
             </LoginGroupBtn>
         </>,
     ]);

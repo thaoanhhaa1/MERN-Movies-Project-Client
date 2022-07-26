@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, signInWithPopup } from 'firebase/auth';
 import { initializeFirestore } from 'firebase/firestore';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCztwuZSGpPAwNJ5LUFsQH9Jhe8i1HY4gQ',
@@ -17,3 +18,10 @@ export const db = initializeFirestore(app, {
     useFetchStreams: false,
 });
 export const auth = getAuth(app);
+
+const provider = new GoogleAuthProvider();
+provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+export const signInWithGoogle = () => {
+    return signInWithPopup(auth, provider);
+};
