@@ -6,9 +6,11 @@ import LoginGroupBtn from '~/components/LoginGroupBtn';
 import RegisterWithEmail from '~/components/RegisterWithEmail';
 import config from '~/config';
 import { useSignInWithGoogle } from '~/hooks';
+import useSignInWithFacebook from '~/hooks/useSignInWithFacebook';
 
 const RegisterPage = () => {
     const handleSignInWithGoogle = useSignInWithGoogle();
+    const handleSignInWithFacebook = useSignInWithFacebook();
     const [registerMenu, setRegisterMenu] = useState(() => [
         <>
             <LoginGroupBtn className="mt-[14px]">
@@ -21,6 +23,7 @@ const RegisterPage = () => {
                     }}
                 />
                 <LoginGroupBtn.Google onClick={handleSignInWithGoogle} />
+                <LoginGroupBtn.Facebook onClick={handleSignInWithFacebook} />
             </LoginGroupBtn>
         </>,
     ]);

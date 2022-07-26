@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup } from 'firebase/auth';
 import { initializeFirestore } from 'firebase/firestore';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCztwuZSGpPAwNJ5LUFsQH9Jhe8i1HY4gQ',
@@ -19,9 +19,17 @@ export const db = initializeFirestore(app, {
 });
 export const auth = getAuth(app);
 
-const provider = new GoogleAuthProvider();
-provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+const providerGoogle = new GoogleAuthProvider();
+providerGoogle.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
 export const signInWithGoogle = () => {
-    return signInWithPopup(auth, provider);
+    return signInWithPopup(auth, providerGoogle);
+};
+
+const providerFacebook = new FacebookAuthProvider();
+
+providerFacebook.addScope('user_photos');
+
+export const signInWithFacebook = () => {
+    return signInWithPopup(auth, providerFacebook);
 };

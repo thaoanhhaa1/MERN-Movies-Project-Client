@@ -1,5 +1,5 @@
 import { signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import slugify from 'slugify';
 import Avatar from '~/components/Avatar';
 import Popup from '~/components/Popup';
@@ -11,10 +11,19 @@ const UserActionsPopup = (props) => {
     const navigate = useNavigate();
     const { user } = useAuth();
 
-    const handleSignOut = async () => {
-        signOut(auth);
-        navigate(config.routes.login);
-    };
+    const menuProfile = [
+        {
+            to: '/settings',
+            title: 'Setting',
+        },
+        {
+            title: 'Logout',
+            onClick: async () => {
+                signOut(auth);
+                navigate(config.routes.login);
+            },
+        },
+    ];
 
     return (
         <Popup {...props}>
@@ -46,14 +55,22 @@ const UserActionsPopup = (props) => {
                 <hr className="my-2 border-[rgba(0,0,0,.05)]" />
 
                 <ul>
-                    <li>
-                        <span
-                            onClick={handleSignOut}
-                            className="cursor-pointer block py-[10px] text-sm leading-sm text-[#666]"
-                        >
-                            Logout
-                        </span>
-                    </li>
+                    {menuProfile.map(({ title, ...props }) => {
+                        let Component = 'span';
+
+                        if (props.to) Component = Link;
+
+                        return (
+                            <li>
+                                <Component
+                                    {...props}
+                                    className="cursor-pointer block py-[10px] text-sm leading-sm text-[#666]"
+                                >
+                                    {title}
+                                </Component>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
         </Popup>
