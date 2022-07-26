@@ -1,7 +1,9 @@
 import classNames from 'classnames/bind';
+import PropTypes from 'prop-types';
 import { useEffect, useState, useTransition } from 'react';
 import { Link } from 'react-router-dom';
 import { SearchIcon, SpinnerIcon } from '~/components/Icons';
+import Popup from '~/components/Popup';
 import { useDebounce } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
 import styles from './Search.module.scss';
@@ -27,7 +29,6 @@ const SearchTippy = ({ value, ...props }) => {
                     const res = await httpRequest.get('/search', {
                         params: { query: `'${valueDebounce}'` },
                     });
-                    console.log('🚀 ~ startTransition ~ res', res);
                     setData(res?.results.slice(0, 5));
                     setLoading(false);
                 } catch (error) {
@@ -38,16 +39,11 @@ const SearchTippy = ({ value, ...props }) => {
     }, [valueDebounce]);
 
     return (
-        <div
-            className={`${cx(
-                'search-tippy-wrapper',
-            )} shadow-[0_-4px_32px_rgba(0,0,0,0.2)] bg-white rounded-[10px] overflow-hidden`}
-        >
+        <Popup {...props}>
             <div
-                {...props}
                 className={`${cx(
                     'search-tippy',
-                )} w-search min-h-[50px] max-h-[calc(90vh-66px)] overflow-overlay px-6 py-3`}
+                )} w-search min-h-[50px] max-h-[calc(90vh-66px)] overflow-overlay py-3 px-6`}
             >
                 <div className="h-[26px] flex text-[#757575] items-center text-sm leading-sm">
                     {(loading && (
@@ -93,8 +89,12 @@ const SearchTippy = ({ value, ...props }) => {
                     </div>
                 )}
             </div>
-        </div>
+        </Popup>
     );
+};
+
+SearchTippy.propTypes = {
+    value: PropTypes.string.isRequired,
 };
 
 export default SearchTippy;

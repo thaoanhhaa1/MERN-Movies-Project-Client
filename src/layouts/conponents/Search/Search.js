@@ -13,11 +13,10 @@ const Search = () => {
     const inputRef = useRef();
 
     return (
-        <div>
+        <div className="relative">
             <Tippy
                 interactive
                 visible={!!searchValue && isShow}
-                maxWidth="100%"
                 placement="bottom"
                 onClickOutside={() => setShow(false)}
                 render={(attrs) => (

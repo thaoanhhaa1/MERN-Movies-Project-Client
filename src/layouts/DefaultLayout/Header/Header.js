@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
 import { LogoIcon } from '~/components/Icons';
+import UserActions from '~/components/UserActions';
 import config from '~/config';
+import useAuth from '~/context/Auth';
 import Search from '~/layouts/conponents/Search';
 
 const Header = () => {
+    const { user } = useAuth();
+
     return (
         <div className="border-b border-[#e8ebed] h-header-pc flex items-center justify-between px-7 sticky top-0 z-10 bg-white">
             {/* Logo */}
@@ -20,15 +24,11 @@ const Header = () => {
 
             {/* Actions */}
             <div className="flex flex-1 justify-end items-center gap-4">
-                <Button to={config.routes.login} primary rounded>
-                    Login
-                </Button>
-                {/* <Avatar
-                    to="/"
-                    className="w-avatar h-avatar"
-                    alt="Avatar"
-                    src="https://graph.facebook.com/2563055210655657/picture?width=400&height=400"
-                ></Avatar> */}
+                {(user?.email && <UserActions />) || (
+                    <Button to={config.routes.login} primary rounded>
+                        Login
+                    </Button>
+                )}
             </div>
         </div>
     );

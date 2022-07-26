@@ -1,22 +1,50 @@
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Button from '~/components/Button';
 import Form from '~/components/Form';
 import FormGroup from '~/components/FormGroup';
 import Input from '~/components/Input';
 import Label from '~/components/Label';
+import config from '~/config';
+import useAuth from '~/context/Auth';
+import { auth, db } from '~/firebase/firebaseConfig';
 import * as httpRequest from '~/utils/httpRequest';
 
 const RegisterWithEmail = () => {
-    const { control, handleSubmit, reset } = useForm();
+    const {
+        control,
+        handleSubmit,
+        reset,
+        formState: { isSubmitting },
+    } = useForm();
+    const { setUser } = useAuth();
+    const navigate = useNavigate();
 
     const handleValid = async (values) => {
         try {
-            await httpRequest.post('user/signup', values);
+            const { user } = await createUserWithEmailAndPassword(
+                auth,
+                values.email,
+                values.password,
+            );
+
+            await updateProfile(user, {
+                displayName: values.name,
+            });
+
+            const result = await httpRequest.post('/user/signup', values);
+
+            await setDoc(doc(db, 'users', user.uid), result.data);
+
             reset();
+            setUser(user);
             toast.success('User created successfully');
+            navigate(config.routes.home);
         } catch (error) {
-            toast.error(error?.response?.data?.message || error.message);
+            toast.error(error.message);
         }
     };
 
@@ -47,7 +75,7 @@ const RegisterWithEmail = () => {
                     placeholder="Password"
                 ></Input>
             </FormGroup>
-            <Button className="w-full" large primary>
+            <Button isLoading={isSubmitting} className="w-full" large primary>
                 Register
             </Button>
         </Form>

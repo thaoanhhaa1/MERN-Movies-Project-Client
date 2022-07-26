@@ -1,8 +1,17 @@
+import { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import Image from '~/components/Image';
-import PropTypes from 'prop-types';
 
-const Avatar = ({ src, alt, to, href, className = '', onError }) => {
+/**
+ * Component Avatar
+ * @param {*} param0
+ * @param {*} ref
+ * @returns
+ */
+const Avatar = (
+    { src, alt, to, href, className = '', onError, onClick = () => {} },
+    ref,
+) => {
     let Component = 'span';
     const props = {};
 
@@ -16,7 +25,9 @@ const Avatar = ({ src, alt, to, href, className = '', onError }) => {
 
     return (
         <Component
+            ref={ref}
             {...props}
+            onClick={onClick}
             className={`${className} block rounded-full overflow-hidden`}
         >
             <Image onError={onError} src={src} alt={alt} />
@@ -24,12 +35,4 @@ const Avatar = ({ src, alt, to, href, className = '', onError }) => {
     );
 };
 
-Avatar.propTypes = {
-    src: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-    to: PropTypes.string,
-    href: PropTypes.string,
-    className: PropTypes.string,
-};
-
-export default Avatar;
+export default forwardRef(Avatar);

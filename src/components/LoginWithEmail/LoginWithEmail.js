@@ -1,21 +1,34 @@
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Button from '~/components/Button';
 import Form from '~/components/Form';
 import FormGroup from '~/components/FormGroup';
 import Input from '~/components/Input';
 import Label from '~/components/Label';
-import * as httpRequest from '~/utils/httpRequest';
+import config from '~/config';
+import { auth } from '~/firebase/firebaseConfig';
 
 const LoginWithEmail = () => {
-    const { control, handleSubmit } = useForm();
+    const {
+        control,
+        handleSubmit,
+        formState: { isSubmitting },
+    } = useForm();
+    const navigate = useNavigate();
 
     const handleValid = async (values) => {
         try {
-            await httpRequest.post('user/sign-in', values);
+            await signInWithEmailAndPassword(
+                auth,
+                values.email,
+                values.password,
+            );
             toast.success('Login successfully!');
+            navigate(config.routes.home);
         } catch (error) {
-            toast.error(error?.response?.data?.message || error.message);
+            toast.error(error.message);
         }
     };
 
@@ -38,7 +51,7 @@ const LoginWithEmail = () => {
                     placeholder="Password"
                 ></Input>
             </FormGroup>
-            <Button className="w-full" large primary>
+            <Button isLoading={isSubmitting} className="w-full" large primary>
                 Login
             </Button>
         </Form>

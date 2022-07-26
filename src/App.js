@@ -2,12 +2,13 @@ import { Fragment } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { v4 } from 'uuid';
+import { AuthProvider } from '~/context/Auth';
 import DefaultLayout from './layouts/DefaultLayout';
 import routes from './routes';
 
 function App() {
     return (
-        <>
+        <AuthProvider>
             <ToastContainer />
             <Routes>
                 {routes.map((route) => {
@@ -29,7 +30,7 @@ function App() {
                     );
                 })}
             </Routes>
-        </>
+        </AuthProvider>
     );
 }
 
