@@ -7,6 +7,7 @@ import Form from '~/components/Form';
 import FormGroup from '~/components/FormGroup';
 import Input from '~/components/Input';
 import Label from '~/components/Label';
+import UploadPhoto from '~/components/UploadPhoto';
 import useAuth from '~/context/Auth';
 import { db } from '~/firebase/firebaseConfig';
 
@@ -17,6 +18,7 @@ const EditProfileUser = () => {
         reset,
         watch,
         handleSubmit,
+        setValue,
         formState: { isSubmitting },
     } = useForm();
 
@@ -38,9 +40,10 @@ const EditProfileUser = () => {
         if (!user) return;
 
         const defaultValues = {
-            name: user.displayName,
+            name: user.name,
             birthday: user.birthday,
             gender: !!user.gender,
+            avatar: user.avatar,
         };
 
         if (user.provider === 'email') defaultValues.password = user.password;
@@ -51,6 +54,7 @@ const EditProfileUser = () => {
     if (!user) return null;
 
     const genderWatch = watch('gender');
+    const avatarWatch = watch('avatar');
 
     return (
         <div className="mt-[50px] max-w-[800px] mx-auto">
@@ -62,6 +66,13 @@ const EditProfileUser = () => {
                 cols={2}
                 className="mt-[30px]"
             >
+                <div className="flex justify-center col-start-1 col-end-3">
+                    <UploadPhoto
+                        name="avatar"
+                        value={avatarWatch}
+                        setValue={setValue}
+                    ></UploadPhoto>
+                </div>
                 <FormGroup>
                     <Label htmlFor="name">Full name</Label>
                     <Input
@@ -89,7 +100,7 @@ const EditProfileUser = () => {
                         Male
                     </Checkbox>
                 </FormGroup>
-                {user.provider === 'email' && (
+                {false && (
                     <FormGroup>
                         <Label htmlFor="password">Password</Label>
                         <Input

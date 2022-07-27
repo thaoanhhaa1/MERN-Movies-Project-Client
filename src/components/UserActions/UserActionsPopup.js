@@ -34,7 +34,7 @@ const UserActionsPopup = (props) => {
                         className="w-[50px] h-[50px] my-[10px]"
                         alt="Avatar"
                         src={
-                            user?.photoURL ??
+                            user?.avatar?.url ??
                             'https://graph.facebook.com/2563055210655657/picture?width=400&height=400'
                         }
                     ></Avatar>
@@ -44,7 +44,7 @@ const UserActionsPopup = (props) => {
                         </h4>
                         <p className="mt-1 text-sm text-[#757575] leading-sm">
                             @
-                            {slugify(user.username ?? user.displayName ?? '', {
+                            {slugify(user.username ?? user.name ?? '', {
                                 locale: 'vi',
                                 lower: true,
                                 strict: true,

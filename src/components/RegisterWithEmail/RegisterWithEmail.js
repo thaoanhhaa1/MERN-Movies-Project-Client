@@ -9,7 +9,6 @@ import FormGroup from '~/components/FormGroup';
 import Input from '~/components/Input';
 import Label from '~/components/Label';
 import config from '~/config';
-import useAuth from '~/context/Auth';
 import { auth, db } from '~/firebase/firebaseConfig';
 import * as httpRequest from '~/utils/httpRequest';
 
@@ -20,7 +19,6 @@ const RegisterWithEmail = () => {
         reset,
         formState: { isSubmitting },
     } = useForm();
-    const { setUser } = useAuth();
     const navigate = useNavigate();
 
     const handleValid = async (values) => {
@@ -40,7 +38,6 @@ const RegisterWithEmail = () => {
             });
 
             reset();
-            setUser(user);
             toast.success('User created successfully');
             navigate(config.routes.home);
         } catch (error) {

@@ -22,7 +22,7 @@ const UserActions = () => {
                 className="w-avatar h-avatar cursor-pointer"
                 alt="Avatar"
                 src={
-                    user?.photoURL ??
+                    user?.avatar?.url ??
                     'https://graph.facebook.com/2563055210655657/picture?width=400&height=400'
                 }
                 onClick={() => setShow(!show)}
