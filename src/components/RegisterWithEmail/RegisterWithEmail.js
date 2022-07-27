@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -30,10 +30,6 @@ const RegisterWithEmail = () => {
                 values.email,
                 values.password,
             );
-
-            await updateProfile(user, {
-                displayName: values.name,
-            });
 
             const result = await httpRequest.post('/user/signup', values);
 

@@ -40,7 +40,7 @@ const UserActionsPopup = (props) => {
                     ></Avatar>
                     <div>
                         <h4 className="font-semibold text-base text-[#292929] leading-sm">
-                            {user.displayName}
+                            {user.name}
                         </h4>
                         <p className="mt-1 text-sm text-[#757575] leading-sm">
                             @

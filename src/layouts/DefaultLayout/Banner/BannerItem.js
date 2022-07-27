@@ -35,7 +35,7 @@ const BannerItem = ({ data }) => {
                         lower: true,
                         strict: true,
                     })}?id=${data.id}`}
-                    className="min-w-[124px] border-2 font-bold leading-[1.6] py-[4px] px-[10px] hover:bg-white hover:text-primary"
+                    className="w-fit border-2 font-bold leading-[1.6] py-[4px] px-[10px] hover:bg-white hover:text-primary"
                     outline="outline-white"
                     rounded
                 >

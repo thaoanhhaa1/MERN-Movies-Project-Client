@@ -33,7 +33,7 @@ const MovieItem = ({ data, className }) => {
                     <>
                         <div className="absolute inset-0 bg-black bg-opacity-50 invisible opacity-0 group-hover:visible group-hover:opacity-100 ease-ease duration-300"></div>
                         <Button
-                            className="!absolute top-[60%] left-2/4 font-semibold text-sm z-[5] bg-white -translate-x-2/4 -translate-y-2/4 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:top-2/4 ease-ease duration-300"
+                            className="!absolute w-fit top-[60%] left-2/4 font-semibold text-sm z-[5] bg-white -translate-x-2/4 -translate-y-2/4 invisible opacity-0 group-hover:visible group-hover:opacity-100 group-hover:top-2/4 ease-ease duration-300"
                             rounded
                         >
                             Watch movie

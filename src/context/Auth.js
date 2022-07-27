@@ -16,9 +16,11 @@ function AuthProvider({ children, ...props }) {
                 const result = await getDoc(docRef);
 
                 setUser({
-                    ...user,
                     ...result.data(),
+                    ...user,
                 });
+            } else {
+                setUser(null);
             }
         });
     }, []);
