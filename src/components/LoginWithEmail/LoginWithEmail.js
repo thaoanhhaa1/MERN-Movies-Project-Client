@@ -33,7 +33,7 @@ const LoginWithEmail = () => {
     };
 
     return (
-        <Form onSubmit={handleSubmit(handleValid)}>
+        <Form onSubmit={handleSubmit(handleValid)} className="w-[380px]">
             <FormGroup>
                 <Label htmlFor="email">Email Address</Label>
                 <Input

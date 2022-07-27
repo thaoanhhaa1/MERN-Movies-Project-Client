@@ -52,7 +52,7 @@ const Button = ({
             {...props}
             className={`${
                 disabled || isLoading ? 'opacity-60' : ''
-            } ${style} ${className} relative transition-all w-fit font-semibold text-sm text-center leading-sm px-5`}
+            } ${style} ${className} flex items-center justify-center gap-2 relative transition-all w-fit font-semibold text-sm leading-sm px-5`}
         >
             {(isLoading && (
                 <div className="absolute left-2/4 -translate-x-2/4 -translate-y-2/4">
@@ -65,7 +65,7 @@ const Button = ({
 };
 
 Button.propTypes = {
-    children: PropTypes.string,
+    children: PropTypes.node.isRequired,
     rounded: PropTypes.bool,
     primary: PropTypes.bool,
     large: PropTypes.bool,

@@ -36,7 +36,7 @@ Cast.propTypes = {
     data: PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
-        profile_path: PropTypes.string.isRequired,
+        profile_path: PropTypes.string,
     }).isRequired,
 };
 

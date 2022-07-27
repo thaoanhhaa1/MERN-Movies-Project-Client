@@ -276,6 +276,36 @@ export const UserIcon = ({ width, height, className }) => (
     </svg>
 );
 
+export const UserSolidIcon = ({ width, height, className }) => (
+    <svg
+        width={width}
+        height={height}
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+    >
+        <path
+            fillRule="evenodd"
+            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+            clipRule="evenodd"
+        />
+    </svg>
+);
+
+export const UsersSolidIcon = ({ width, height, className }) => (
+    <svg
+        width={width}
+        height={height}
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+    >
+        <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+    </svg>
+);
+
 export const GoogleIcon = ({ width, height, className }) => (
     <svg
         width={width}
@@ -452,5 +482,110 @@ export const FacebookIcon = ({
             fill="#fff"
             d="M711.3,660,734,512H592V415.95728C592,375.46667,611.83508,336,675.43713,336H740V210s-58.59235-10-114.61078-10C508.43854,200,432,270.87982,432,399.2V512H302V660H432v357.77777a517.39619,517.39619,0,0,0,160,0V660Z"
         />
+    </svg>
+);
+
+export const HeartSolidIcon = ({
+    width = '14px',
+    height = '14px',
+    className,
+}) => (
+    <svg
+        width={width}
+        height={height}
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+    >
+        <path
+            fillRule="evenodd"
+            d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+            clipRule="evenodd"
+        />
+    </svg>
+);
+
+export const LogOutIcon = ({ width = '14px', height = '14px', className }) => (
+    <svg
+        width={width}
+        height={height}
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={2}
+    >
+        <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+        />
+    </svg>
+);
+
+export const EmailIcon = ({ width = '14px', height = '14px', className }) => (
+    <svg
+        width={width}
+        height={height}
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+    >
+        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+    </svg>
+);
+
+export const CalendarIcon = ({
+    width = '14px',
+    height = '14px',
+    className,
+}) => (
+    <svg
+        width={width}
+        height={height}
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+    >
+        <path
+            fillRule="evenodd"
+            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+            clipRule="evenodd"
+        />
+    </svg>
+);
+
+export const LockIcon = ({ width = '14px', height = '14px', className }) => (
+    <svg
+        width={width}
+        height={height}
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+    >
+        <path
+            fillRule="evenodd"
+            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+            clipRule="evenodd"
+        />
+    </svg>
+);
+
+export const PencilIcon = ({ width = '14px', height = '14px', className }) => (
+    <svg
+        width={width}
+        height={height}
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+    >
+        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
     </svg>
 );

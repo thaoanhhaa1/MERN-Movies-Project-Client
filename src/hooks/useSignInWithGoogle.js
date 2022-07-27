@@ -16,6 +16,7 @@ const useSignInWithGoogle = () => {
                 email: user.email,
                 name: user.displayName,
                 createdAt: serverTimestamp(),
+                provider: 'google',
             });
 
             toast.success('Login successfully!');

@@ -16,6 +16,7 @@ function App() {
                     let Layout = DefaultLayout;
 
                     if (route.layout === null) Layout = Fragment;
+                    else if (route.layout) Layout = route.layout;
 
                     return (
                         <Route

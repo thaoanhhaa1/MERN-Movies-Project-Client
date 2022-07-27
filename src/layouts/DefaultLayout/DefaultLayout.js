@@ -1,4 +1,4 @@
-import Header from './Header';
+import Header from '~/layouts/conponents/Header';
 import Navbar from './Navbar';
 
 const DefaultLayout = ({ children }) => {

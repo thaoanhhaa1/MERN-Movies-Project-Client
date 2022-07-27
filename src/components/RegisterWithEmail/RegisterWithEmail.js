@@ -40,6 +40,7 @@ const RegisterWithEmail = () => {
             await setDoc(doc(db, 'users', user.uid), {
                 ...result.data,
                 createdAt: serverTimestamp(),
+                provider: 'email',
             });
 
             reset();
@@ -52,7 +53,7 @@ const RegisterWithEmail = () => {
     };
 
     return (
-        <Form onSubmit={handleSubmit(handleValid)}>
+        <Form onSubmit={handleSubmit(handleValid)} className="w-[380px]">
             <FormGroup>
                 <Label htmlFor="email">Your name?</Label>
                 <Input

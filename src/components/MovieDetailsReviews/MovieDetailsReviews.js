@@ -11,8 +11,8 @@ import * as httpRequest from '~/utils/httpRequest';
 const MovieDetailsReviews = ({ className = '' }) => {
     const { movieId } = useMovieDetails();
     const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(false);
-    const [reviews, setReviews] = useState({ results: [] });
+    const [loading, setLoading] = useState(true);
+    const [reviews, setReviews] = useState(() => ({ results: [] }));
 
     const handleLoadMore = () => setPage((page) => page + 1);
 
@@ -26,18 +26,20 @@ const MovieDetailsReviews = ({ className = '' }) => {
                         page,
                     },
                 });
-                reviewsNew.results.unshift(...reviews.results);
 
-                setReviews(reviewsNew);
+                setReviews((reviews) => ({
+                    ...reviewsNew,
+                    results: [...reviews.results, ...reviewsNew.results],
+                }));
+                setLoading(false);
             } catch (error) {
                 console.log(error);
-            } finally {
                 setLoading(false);
             }
         }
 
-        getData();
-    }, [movieId, page, reviews.results]);
+        if (movieId) getData();
+    }, [movieId, page]);
 
     return (
         <div className={className + ' mt-12'}>
@@ -45,7 +47,7 @@ const MovieDetailsReviews = ({ className = '' }) => {
             <div className="w-9/12 p-6 bg-slate-200 rounded">
                 <div className="flex justify-between items-center">
                     <span className="flex-shrink-0 w-1/4 text-sm leading-snug">
-                        {reviews.total_results || 0} comments
+                        {reviews?.results?.length || 0} comments
                     </span>
                     <div className="flex-1 flex justify-end items-center">
                         <span className="text-sm leading-snug mr-4">

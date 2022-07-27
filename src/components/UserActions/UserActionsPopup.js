@@ -1,6 +1,7 @@
 import { signOut } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import slugify from 'slugify';
+import { v4 } from 'uuid';
 import Avatar from '~/components/Avatar';
 import Popup from '~/components/Popup';
 import config from '~/config';
@@ -13,8 +14,8 @@ const UserActionsPopup = (props) => {
 
     const menuProfile = [
         {
-            to: '/settings',
-            title: 'Setting',
+            to: config.routes.personalInformation,
+            title: 'Personal information',
         },
         {
             title: 'Logout',
@@ -61,7 +62,7 @@ const UserActionsPopup = (props) => {
                         if (props.to) Component = Link;
 
                         return (
-                            <li>
+                            <li key={v4()}>
                                 <Component
                                     {...props}
                                     className="cursor-pointer block py-[10px] text-sm leading-sm text-[#666]"
