@@ -1,23 +1,52 @@
 import { Link } from 'react-router-dom';
+import slugify from 'slugify';
 import config from '~/config';
-import Image from '../Image';
+import Image from '~/components/Image';
+import PropTypes from 'prop-types';
 
-const MovieBackdropItem = ({ data }) => {
+const MovieBackdropItem = ({ data, render }) => {
+    if (!data || !data.backdrop_path) return null;
+
     return (
         <div className="pb-5 select-none">
-            <Link to="/" className="block rounded overflow-hidden">
+            <Link
+                to={`/movie/${slugify(data.title || '', {
+                    locale: 'vi',
+                    lower: true,
+                    strict: true,
+                })}?id=${data.id}`}
+                className="group relative block rounded overflow-hidden"
+            >
                 <Image
                     alt=""
                     src={`${config.movieDB.image}${data.backdrop_path}`}
                 ></Image>
+                {render}
             </Link>
             <div>
                 <h3 className="font-medium text-base mt-[15px] mb-[5px] hover:text-primary ease-ease duration-300">
-                    <Link to="/">{data.title}</Link>
+                    <Link
+                        to={`/movie/${slugify(data.title || '', {
+                            locale: 'vi',
+                            lower: true,
+                            strict: true,
+                        })}?id=${data.id}`}
+                    >
+                        {data.title}
+                    </Link>
                 </h3>
             </div>
         </div>
     );
+};
+
+MovieBackdropItem.propTypes = {
+    data: PropTypes.shape({
+        title: PropTypes.string,
+        id: PropTypes.number,
+        backdrop_path: PropTypes.string,
+    }).isRequired,
+    render: PropTypes.node,
 };
 
 export default MovieBackdropItem;

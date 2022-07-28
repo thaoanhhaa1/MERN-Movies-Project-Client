@@ -39,11 +39,15 @@ const MovieBackdropList = ({ className, children }) => {
                         }}
                         modules={[Scrollbar, FreeMode]}
                     >
-                        {similar?.map((item) => (
-                            <SwiperSlide key={item.id}>
-                                <MovieBackdropItem data={item} />
-                            </SwiperSlide>
-                        ))}
+                        {similar?.map((item) => {
+                            if (!item || !item.backdrop_path) return null;
+
+                            return (
+                                <SwiperSlide key={item.id}>
+                                    <MovieBackdropItem data={item} />
+                                </SwiperSlide>
+                            );
+                        })}
                     </Swiper>
                 </div>
             )}

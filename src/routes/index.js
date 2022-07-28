@@ -3,6 +3,7 @@ import HeaderLayout from '~/layouts/HeaderLayout';
 import SettingLayout from '~/layouts/SettingLayout';
 import {
     CastDetailsPage,
+    FavoritePage,
     HomePage,
     LoginPage,
     MovieDetailPage,
@@ -43,6 +44,11 @@ const routes = [
         path: config.routes.personalInformationEdit,
         element: EditProfileUser,
         layout: HeaderLayout,
+    },
+    {
+        path: config.routes.favorite,
+        element: FavoritePage,
+        layout: SettingLayout,
     },
 ];
 

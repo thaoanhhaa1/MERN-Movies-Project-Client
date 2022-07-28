@@ -13,6 +13,7 @@ const Button = ({
     large,
     disabled,
     isLoading,
+    onClick = () => {},
 }) => {
     let style = '';
     const props = {};
@@ -48,6 +49,7 @@ const Button = ({
 
     return (
         <Component
+            onClick={onClick}
             disabled={disabled || isLoading}
             {...props}
             className={`${

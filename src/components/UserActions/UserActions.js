@@ -8,25 +8,24 @@ const UserActions = () => {
     const [show, setShow] = useState(false);
     const { user } = useAuth();
 
+    const handleClickAvatar = () => setShow((show) => !show);
+    const handleClickMenu = () => setShow(false);
+
     return (
         <Tippy
             visible={show}
             interactive
             placement="bottom-end"
             render={(attrs) => (
-                <UserActionsPopup onClick={() => setShow(false)} {...attrs} />
+                <UserActionsPopup onClick={handleClickMenu} {...attrs} />
             )}
             onClickOutside={() => setShow(false)}
         >
             <Avatar
                 className="w-avatar h-avatar cursor-pointer"
                 alt="Avatar"
-                src={
-                    user?.avatar?.url ??
-                    user?.photoURL ??
-                    'https://graph.facebook.com/2563055210655657/picture?width=400&height=400'
-                }
-                onClick={() => setShow(!show)}
+                src={user?.avatar?.url ?? user?.photoURL}
+                onClick={handleClickAvatar}
             ></Avatar>
         </Tippy>
     );

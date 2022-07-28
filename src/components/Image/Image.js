@@ -13,7 +13,7 @@ const Image = ({ src, alt, className = '', onError }) => {
 };
 
 Image.propTypes = {
-    src: PropTypes.string.isRequired,
+    src: PropTypes.string,
     alt: PropTypes.string.isRequired,
     className: PropTypes.string,
     onError: PropTypes.func,

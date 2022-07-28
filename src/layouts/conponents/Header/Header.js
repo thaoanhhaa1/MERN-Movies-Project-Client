@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
 import { LogoIcon } from '~/components/Icons';
@@ -34,4 +35,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default memo(Header);

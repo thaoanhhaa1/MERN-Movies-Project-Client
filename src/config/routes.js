@@ -7,6 +7,7 @@ const routes = {
     setting: '/setting',
     personalInformation: '/setting/personal-information',
     personalInformationEdit: '/setting/personal-information/edit',
+    favorite: '/setting/favorite',
 };
 
 export default routes;

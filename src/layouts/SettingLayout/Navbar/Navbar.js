@@ -12,7 +12,7 @@ const navMenu = [
     },
     {
         title: 'Favourite',
-        to: 'favourite',
+        to: config.routes.favorite,
         icon: HeartSolidIcon,
     },
     {

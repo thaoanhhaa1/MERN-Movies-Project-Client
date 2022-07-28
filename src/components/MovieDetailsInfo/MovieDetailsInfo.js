@@ -1,13 +1,38 @@
+import { useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import slugify from 'slugify';
+import Button from '~/components/Button';
+import { HeartSolidIcon } from '~/components/Icons';
+import Image from '~/components/Image';
+import SlugLink from '~/components/SlugLink';
 import config from '~/config';
+import useAuth from '~/context/Auth';
 import { useMovieDetails } from '~/context/MovieDetails';
 import getDMY from '~/utils/getDMY';
-import Image from '../Image';
-import SlugLink from '../SlugLink';
+import * as httpRequest from '~/utils/httpRequest';
 
 const MovieDetailsInfo = () => {
+    const { user } = useAuth();
     const { slug, movieId, movieDetail, credits } = useMovieDetails();
+    const [favorites, setFavorites] = useState(false);
+
+    const handleToggleFavorites = async () => {
+        setFavorites((favorites) => !favorites);
+        await httpRequest.post(
+            `/user/${user.uid}/favorites-movie?movieId=${movieId}`,
+        );
+    };
+
+    useLayoutEffect(() => {
+        async function getData() {
+            const result = await httpRequest.get(
+                `/user/${user.uid}/favorites-movie?movieId=${movieId}`,
+            );
+            setFavorites(result?.favorites);
+        }
+
+        if (user?.uid) getData();
+    }, [movieId, user?.uid]);
 
     return (
         <div className="flex mt-10">
@@ -19,17 +44,28 @@ const MovieDetailsInfo = () => {
                     alt=""
                     src={config.movieDB.image + movieDetail?.poster_path}
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-0 ease-linear duration-[400ms]"></div>
+                <div className="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-0 ease-linear duration-[400ms]" />
             </Link>
             <div className="w-6/12 px-[15px]">
                 <h3 className="mb-1 font-medium text-2xl">
                     {movieDetail?.title}
                 </h3>
-                <p className="mb-4 font-medium text-lg text-slate-500">
+                <p className="font-medium text-lg text-slate-500">
                     {movieDetail?.tagline}
                 </p>
-                <div>
-                    <h4 className="font-medium text-sm mb-2">Overview</h4>
+                <Button
+                    onClick={handleToggleFavorites}
+                    className={`w-[135px] mt-1 transition-all duration-[400ms] ${
+                        favorites
+                            ? 'bg-[linear-gradient(90deg,#ff3055,#fb685f)]'
+                            : 'bg-[linear-gradient(90deg,#252728,#3f4143)]'
+                    } text-white`}
+                >
+                    <HeartSolidIcon className="w-[18px] h-[18px]" />
+                    <span>{favorites ? 'Followed' : 'Follow'}</span>
+                </Button>
+                <div className="mt-4">
+                    <h4 className="font-semibold text-sm mb-2">Overview</h4>
                     <p
                         title={movieDetail?.overview}
                         className="text-justify text-sm text-slate-500 line-clamp-5"

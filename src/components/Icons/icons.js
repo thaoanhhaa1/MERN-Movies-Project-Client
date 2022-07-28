@@ -226,10 +226,11 @@ export const SearchIcon = ({ width, height, className }) => (
     </svg>
 );
 
-export const CloseIcon = ({ width, height }) => (
+export const CloseIcon = ({ width, height, className }) => (
     <svg
         width={width}
         height={height}
+        className={className}
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

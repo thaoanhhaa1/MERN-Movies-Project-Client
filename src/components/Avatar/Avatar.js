@@ -12,17 +12,13 @@ const Avatar = (
     { src, alt, to, href, className = '', onClick = () => {} },
     ref,
 ) => {
-    const [avatar, setAvatar] = useState(src);
+    const [avatar, setAvatar] = useState(src ?? '/no-avatar.png');
 
-    useEffect(() => setAvatar(src), [src]);
+    useEffect(() => {
+        if (src) setAvatar(src);
+    }, [src]);
 
-    const handleError = useCallback(
-        () =>
-            setAvatar(
-                'https://graph.facebook.com/2563055210655657/picture?width=400&height=400',
-            ),
-        [],
-    );
+    const handleError = useCallback(() => setAvatar('/no-avatar.png'), []);
 
     let Component = 'span';
     const props = {};
