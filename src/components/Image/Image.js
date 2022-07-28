@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { memo } from 'react';
 
 const Image = ({ src, alt, className = '', onError }) => {
     return (
@@ -15,6 +16,7 @@ Image.propTypes = {
     src: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,
     className: PropTypes.string,
+    onError: PropTypes.func,
 };
 
-export default Image;
+export default memo(Image);

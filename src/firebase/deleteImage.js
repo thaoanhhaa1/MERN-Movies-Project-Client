@@ -1,6 +1,8 @@
 import { getStorage, ref, deleteObject } from 'firebase/storage';
 
 async function deleteImage(fileName) {
+    if (!fileName) return;
+
     const storage = getStorage();
 
     try {

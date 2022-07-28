@@ -1,4 +1,5 @@
 import { signOut } from 'firebase/auth';
+import { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import slugify from 'slugify';
 import { v4 } from 'uuid';
@@ -12,19 +13,22 @@ const UserActionsPopup = (props) => {
     const navigate = useNavigate();
     const { user } = useAuth();
 
-    const menuProfile = [
-        {
-            to: config.routes.personalInformation,
-            title: 'Personal information',
-        },
-        {
-            title: 'Logout',
-            onClick: async () => {
-                signOut(auth);
-                navigate(config.routes.login);
+    const menuProfile = useMemo(
+        () => [
+            {
+                to: config.routes.personalInformation,
+                title: 'Personal information',
             },
-        },
-    ];
+            {
+                title: 'Logout',
+                onClick: async () => {
+                    signOut(auth);
+                    navigate(config.routes.login);
+                },
+            },
+        ],
+        [navigate],
+    );
 
     return (
         <Popup {...props}>
@@ -35,6 +39,7 @@ const UserActionsPopup = (props) => {
                         alt="Avatar"
                         src={
                             user?.avatar?.url ??
+                            user?.photoURL ??
                             'https://graph.facebook.com/2563055210655657/picture?width=400&height=400'
                         }
                     ></Avatar>

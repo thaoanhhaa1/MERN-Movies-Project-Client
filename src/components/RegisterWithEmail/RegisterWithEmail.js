@@ -10,7 +10,6 @@ import Input from '~/components/Input';
 import Label from '~/components/Label';
 import config from '~/config';
 import { auth, db } from '~/firebase/firebaseConfig';
-import * as httpRequest from '~/utils/httpRequest';
 
 const RegisterWithEmail = () => {
     const {
@@ -29,10 +28,8 @@ const RegisterWithEmail = () => {
                 values.password,
             );
 
-            const result = await httpRequest.post('/user/signup', values);
-
             await setDoc(doc(db, 'users', user.uid), {
-                ...result.data,
+                ...values,
                 createdAt: serverTimestamp(),
                 provider: 'email',
             });

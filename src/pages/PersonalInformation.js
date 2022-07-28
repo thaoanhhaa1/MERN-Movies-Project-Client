@@ -17,7 +17,7 @@ const personalInformation = [
     {
         title: 'Full name',
         icon: UserSolidIcon,
-        attribute: 'displayName',
+        attribute: 'name',
     },
     {
         title: 'E-mail',
@@ -59,6 +59,7 @@ const PersonalInformation = () => {
                 <Avatar
                     className="w-[100px] h-[100px] mx-auto"
                     src={
+                        user?.avatar?.url ??
                         user?.photoURL ??
                         'https://graph.facebook.com/2563055210655657/picture?width=400&height=400'
                     }
@@ -75,7 +76,9 @@ const PersonalInformation = () => {
                             {item.title}
                         </PersonalInformationItem.Title>
                         <PersonalInformationItem.Description>
-                            {user?.[item.attribute]}
+                            {(item.attribute === 'gender' &&
+                                (user?.[item.attribute] ? 'Male' : 'Female')) ||
+                                user?.[item.attribute]}
                         </PersonalInformationItem.Description>
                     </PersonalInformationItem>
                 ))}

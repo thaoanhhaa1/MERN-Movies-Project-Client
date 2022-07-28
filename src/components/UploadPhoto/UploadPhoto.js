@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
+import Avatar from '~/components/Avatar';
 import { CameraIcon } from '~/components/Icons';
 import deleteImage from '~/firebase/deleteImage';
 import uploadImage from '~/firebase/uploadImage';
-import Avatar from '../Avatar';
 
 const UploadPhoto = ({ name, value, setValue }) => {
     const [progress, setProgress] = useState(0);
@@ -13,7 +14,7 @@ const UploadPhoto = ({ name, value, setValue }) => {
         try {
             const result = await uploadImage(file, setProgress);
             setValue('avatar', result);
-            if (value) {
+            if (value?.name) {
                 deleteImage(value.name);
             }
             setProgress(0);
@@ -60,6 +61,12 @@ const UploadPhoto = ({ name, value, setValue }) => {
             </div>
         </label>
     );
+};
+
+UploadPhoto.propTypes = {
+    name: PropTypes.string.isRequired,
+    value: PropTypes.object,
+    setValue: PropTypes.func.isRequired,
 };
 
 export default UploadPhoto;

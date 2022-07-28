@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Image from '~/components/Image';
 
@@ -9,9 +9,21 @@ import Image from '~/components/Image';
  * @returns
  */
 const Avatar = (
-    { src, alt, to, href, className = '', onError, onClick = () => {} },
+    { src, alt, to, href, className = '', onClick = () => {} },
     ref,
 ) => {
+    const [avatar, setAvatar] = useState(src);
+
+    useEffect(() => setAvatar(src), [src]);
+
+    const handleError = useCallback(
+        () =>
+            setAvatar(
+                'https://graph.facebook.com/2563055210655657/picture?width=400&height=400',
+            ),
+        [],
+    );
+
     let Component = 'span';
     const props = {};
 
@@ -30,7 +42,7 @@ const Avatar = (
             onClick={onClick}
             className={`${className} block rounded-full overflow-hidden`}
         >
-            <Image onError={onError} src={src} alt={alt} />
+            <Image onError={handleError} src={avatar} alt={alt} />
         </Component>
     );
 };
