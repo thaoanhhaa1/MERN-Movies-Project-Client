@@ -58,11 +58,7 @@ const PersonalInformation = () => {
             <div>
                 <Avatar
                     className="w-[100px] h-[100px] mx-auto"
-                    src={
-                        user?.avatar?.url ??
-                        user?.photoURL ??
-                        'https://graph.facebook.com/2563055210655657/picture?width=400&height=400'
-                    }
+                    src={user?.avatar?.url ?? user?.photoURL}
                     alt=""
                 ></Avatar>
                 <h1 className="mt-4 font-bold text-[26px] text-center leading-[1.2]">
