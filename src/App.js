@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import { v4 } from 'uuid';
 import { AuthProvider } from '~/context/Auth';
 import DefaultLayout from './layouts/DefaultLayout';
+import { PageNotFound } from './pages';
 import routes from './routes';
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
                         />
                     );
                 })}
+
+                <Route path="*" element={<PageNotFound />} />
             </Routes>
         </AuthProvider>
     );

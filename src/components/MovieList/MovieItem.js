@@ -7,7 +7,7 @@ import Image from '~/components/Image';
 import config from '~/config';
 import { useWindowDimensions } from '~/hooks';
 
-const MovieItem = ({ data, className }) => {
+const MovieItem = ({ hoverImage = true, data, className, rounded }) => {
     const { width } = useWindowDimensions();
     const slugTitle = useMemo(
         () =>
@@ -23,13 +23,15 @@ const MovieItem = ({ data, className }) => {
         <div className={className}>
             <Link
                 to={`/movie/${slugTitle}?id=${data.id}`}
-                className="group relative block rounded-2xl overflow-hidden"
+                className={`group relative block ${
+                    rounded ? `rounded-[${rounded}]` : 'rounded-2xl'
+                } overflow-hidden`}
             >
                 <Image
                     alt={data.title}
                     src={config.movieDB.image + data.poster_path}
                 />
-                {width >= 1024 && (
+                {hoverImage && width >= 1024 && (
                     <>
                         <div className="absolute inset-0 bg-black bg-opacity-50 invisible opacity-0 group-hover:visible group-hover:opacity-100 ease-ease duration-300"></div>
                         <Button

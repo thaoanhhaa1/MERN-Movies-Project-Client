@@ -3,6 +3,7 @@ import HeaderLayout from '~/layouts/HeaderLayout';
 import SettingLayout from '~/layouts/SettingLayout';
 import {
     CastDetailsPage,
+    CategoryPage,
     FavoritePage,
     HomePage,
     LoginPage,
@@ -49,6 +50,11 @@ const routes = [
         path: config.routes.favorite,
         element: FavoritePage,
         layout: SettingLayout,
+    },
+    {
+        path: config.routes.category,
+        element: CategoryPage,
+        layout: HeaderLayout,
     },
 ];
 

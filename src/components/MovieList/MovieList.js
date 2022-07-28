@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import slugify from 'slugify';
 import { FreeMode, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useWindowDimensions } from '~/hooks';
@@ -51,12 +52,24 @@ const MovieList = ({ children, type, className }) => {
             </Swiper>
         );
 
+    const link = useMemo(
+        () =>
+            `/category/${slugify(children ?? '', {
+                locale: 'vi',
+                lower: true,
+                strict: true,
+            })}`,
+        [children],
+    );
+
     return (
         <div className={className}>
-            <header className="mb-4 flex gap-5 justify-between items-center">
-                <MovieHeader>{children}</MovieHeader>
-                <MovieSeeDetails />
-            </header>
+            {children && (
+                <header className="mb-4 flex gap-5 justify-between items-center">
+                    <MovieHeader to={link}>{children}</MovieHeader>
+                    <MovieSeeDetails to={link} />
+                </header>
+            )}
             {renderMovieList}
         </div>
     );
