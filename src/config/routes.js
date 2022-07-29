@@ -10,6 +10,7 @@ const routes = {
     favorite: '/setting/favorite',
     category: '/category/:category',
     search: '/search',
+    popular: '/popular',
 };
 
 export default routes;

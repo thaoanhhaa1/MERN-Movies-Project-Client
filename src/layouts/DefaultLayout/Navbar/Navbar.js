@@ -1,13 +1,13 @@
 import classNames from 'classnames/bind';
+import PropTypes from 'prop-types';
+import { FireSolidIcon, HomeSolidIcon } from '~/components/Icons';
+import config from '~/config';
 import styles from './Navbar.module.scss';
 import NavItem from './NavItem';
-import PropTypes from 'prop-types';
-import { HomeSolidIcon } from '~/components/Icons';
-import config from '~/config';
 
 const cx = classNames.bind(styles);
 
-const Navbar = ({ className }) => {
+const Navbar = ({ className = '' }) => {
     return (
         <div>
             <div
@@ -20,6 +20,12 @@ const Navbar = ({ className }) => {
                     icon={<HomeSolidIcon width="20px" height="20px" />}
                 >
                     Home
+                </NavItem>
+                <NavItem
+                    to={config.routes.popular}
+                    icon={<FireSolidIcon width="20px" height="20px" />}
+                >
+                    Popular
                 </NavItem>
             </div>
         </div>

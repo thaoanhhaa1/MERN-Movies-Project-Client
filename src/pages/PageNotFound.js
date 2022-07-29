@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const PageNotFound = () => {
+    const navigate = useNavigate();
+
     return (
         <section className="py-10 bg-white font-['Arvo',_serif]">
             <div className="container">
@@ -18,12 +20,20 @@ const PageNotFound = () => {
 
                                 <p>the page you are looking for not avaible!</p>
 
-                                <Link
-                                    to="/"
-                                    className="text-white rounded-xl overflow-hidden py-[10px] inline-block my-5 px-5 bg-[#39ac31]"
-                                >
-                                    Go to Home
-                                </Link>
+                                <div className="flex items-center justify-center gap-4">
+                                    <Link
+                                        to="/"
+                                        className="text-white rounded-xl overflow-hidden py-[10px] inline-block my-5 px-5 bg-[#39ac31]"
+                                    >
+                                        Go to Home
+                                    </Link>
+                                    <button
+                                        onClick={() => navigate(-1)}
+                                        className="text-white rounded-xl overflow-hidden py-[10px] inline-block my-5 px-5 bg-[#39ac31]"
+                                    >
+                                        Back
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

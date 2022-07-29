@@ -57,7 +57,7 @@ const EditProfileUser = () => {
     const avatarWatch = watch('avatar');
 
     return (
-        <div className="mt-[50px] max-w-[800px] mx-auto">
+        <div className="mt-[50px] mb-10 max-w-[800px] mx-auto">
             <h1 className="font-semibold text-3xl text-center">
                 Edit Personal Information
             </h1>

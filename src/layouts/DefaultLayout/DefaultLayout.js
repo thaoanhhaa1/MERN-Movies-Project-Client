@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+import Footer from '~/layouts/conponents/Footer';
 import Header from '~/layouts/conponents/Header';
 import Navbar from './Navbar';
 
@@ -11,8 +13,13 @@ const DefaultLayout = ({ children }) => {
                     {children}
                 </div>
             </div>
+            <Footer />
         </div>
     );
+};
+
+DefaultLayout.propTypes = {
+    children: PropTypes.node.isRequired,
 };
 
 export default DefaultLayout;

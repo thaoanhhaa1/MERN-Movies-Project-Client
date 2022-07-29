@@ -1,7 +1,6 @@
 import { memo } from 'react';
-import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
-import { LogoIcon } from '~/components/Icons';
+import Logo from '~/components/Logo';
 import UserActions from '~/components/UserActions';
 import config from '~/config';
 import useAuth from '~/context/Auth';
@@ -11,14 +10,9 @@ const Header = () => {
     const { user } = useAuth();
 
     return (
-        <div className="border-b border-[#e8ebed] h-header-pc flex items-center justify-between px-7 sticky top-0 z-10 bg-white">
+        <div className="border-b border-[#e8ebed] h-header-pc flex items-center justify-between px-7 sticky top-0 z-50 bg-white">
             {/* Logo */}
-            <div className="flex flex-1 items-center">
-                <Link to={config.routes.home}>
-                    <LogoIcon width="38px" height="38px" />
-                </Link>
-                <h5 className="ml-4 font-bold text-sm text-black">WMovies</h5>
-            </div>
+            <Logo className="flex-1" />
 
             {/* Search */}
             <Search />
