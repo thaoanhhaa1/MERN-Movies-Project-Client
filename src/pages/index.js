@@ -7,3 +7,4 @@ export { default as MovieDetailPage } from './MovieDetailPage';
 export { default as PageNotFound } from './PageNotFound';
 export { default as PersonalInformation } from './PersonalInformation';
 export { default as RegisterPage } from './RegisterPage';
+export { default as SearchPage } from './SearchPage';

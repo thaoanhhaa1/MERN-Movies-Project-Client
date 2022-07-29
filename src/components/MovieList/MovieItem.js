@@ -7,7 +7,7 @@ import Image from '~/components/Image';
 import config from '~/config';
 import { useWindowDimensions } from '~/hooks';
 
-const MovieItem = ({ hoverImage = true, data, className, rounded }) => {
+const MovieItem = ({ hoverImage = true, data, className = '', rounded }) => {
     const { width } = useWindowDimensions();
     const slugTitle = useMemo(
         () =>
@@ -23,7 +23,7 @@ const MovieItem = ({ hoverImage = true, data, className, rounded }) => {
         <div className={className}>
             <Link
                 to={`/movie/${slugTitle}?id=${data.id}`}
-                className={`group relative block ${
+                className={`flex-1 group relative block ${
                     rounded ? `rounded-[${rounded}]` : 'rounded-2xl'
                 } overflow-hidden`}
             >

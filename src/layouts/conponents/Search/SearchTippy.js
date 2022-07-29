@@ -11,7 +11,7 @@ import SearchTippyItem from './SearchTippyItem';
 
 const cx = classNames.bind(styles);
 
-const SearchTippy = ({ value, ...props }) => {
+const SearchTippy = ({ value, handleResetSearch = () => {}, ...props }) => {
     const valueDebounce = useDebounce(value, 500);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -73,17 +73,18 @@ const SearchTippy = ({ value, ...props }) => {
                                 Movies
                             </h4>
                             <Link
+                                onClick={handleResetSearch}
                                 className="text-desc text-sm leading-sm transition-all hover:text-primary"
-                                to=""
+                                to={`/search?q=${value}`}
                             >
                                 See more
                             </Link>
                         </div>
                         {data.map((movie) => (
                             <SearchTippyItem
+                                onClick={handleResetSearch}
                                 key={movie.id}
                                 data={movie}
-                                to="/"
                             />
                         ))}
                     </div>

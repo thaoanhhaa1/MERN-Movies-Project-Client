@@ -1,6 +1,7 @@
 import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
-import { useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { CloseIcon, SearchIcon } from '~/components/Icons';
 import styles from './Search.module.scss';
 import SearchTippy from './SearchTippy';
@@ -11,6 +12,13 @@ const Search = () => {
     const [searchValue, setSearchValue] = useState('');
     const [isShow, setShow] = useState(true);
     const inputRef = useRef();
+    const location = useLocation();
+
+    useLayoutEffect(() => {
+        setShow(false);
+    }, [location]);
+
+    const handleResetSearch = () => setSearchValue('');
 
     return (
         <div className="relative">
@@ -20,7 +28,11 @@ const Search = () => {
                 placement="bottom"
                 onClickOutside={() => setShow(false)}
                 render={(attrs) => (
-                    <SearchTippy value={searchValue} {...attrs} />
+                    <SearchTippy
+                        handleResetSearch={handleResetSearch}
+                        value={searchValue}
+                        {...attrs}
+                    />
                 )}
             >
                 <div className="focus-within:border-[#444] transition-all duration-300 w-search h-search flex flex-row-reverse items-center border-2 border-[#e8e8e8] rounded-full overflow-hidden">

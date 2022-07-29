@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
 import { useParams } from 'react-router-dom';
-import { ChevronLeftIcon, ChevronRightIcon } from '~/components/Icons';
 import MovieItem from '~/components/MovieList/MovieItem';
+import Paginate from '~/components/Paginate';
+import { useBackToTop } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
 
 const CategoryPage = () => {
@@ -29,9 +29,7 @@ const CategoryPage = () => {
         if (params?.category) getData();
     }, [params?.category]);
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [page]);
+    useBackToTop(page);
 
     useEffect(() => {
         async function getData() {
@@ -47,9 +45,6 @@ const CategoryPage = () => {
 
     if (!params?.category || !category || !pageCount) return null;
 
-    const paginationClassName =
-        'flex items-center px-6 py-[15px] text-base text-[#146ebe] rounded-lg transition-all hover:text-[#183153] hover:bg-[#c3c6d1]';
-
     return (
         <div className="max-w-[960px] mx-auto mt-9">
             <header className="flex justify-center items-center h-24 bg-slate-400 text-white">
@@ -60,6 +55,7 @@ const CategoryPage = () => {
             <div className="mt-4 grid grid-cols-5 gap-[10px]">
                 {movies?.map((movie) => (
                     <MovieItem
+                        className="flex flex-col"
                         hoverImage={false}
                         rounded="5px"
                         key={movie.id}
@@ -67,34 +63,11 @@ const CategoryPage = () => {
                     />
                 ))}
             </div>
-            <div className="mt-12 mb-24">
-                <ReactPaginate
-                    className="flex items-center justify-center"
-                    breakLabel="..."
-                    nextLabel={
-                        <>
-                            Next
-                            <ChevronRightIcon className="w-[20px] h-[20px] ml-[15px]" />
-                        </>
-                    }
-                    previousLabel={
-                        <>
-                            <ChevronLeftIcon className="w-[20px] h-[20px] mr-[15px]" />
-                            Previous
-                        </>
-                    }
-                    nextLinkClassName={paginationClassName}
-                    previousLinkClassName={paginationClassName}
-                    onPageChange={handlePageClick}
-                    pageRangeDisplayed={2}
-                    pageCount={pageCount}
-                    renderOnZeroPageCount={null}
-                    disabledLinkClassName="hidden"
-                    pageLinkClassName={paginationClassName}
-                    breakLinkClassName="inline-block px-[6px] py-[15px] text-[rgb(24,49,83)]"
-                    activeLinkClassName="!text-white !bg-[rgb(20,110,190)]"
-                />
-            </div>
+            <Paginate
+                className="mt-12 mb-24"
+                pageCount={pageCount}
+                handlePageClick={handlePageClick}
+            />
         </div>
     );
 };

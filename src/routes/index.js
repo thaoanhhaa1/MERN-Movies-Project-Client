@@ -10,6 +10,7 @@ import {
     MovieDetailPage,
     PersonalInformation,
     RegisterPage,
+    SearchPage,
 } from '~/pages';
 import EditProfileUser from '~/pages/EditProfileUser';
 
@@ -55,6 +56,10 @@ const routes = [
         path: config.routes.category,
         element: CategoryPage,
         layout: HeaderLayout,
+    },
+    {
+        path: config.routes.search,
+        element: SearchPage,
     },
 ];
 

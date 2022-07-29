@@ -9,6 +9,7 @@ const routes = {
     personalInformationEdit: '/setting/personal-information/edit',
     favorite: '/setting/favorite',
     category: '/category/:category',
+    search: '/search',
 };
 
 export default routes;
