@@ -13,6 +13,9 @@ const HomePage = () => {
             <MovieList className="mt-10" type="now_playing">
                 Now Playing
             </MovieList>
+            <MovieList movieUi="glass" className="mt-10" type="upcoming">
+                Upcoming
+            </MovieList>
             <MovieList className="mt-10" type="top_rated">
                 Top Rated
             </MovieList>

@@ -3,14 +3,15 @@ import { useEffect, useMemo, useState } from 'react';
 import slugify from 'slugify';
 import { FreeMode, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import MovieGlass from '~/components/MovieGlass';
+import MovieItemInImg from '~/components/MovieItemInImg';
 import { useWindowDimensions } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
-import MovieItemInImg from '../MovieItemInImg';
 import MovieHeader from './MovieHeader';
 import MovieItem from './MovieItem';
 import MovieSeeDetails from './MovieSeeDetails';
 
-const MovieList = ({ children, type, className }) => {
+const MovieList = ({ movieUi = '', children, type, className = '' }) => {
     const [movieList, setMovieList] = useState([]);
     const { width } = useWindowDimensions();
 
@@ -70,7 +71,15 @@ const MovieList = ({ children, type, className }) => {
                     <MovieSeeDetails to={link} />
                 </header>
             )}
-            {renderMovieList}
+            {movieUi ? (
+                <div className="grid grid-cols-4 gap-[20px]">
+                    {movieList?.map((movie) => (
+                        <MovieGlass key={movie.id} data={movie} />
+                    ))}
+                </div>
+            ) : (
+                renderMovieList
+            )}
         </div>
     );
 };
