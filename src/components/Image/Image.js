@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import { memo } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Image = ({ src, alt, className = '', onError }) => {
     return (
-        <img
+        <LazyLoadImage
             className={`${className} w-full h-full object-cover`}
             src={src}
             alt={alt}

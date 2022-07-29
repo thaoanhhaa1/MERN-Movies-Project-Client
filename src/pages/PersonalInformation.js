@@ -12,6 +12,7 @@ import {
 import PersonalInformationItem from '~/components/PersonalInformationItem';
 import config from '~/config';
 import useAuth from '~/context/Auth';
+import { useBackToTop } from '~/hooks';
 
 const personalInformation = [
     {
@@ -43,6 +44,8 @@ const personalInformation = [
 
 const PersonalInformation = () => {
     const { user } = useAuth();
+
+    useBackToTop();
 
     return (
         <div className="relative p-[10px] pt-[35px]">

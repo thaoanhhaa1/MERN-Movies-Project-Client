@@ -10,6 +10,7 @@ import Label from '~/components/Label';
 import UploadPhoto from '~/components/UploadPhoto';
 import useAuth from '~/context/Auth';
 import { db } from '~/firebase/firebaseConfig';
+import { useBackToTop } from '~/hooks';
 
 const EditProfileUser = () => {
     const { user, setUser } = useAuth();
@@ -35,6 +36,8 @@ const EditProfileUser = () => {
             toast.error(error.message);
         }
     };
+
+    useBackToTop();
 
     useEffect(() => {
         if (!user) return;

@@ -1,7 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useBackToTop } from '~/hooks';
 
 const PageNotFound = () => {
     const navigate = useNavigate();
+
+    useBackToTop();
 
     return (
         <section className="py-10 bg-white font-['Arvo',_serif]">

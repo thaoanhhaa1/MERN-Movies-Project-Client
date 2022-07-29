@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import MoviesGrid from '~/components/MoviesGrid';
+import { useBackToTop } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
 
 const CastDetailsPage = () => {
     const { castSlug, castId } = useParams();
     const [movies, setMovies] = useState([]);
+
+    useBackToTop(castId);
 
     useEffect(() => {
         async function getData() {
@@ -24,7 +27,10 @@ const CastDetailsPage = () => {
             </header>
             <MoviesGrid title="Participating movies">
                 {movies?.map((movie) => (
-                    <MoviesGrid.Item data={movie} key={movie.id} />
+                    <MoviesGrid.Item
+                        data={movie}
+                        key={movie.id + movie.credit_id}
+                    />
                 ))}
             </MoviesGrid>
         </div>

@@ -6,8 +6,9 @@ import MovieDetailsInfo from '~/components/MovieDetailsInfo';
 import MovieDetailsReviews from '~/components/MovieDetailsReviews';
 import Video from '~/components/Video';
 import MovieDetailsProvider from '~/context/MovieDetails';
-import * as httpRequest from '~/utils/httpRequest';
+import { useBackToTop } from '~/hooks';
 import PageNotFound from '~/pages/PageNotFound';
+import * as httpRequest from '~/utils/httpRequest';
 
 const MovieDetailPage = () => {
     const { slug } = useParams();
@@ -18,6 +19,8 @@ const MovieDetailPage = () => {
     const [credits, setCredits] = useState();
 
     const movieId = params.get('id');
+
+    useBackToTop(movieId);
 
     useLayoutEffect(() => {
         document.title = movieDetail?.title || 'WMovies';
