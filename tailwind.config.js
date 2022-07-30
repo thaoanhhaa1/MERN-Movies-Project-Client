@@ -39,6 +39,9 @@ module.exports = {
                 'linear-primary':
                     'linear-gradient(107.61deg, #00A7B4 15.59%, #A4D96C 87.25%)',
             },
+            aspectRatio: {
+                image: '9 / 16',
+            },
         },
         screens: {
             gx: '1112px',

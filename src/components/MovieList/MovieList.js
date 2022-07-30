@@ -3,11 +3,14 @@ import { useEffect, useMemo, useState } from 'react';
 import slugify from 'slugify';
 import { FreeMode, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { v4 } from 'uuid';
 import MovieGlass from '~/components/MovieGlass';
 import MovieItemInImg from '~/components/MovieItemInImg';
 import { useWindowDimensions } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
+import MovieGlassSkeleton from '../MovieGlass/MovieGlassSkeleton';
 import MovieHeader from './MovieHeader';
+import MovieIemSkeleton from './MovieIemSkeleton';
 import MovieItem from './MovieItem';
 import MovieSeeDetails from './MovieSeeDetails';
 
@@ -31,9 +34,13 @@ const MovieList = ({ movieUi = '', children, type, className = '' }) => {
     const renderMovieList =
         width >= 1024 ? (
             <div className="grid grid-cols-3 gx:grid-cols-4 gap-6">
-                {movieList?.map((movie) => (
-                    <MovieItem key={movie.id} data={movie} />
-                ))}
+                {(movieList?.length > 0 &&
+                    movieList?.map((movie) => (
+                        <MovieItem key={movie.id} data={movie} />
+                    ))) ||
+                    new Array(8)
+                        .fill(null)
+                        .map(() => <MovieIemSkeleton key={v4()} />)}
             </div>
         ) : (
             <Swiper
@@ -73,9 +80,13 @@ const MovieList = ({ movieUi = '', children, type, className = '' }) => {
             )}
             {movieUi ? (
                 <div className="grid grid-cols-4 gap-[20px]">
-                    {movieList?.map((movie) => (
-                        <MovieGlass key={movie.id} data={movie} />
-                    ))}
+                    {(movieList?.length > 0 &&
+                        movieList?.map((movie) => (
+                            <MovieGlass key={movie.id} data={movie} />
+                        ))) ||
+                        new Array(8)
+                            .fill(null)
+                            .map(() => <MovieGlassSkeleton key={v4()} />)}
                 </div>
             ) : (
                 renderMovieList

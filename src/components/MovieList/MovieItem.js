@@ -25,7 +25,7 @@ const MovieItem = ({ hoverImage = true, data, className = '', rounded }) => {
                 to={`/movie/${slugTitle}?id=${data.id}`}
                 className={`flex-1 group relative block ${
                     rounded ? `rounded-[${rounded}]` : 'rounded-2xl'
-                } overflow-hidden`}
+                } overflow-hidden aspect-[2/3]`}
             >
                 <Image
                     alt={data.title}
@@ -43,7 +43,7 @@ const MovieItem = ({ hoverImage = true, data, className = '', rounded }) => {
                     </>
                 )}
             </Link>
-            <div>
+            <div className="flex">
                 <h3 className="inline-block">
                     <Link
                         className="my-[0.625em] leading-[1.4] text-base font-semibold text-[#292929] line-clamp-1  ease-linear duration-300 hover:text-primary"
