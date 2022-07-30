@@ -41,8 +41,12 @@ const MovieDetailsInfo = () => {
                 className="group relative w-2/12 rounded-[5px] overflow-hidden aspect-[2/3]"
             >
                 <Image
-                    alt=""
-                    src={config.movieDB.image + movieDetail?.poster_path}
+                    alt={movieDetail?.title}
+                    src={
+                        movieDetail?.poster_path
+                            ? config.movieDB.image + movieDetail?.poster_path
+                            : config.imageBackup
+                    }
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-0 ease-linear duration-[400ms]" />
             </Link>

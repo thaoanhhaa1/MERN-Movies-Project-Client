@@ -7,9 +7,11 @@ const AuthContext = createContext();
 
 function AuthProvider({ children, ...props }) {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
+            setLoading(true);
             if (user) {
                 const docRef = doc(db, 'users', user.uid);
 
@@ -22,11 +24,12 @@ function AuthProvider({ children, ...props }) {
             } else {
                 setUser(null);
             }
+            setLoading(false);
         });
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, setUser }} {...props}>
+        <AuthContext.Provider value={{ user, setUser, loading }} {...props}>
             {children}
         </AuthContext.Provider>
     );

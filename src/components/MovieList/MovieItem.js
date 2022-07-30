@@ -29,7 +29,11 @@ const MovieItem = ({ hoverImage = true, data, className = '', rounded }) => {
             >
                 <Image
                     alt={data.title}
-                    src={config.movieDB.image + data.poster_path}
+                    src={
+                        data.poster_path
+                            ? config.movieDB.image + data.poster_path
+                            : config.imageBackup
+                    }
                 />
                 {hoverImage && width >= 1024 && (
                     <>
