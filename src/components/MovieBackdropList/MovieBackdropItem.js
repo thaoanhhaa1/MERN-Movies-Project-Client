@@ -5,7 +5,7 @@ import Image from '~/components/Image';
 import PropTypes from 'prop-types';
 
 const MovieBackdropItem = ({ data, render }) => {
-    if (!data || !data.backdrop_path) return null;
+    if (!data) return null;
 
     return (
         <div className="pb-5 select-none">
@@ -19,7 +19,11 @@ const MovieBackdropItem = ({ data, render }) => {
             >
                 <Image
                     alt=""
-                    src={`${config.movieDB.image}${data.backdrop_path}`}
+                    src={`${
+                        data?.backdrop_path
+                            ? config.movieDB.image + data?.backdrop_path
+                            : config.imageBackup
+                    }`}
                 ></Image>
                 {render}
             </Link>

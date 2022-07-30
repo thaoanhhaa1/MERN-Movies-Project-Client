@@ -1,14 +1,43 @@
 import PropTypes from 'prop-types';
-import { memo } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { memo, useEffect, useRef, useState } from 'react';
 
 const Image = ({ src, alt, className = '', onError }) => {
+    const [loaded, setLoaded] = useState(false);
+    const imgRef = useRef();
+
+    useEffect(() => {
+        const img = imgRef.current;
+
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                img.setAttribute('src', src);
+            }
+        });
+
+        if (img) {
+            observer.observe(img);
+        }
+
+        return () => {
+            if (img) {
+                observer.unobserve(img);
+            }
+        };
+    }, [src]);
+
     return (
-        <LazyLoadImage
-            className={`${className} w-full h-full object-cover`}
+        <img
+            ref={imgRef}
+            className={`${className} w-full h-full object-cover transition-all duration-[400] ease-in opacity-100`}
             src={src}
             alt={alt}
             onError={onError}
+            style={{
+                opacity: loaded ? '1' : '0',
+            }}
+            onLoad={() => {
+                setLoaded(true);
+            }}
         />
     );
 };

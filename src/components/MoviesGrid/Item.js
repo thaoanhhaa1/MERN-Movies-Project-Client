@@ -1,9 +1,9 @@
+import PropTypes from 'prop-types';
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import slugify from 'slugify';
+import Image from '~/components/Image';
 import config from '~/config';
-import Image from '../Image';
-import PropTypes from 'prop-types';
 
 const Item = ({ data }) => {
     const to = useMemo(
@@ -18,11 +18,15 @@ const Item = ({ data }) => {
 
     return (
         <div>
-            <Link className="block" to={to}>
+            <Link className="block aspect-video" to={to}>
                 <Image
-                    alt=""
-                    src={`${config.movieDB.image}${data.backdrop_path}`}
-                ></Image>
+                    alt={data.title}
+                    src={`${
+                        data?.backdrop_path
+                            ? config.movieDB.image + data?.backdrop_path
+                            : config.imageBackup
+                    }`}
+                />
             </Link>
             <h2 className="my-2 font-medium text-base hover:text-primary ease-linear duration-300 cursor-pointer">
                 <Link to={to}>{data.title}</Link>
@@ -33,7 +37,7 @@ const Item = ({ data }) => {
 
 Item.propTypes = {
     data: PropTypes.shape({
-        backdrop_path: PropTypes.string.isRequired,
+        backdrop_path: PropTypes.string,
         title: PropTypes.string.isRequired,
         id: PropTypes.number.isRequired,
     }).isRequired,
