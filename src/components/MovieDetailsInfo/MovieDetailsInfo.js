@@ -38,7 +38,7 @@ const MovieDetailsInfo = () => {
         <div className="flex mt-10">
             <Link
                 to={`/movie/${slug}?id=${movieId}`}
-                className="group relative w-2/12 rounded-[5px] overflow-hidden"
+                className="group relative w-2/12 rounded-[5px] overflow-hidden aspect-[2/3]"
             >
                 <Image
                     alt=""
@@ -47,7 +47,10 @@ const MovieDetailsInfo = () => {
                 <div className="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-0 ease-linear duration-[400ms]" />
             </Link>
             <div className="w-6/12 px-[15px]">
-                <h3 className="mb-1 font-medium text-2xl">
+                <h3
+                    className="mb-1 font-medium text-2xl"
+                    title={movieDetail?.title}
+                >
                     {movieDetail?.title}
                 </h3>
                 <p className="font-medium text-lg text-slate-500">
@@ -90,7 +93,7 @@ const MovieDetailsInfo = () => {
                             ))}
                     </span>
                 </div>
-                <div className="flex">
+                <div className="flex gap-[10px]">
                     <h5 className="w-[30%] flex-shrink-0 font-bold text-sm pb-1">
                         Casts
                     </h5>
@@ -118,7 +121,7 @@ const MovieDetailsInfo = () => {
                             ))}
                     </span>
                 </div>
-                <div className="flex">
+                <div className="flex gap-[10px]">
                     <h5 className="w-[30%] flex-shrink-0 font-bold text-sm pb-1">
                         Nation
                     </h5>
@@ -126,7 +129,7 @@ const MovieDetailsInfo = () => {
                         {movieDetail?.production_countries?.[0]?.name}
                     </span>
                 </div>
-                <div className="flex">
+                <div className="flex gap-[10px]">
                     <h5 className="w-[30%] flex-shrink-0 font-bold text-sm pb-1">
                         Genres
                     </h5>
@@ -136,7 +139,7 @@ const MovieDetailsInfo = () => {
                         ))}
                     </span>
                 </div>
-                <div className="flex">
+                <div className="flex gap-[10px]">
                     <h5 className="w-[30%] flex-shrink-0 font-bold text-sm pb-1">
                         Release
                     </h5>
