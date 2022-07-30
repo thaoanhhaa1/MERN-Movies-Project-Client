@@ -15,7 +15,7 @@ const MovieBackdropItem = ({ data, render }) => {
                     lower: true,
                     strict: true,
                 })}?id=${data.id}`}
-                className="group relative block rounded overflow-hidden"
+                className="aspect-video group relative block rounded overflow-hidden"
             >
                 <Image
                     alt=""
@@ -24,13 +24,14 @@ const MovieBackdropItem = ({ data, render }) => {
                 {render}
             </Link>
             <div>
-                <h3 className="font-medium text-base mt-[15px] mb-[5px] hover:text-primary ease-ease duration-300">
+                <h3 className="inline-block line-clamp-1 font-medium text-base mt-[15px] mb-[5px]">
                     <Link
                         to={`/movie/${slugify(data.title || '', {
                             locale: 'vi',
                             lower: true,
                             strict: true,
                         })}?id=${data.id}`}
+                        className="hover:text-primary ease-ease duration-300"
                     >
                         {data.title}
                     </Link>
