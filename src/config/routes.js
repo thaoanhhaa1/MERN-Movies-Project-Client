@@ -10,7 +10,10 @@ const routes = {
     favorite: '/setting/favorite',
     category: '/category/:category',
     search: '/search',
-    popular: '/popular',
+    tv: '/tv',
+    tvDetail: '/tv/:slug',
+    tvSearch: '/tv/search',
+    castTV: '/tv/cast/:castId&:castSlug',
 };
 
 export default routes;

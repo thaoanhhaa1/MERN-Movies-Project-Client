@@ -1,32 +1,28 @@
+import PropTypes from 'prop-types';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import slugify from 'slugify';
 import Avatar from '~/components/Avatar';
 import config from '~/config';
-import PropTypes from 'prop-types';
+import { useSlug, useTV } from '~/hooks';
 
 const Cast = ({ data }) => {
+    const isTV = useTV();
+    const slug = useSlug(data.name);
+    const to = useMemo(
+        () => `/${isTV ? 'tv' : ''}/cast/${data.id}&${slug}`,
+        [data.id, isTV, slug],
+    );
+
     return (
         <div className="inline-block mr-0 w-[140px] select-none">
             <Avatar
-                to={`/cast/${data.id}&${slugify(data.name, {
-                    locale: 'vi',
-                    lower: true,
-                    strict: true,
-                })}`}
+                to={to}
                 className="w-full h-[140px]"
                 alt=""
                 src={config.movieDB.image + data.profile_path}
             ></Avatar>
             <h4 className="py-[15px] font-medium text-base text-center">
-                <Link
-                    to={`/cast/${data.id}&${slugify(data.name, {
-                        locale: 'vi',
-                        lower: true,
-                        strict: true,
-                    })}`}
-                >
-                    {data.name}
-                </Link>
+                <Link to={to}>{data.name}</Link>
             </h4>
         </div>
     );

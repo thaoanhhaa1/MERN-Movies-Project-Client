@@ -13,6 +13,7 @@ import {
     SearchPage,
 } from '~/pages';
 import EditProfileUser from '~/pages/EditProfileUser';
+import TVPage from '~/pages/TVPage';
 
 const routes = [
     {
@@ -60,6 +61,22 @@ const routes = [
     {
         path: config.routes.search,
         element: SearchPage,
+    },
+    {
+        path: config.routes.tv,
+        element: TVPage,
+    },
+    {
+        path: config.routes.tvDetail,
+        element: MovieDetailPage,
+    },
+    {
+        path: config.routes.tvSearch,
+        element: SearchPage,
+    },
+    {
+        path: config.routes.castTV,
+        element: CastDetailsPage,
     },
 ];
 

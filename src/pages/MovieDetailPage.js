@@ -12,7 +12,7 @@ import MovieDetailsReviews, {
 } from '~/components/MovieDetailsReviews';
 import Video, { VideoSkeleton } from '~/components/Video';
 import MovieDetailsProvider from '~/context/MovieDetails';
-import { useBackToTop } from '~/hooks';
+import { useBackToTop, useTV } from '~/hooks';
 import PageNotFound from '~/pages/PageNotFound';
 import * as httpRequest from '~/utils/httpRequest';
 
@@ -23,6 +23,7 @@ const MovieDetailPage = () => {
     const [video, setVideo] = useState();
     const [credits, setCredits] = useState();
     const [loading, setLoading] = useState(true);
+    const isTV = useTV();
 
     const movieId = params.get('id');
 
@@ -37,13 +38,13 @@ const MovieDetailPage = () => {
             setLoading(true);
             try {
                 const [movieDetail, videos, credits] = await Promise.all([
-                    httpRequest.get(`/movie/${movieId}`),
-                    httpRequest.get(`/movie/videos`, {
+                    httpRequest.get(`/${isTV ? 'tv' : 'movie'}/${movieId}`),
+                    httpRequest.get(`/${isTV ? 'tv' : 'movie'}/videos`, {
                         params: {
                             id: movieId,
                         },
                     }),
-                    httpRequest.get(`/movie/credits`, {
+                    httpRequest.get(`/${isTV ? 'tv' : 'movie'}/credits`, {
                         params: {
                             id: movieId,
                         },
@@ -66,7 +67,7 @@ const MovieDetailPage = () => {
         }
 
         getData();
-    }, [movieId]);
+    }, [isTV, movieId]);
 
     if (!slug || !movieId) return <PageNotFound />;
 
@@ -92,7 +93,7 @@ const MovieDetailPage = () => {
                         movieId,
                     }}
                 >
-                    <Video videoId={video?.key}></Video>
+                    <Video />
                     <MovieDetailsInfo />
                     <MovieDetailsReviews className="mb-12" />
                     <MovieBackdropList className="mb-6">

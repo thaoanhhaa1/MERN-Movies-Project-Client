@@ -8,17 +8,22 @@ import { useDebounce } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
 import styles from './Search.module.scss';
 import SearchTippyItem from './SearchTippyItem';
+import SearchTippyList from './SearchTippyList';
 
 const cx = classNames.bind(styles);
 
 const SearchTippy = ({ value, handleResetSearch = () => {}, ...props }) => {
     const valueDebounce = useDebounce(value, 500);
-    const [data, setData] = useState([]);
+    const [movie, setMovie] = useState([]);
+    const [tv, setTV] = useState([]);
     const [loading, setLoading] = useState(false);
     const [, startTransition] = useTransition();
 
     useEffect(() => {
-        if (!value) setData([]);
+        if (!value) {
+            setMovie([]);
+            setTV([]);
+        }
     }, [value]);
 
     useEffect(() => {
@@ -26,13 +31,14 @@ const SearchTippy = ({ value, handleResetSearch = () => {}, ...props }) => {
         startTransition(async () => {
             if (valueDebounce)
                 try {
-                    const res = await httpRequest.get('/search', {
+                    const [resMovie, resTV] = await httpRequest.get('/search', {
                         params: { query: `'${valueDebounce}'` },
                     });
-                    setData(res?.results.slice(0, 5));
-                    setLoading(false);
+                    setMovie(resMovie?.results.slice(0, 5));
+                    setTV(resTV?.results.slice(0, 5));
                 } catch (error) {
                     console.error(error);
+                } finally {
                     setLoading(false);
                 }
         });
@@ -61,34 +67,27 @@ const SearchTippy = ({ value, handleResetSearch = () => {}, ...props }) => {
                     )}
                     <span className="ml-2 text-desc">
                         {(loading && 'Find') ||
-                            (data.length > 0 && 'Results for') ||
+                            ((movie.length > 0 || tv.length > 0) &&
+                                'Results for') ||
                             'No results for'}
                         &nbsp;'{value}'
                     </span>
                 </div>
-                {data?.length > 0 && (
-                    <div>
-                        <div className="flex justify-between items-center pt-5 pb-3 mb-[6px] border-b border-[rgba(0,0,0,.05)]">
-                            <h4 className="text-[#333] text-sm leading-sm font-medium uppercase">
-                                Movies
-                            </h4>
-                            <Link
-                                onClick={handleResetSearch}
-                                className="text-desc text-sm leading-sm transition-all hover:text-primary"
-                                to={`/search?q=${value}`}
-                            >
-                                See more
-                            </Link>
-                        </div>
-                        {data.map((movie) => (
-                            <SearchTippyItem
-                                onClick={handleResetSearch}
-                                key={movie.id}
-                                data={movie}
-                            />
-                        ))}
-                    </div>
-                )}
+                <SearchTippyList
+                    data={movie}
+                    value={value}
+                    handleResetSearch={handleResetSearch}
+                >
+                    Movies
+                </SearchTippyList>
+                <SearchTippyList
+                    data={tv}
+                    value={value}
+                    handleResetSearch={handleResetSearch}
+                    isTV
+                >
+                    TV
+                </SearchTippyList>
             </div>
         </Popup>
     );

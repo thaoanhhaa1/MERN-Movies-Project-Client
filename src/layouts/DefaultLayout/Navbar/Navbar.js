@@ -1,11 +1,25 @@
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
-import { FireSolidIcon, HomeSolidIcon } from '~/components/Icons';
+import { v4 } from 'uuid';
+import { FireSolidIcon, HomeSolidIcon, TVIcon } from '~/components/Icons';
 import config from '~/config';
 import styles from './Navbar.module.scss';
 import NavItem from './NavItem';
 
 const cx = classNames.bind(styles);
+
+const navbar = [
+    {
+        to: config.routes.home,
+        icon: HomeSolidIcon,
+        title: 'Home',
+    },
+    {
+        to: config.routes.tv,
+        icon: TVIcon,
+        title: 'TV',
+    },
+];
 
 const Navbar = ({ className = '' }) => {
     return (
@@ -15,18 +29,11 @@ const Navbar = ({ className = '' }) => {
                     [className]: className,
                 })} flex-shrink-0 px-2 py-4 sticky top-[var(--header-pc-height)]`}
             >
-                <NavItem
-                    to={config.routes.home}
-                    icon={<HomeSolidIcon width="20px" height="20px" />}
-                >
-                    Home
-                </NavItem>
-                <NavItem
-                    to={config.routes.popular}
-                    icon={<FireSolidIcon width="20px" height="20px" />}
-                >
-                    Popular
-                </NavItem>
+                {navbar?.map((item) => (
+                    <NavItem key={v4()} to={item.to} icon={item.icon}>
+                        {item.title}
+                    </NavItem>
+                ))}
             </div>
         </div>
     );

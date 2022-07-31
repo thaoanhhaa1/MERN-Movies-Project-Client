@@ -5,6 +5,8 @@ import styles from './Navbar.module.scss';
 const cx = classNames.bind(styles);
 
 const NavItem = ({ to, icon, children, className }) => {
+    const Icon = icon;
+
     return (
         <NavLink
             to={to}
@@ -17,7 +19,7 @@ const NavItem = ({ to, icon, children, className }) => {
                 )}`
             }
         >
-            {icon}
+            <Icon className="w-5 h-5" />
             <span className="text-[11px] font-semibold mt-[6px]">
                 {children}
             </span>

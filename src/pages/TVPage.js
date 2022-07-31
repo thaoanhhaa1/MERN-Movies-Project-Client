@@ -2,28 +2,22 @@ import { useEffect } from 'react';
 import MovieList from '~/components/MovieList';
 import Banner from '~/layouts/DefaultLayout/Banner';
 
-const HomePage = () => {
+const TVPage = () => {
     useEffect(() => {
         document.title = 'WMovies';
     }, []);
 
     return (
         <div>
-            <Banner url="banner" />
-            <MovieList className="mt-10" type="now_playing">
-                Movies Now Playing
-            </MovieList>
-            <MovieList movieUi="glass" className="mt-10" type="upcoming">
-                Movies Upcoming
-            </MovieList>
+            <Banner url="tv/banner" />
             <MovieList className="mt-10" type="top_rated">
-                Movies Top Rated
+                TV Top Rated
             </MovieList>
             <MovieList movieUi="glass" className="mt-10" type="popular">
-                Movies Popular
+                TV Popular
             </MovieList>
         </div>
     );
 };
 
-export default HomePage;
+export default TVPage;

@@ -7,12 +7,14 @@ import PropTypes from 'prop-types';
 import Button from '../Button';
 import { useEffect, useState } from 'react';
 import * as httpRequest from '~/utils/httpRequest';
+import { useTV } from '~/hooks';
 
 const MovieDetailsReviews = ({ className = '' }) => {
     const { movieId } = useMovieDetails();
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(true);
     const [reviews, setReviews] = useState(() => ({ results: [] }));
+    const isTV = useTV();
 
     const handleLoadMore = () => setPage((page) => page + 1);
 
@@ -20,12 +22,15 @@ const MovieDetailsReviews = ({ className = '' }) => {
         async function getData() {
             setLoading(true);
             try {
-                const reviewsNew = await httpRequest.get(`/movie/reviews`, {
-                    params: {
-                        id: movieId,
-                        page,
+                const reviewsNew = await httpRequest.get(
+                    `/${isTV ? 'tv' : 'movie'}/reviews`,
+                    {
+                        params: {
+                            id: movieId,
+                            page,
+                        },
                     },
-                });
+                );
 
                 setReviews((reviews) => ({
                     ...reviewsNew,
@@ -39,7 +44,7 @@ const MovieDetailsReviews = ({ className = '' }) => {
         }
 
         if (movieId) getData();
-    }, [movieId, page]);
+    }, [isTV, movieId, page]);
 
     return (
         <div className={className + ' mt-12'}>

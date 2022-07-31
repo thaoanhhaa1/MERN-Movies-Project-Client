@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { v4 } from 'uuid';
 import MovieGlass from '~/components/MovieGlass';
 import MovieItemInImg from '~/components/MovieItemInImg';
-import { useWindowDimensions } from '~/hooks';
+import { useTV, useWindowDimensions } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
 import MovieGlassSkeleton from '../MovieGlass/MovieGlassSkeleton';
 import MovieHeader from './MovieHeader';
@@ -18,10 +18,12 @@ import MovieSeeDetails from './MovieSeeDetails';
 const MovieList = ({ movieUi = '', children, type, className = '' }) => {
     const [movieList, setMovieList] = useState([]);
     const { width } = useWindowDimensions();
+    const isTV = useTV();
 
     useEffect(() => {
         async function getData() {
-            const result = await httpRequest.get(`/movies/${type}`);
+            const url = (isTV ? 'tv/type' : 'movies') + `/${type}`;
+            const result = await httpRequest.get(url);
             setMovieList(
                 result.results
                     .filter((movie) => !!movie.poster_path)
@@ -30,7 +32,7 @@ const MovieList = ({ movieUi = '', children, type, className = '' }) => {
         }
 
         getData();
-    }, [type]);
+    }, [isTV, type]);
 
     const renderMovieList =
         width >= 1024 ? (

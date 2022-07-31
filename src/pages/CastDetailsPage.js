@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useParams } from 'react-router-dom';
 import MoviesGrid, { MoviesGridSkeleton } from '~/components/MoviesGrid';
-import { useBackToTop } from '~/hooks';
+import { useBackToTop, useTV } from '~/hooks';
 import { PageNotFound } from '~/pages';
 import * as httpRequest from '~/utils/httpRequest';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -14,6 +14,7 @@ const CastDetailsPage = () => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState();
     const [hasMore, setHasMore] = useState(true);
+    const isTV = useTV();
 
     useBackToTop(castId);
 
@@ -21,11 +22,14 @@ const CastDetailsPage = () => {
         async function getData() {
             setLoading(true);
             try {
-                const result = await httpRequest.get(`/cast/${castId}/movies`, {
-                    params: {
-                        page,
+                const result = await httpRequest.get(
+                    `/cast/${castId}/${isTV ? 'tv' : 'movies'}`,
+                    {
+                        params: {
+                            page,
+                        },
                     },
-                });
+                );
 
                 setMovies((movies) => [...movies, ...result?.cast]);
                 setTotalPages(result?.total_pages);
@@ -37,7 +41,7 @@ const CastDetailsPage = () => {
         }
 
         getData();
-    }, [castId, page]);
+    }, [castId, isTV, page]);
 
     if (!loading && movies?.length <= 0 && !totalPages) return <PageNotFound />;
 

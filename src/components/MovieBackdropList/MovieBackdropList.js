@@ -1,19 +1,22 @@
+import PropTypes from 'prop-types';
 import { useLayoutEffect, useState } from 'react';
 import { FreeMode, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useMovieDetails } from '~/context/MovieDetails';
+import { useTV } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
 import MovieBackdropItem from './MovieBackdropItem';
 
 const MovieBackdropList = ({ className, children }) => {
     const { movieId } = useMovieDetails();
     const [similar, setSimilar] = useState([]);
+    const isTV = useTV();
 
     useLayoutEffect(() => {
         async function getData() {
             try {
                 const similar = await httpRequest.get(
-                    `movie/similar?id=${movieId}`,
+                    `${isTV ? 'tv' : 'movie'}/similar?id=${movieId}`,
                 );
                 const arr = similar?.results?.slice(0, 12);
                 setSimilar(arr);
@@ -23,7 +26,7 @@ const MovieBackdropList = ({ className, children }) => {
         }
 
         getData();
-    }, [movieId]);
+    }, [isTV, movieId]);
 
     return (
         <>
@@ -53,6 +56,11 @@ const MovieBackdropList = ({ className, children }) => {
             )}
         </>
     );
+};
+
+MovieBackdropList.propTypes = {
+    classMap: PropTypes.string,
+    children: PropTypes.node,
 };
 
 export default MovieBackdropList;
