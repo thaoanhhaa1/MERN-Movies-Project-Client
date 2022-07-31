@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect, useMemo, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import slugify from 'slugify';
 import { FreeMode, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -74,8 +75,23 @@ const MovieList = ({ movieUi = '', children, type, className = '' }) => {
         <div className={className}>
             {children && (
                 <header className="mb-4 flex gap-5 justify-between items-center">
-                    <MovieHeader to={link}>{children}</MovieHeader>
-                    <MovieSeeDetails to={link} />
+                    {(movieList?.length > 0 && (
+                        <>
+                            <MovieHeader to={link}>{children}</MovieHeader>
+                            <MovieSeeDetails to={link} />
+                        </>
+                    )) || (
+                        <>
+                            <Skeleton
+                                containerClassName="w-[165px]"
+                                className="text-2xl !leading-sm"
+                            />
+                            <Skeleton
+                                containerClassName="w-[105px]"
+                                className="text-[15px] !leading-sm"
+                            />
+                        </>
+                    )}
                 </header>
             )}
             {movieUi ? (
