@@ -1,6 +1,8 @@
 import { useLayoutEffect, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 import Casts, { CastsSkeleton } from '~/components/Casts';
+import Episode from '~/components/Episode';
+import GridButtonSkeleton from '~/components/GridButtonSkeleton';
 import MovieBackdropList, {
     MovieBackdropListSkeleton,
 } from '~/components/MovieBackdropList';
@@ -10,6 +12,7 @@ import MovieDetailsInfo, {
 import MovieDetailsReviews, {
     MovieDetailsReviewsSkeleton,
 } from '~/components/MovieDetailsReviews';
+import Seasons from '~/components/Seasons';
 import Video, { VideoSkeleton } from '~/components/Video';
 import MovieDetailsProvider from '~/context/MovieDetails';
 import { useBackToTop, useTV } from '~/hooks';
@@ -20,7 +23,6 @@ const MovieDetailPage = () => {
     const { slug } = useParams();
     const [params] = useSearchParams();
     const [movieDetail, setMovieDetail] = useState();
-    const [video, setVideo] = useState();
     const [credits, setCredits] = useState();
     const [loading, setLoading] = useState(true);
     const isTV = useTV();
@@ -37,27 +39,17 @@ const MovieDetailPage = () => {
         async function getData() {
             setLoading(true);
             try {
-                const [movieDetail, videos, credits] = await Promise.all([
+                const [movieDetail, credits] = await Promise.all([
                     httpRequest.get(`/${isTV ? 'tv' : 'movie'}/${movieId}`),
-                    httpRequest.get(`/${isTV ? 'tv' : 'movie'}/videos`, {
-                        params: {
-                            id: movieId,
-                        },
-                    }),
                     httpRequest.get(`/${isTV ? 'tv' : 'movie'}/credits`, {
                         params: {
                             id: movieId,
                         },
                     }),
                 ]);
-
-                const video =
-                    videos.results.find((video) =>
-                        ['Featurette', 'Teaser'].includes(video.type),
-                    ) ?? videos.results[0];
+                console.log('🚀 ~ getData ~ movieDetail', movieDetail);
 
                 setMovieDetail(movieDetail);
-                setVideo(video);
                 setCredits(credits);
             } catch (error) {
                 console.log('🚀 ~ getData ~ error', error);
@@ -71,13 +63,19 @@ const MovieDetailPage = () => {
 
     if (!slug || !movieId) return <PageNotFound />;
 
-    if (!loading && !movieDetail && !video && !credits) return <PageNotFound />;
+    if (!loading && !movieDetail && !credits) return <PageNotFound />;
 
     return (
         <>
             {(loading && (
                 <>
                     <VideoSkeleton />
+                    {isTV && (
+                        <>
+                            <GridButtonSkeleton />
+                            <GridButtonSkeleton />
+                        </>
+                    )}
                     <MovieDetailsInfoSkeleton />
                     <MovieDetailsReviewsSkeleton className="mb-12" />
                     <MovieBackdropListSkeleton className="mb-6" />
@@ -88,12 +86,17 @@ const MovieDetailPage = () => {
                     value={{
                         slug,
                         movieDetail,
-                        video,
                         credits,
                         movieId,
                     }}
                 >
                     <Video />
+                    {isTV && (
+                        <>
+                            <Episode />
+                            <Seasons />
+                        </>
+                    )}
                     <MovieDetailsInfo />
                     <MovieDetailsReviews className="mb-12" />
                     <MovieBackdropList className="mb-6">

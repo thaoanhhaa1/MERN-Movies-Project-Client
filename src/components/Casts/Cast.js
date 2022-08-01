@@ -9,7 +9,7 @@ const Cast = ({ data }) => {
     const isTV = useTV();
     const slug = useSlug(data.name);
     const to = useMemo(
-        () => `/${isTV ? 'tv' : ''}/cast/${data.id}&${slug}`,
+        () => `${isTV ? '/tv' : ''}/cast/${data.id}&${slug}`,
         [data.id, isTV, slug],
     );
 
@@ -19,7 +19,11 @@ const Cast = ({ data }) => {
                 to={to}
                 className="w-full h-[140px]"
                 alt=""
-                src={config.movieDB.image + data.profile_path}
+                src={
+                    data.profile_path
+                        ? config.movieDB.image + data.profile_path
+                        : null
+                }
             ></Avatar>
             <h4 className="py-[15px] font-medium text-base text-center">
                 <Link to={to}>{data.name}</Link>

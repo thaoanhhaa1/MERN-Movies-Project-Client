@@ -19,19 +19,36 @@ const FavoritePage = () => {
         async function getData() {
             setLoading(true);
             try {
-                const result = await httpRequest.get(
-                    `user/${user.uid}/favorites-movie-list`,
-                );
+                const [movies, tvs] = await Promise.all([
+                    httpRequest.get(`user/${user.uid}/favorites-movie-list`),
+                    httpRequest.get(`user/${user.uid}/favorites-tv-list`),
+                ]);
 
-                const list = Array.isArray(result?.list)
-                    ? result.list.map((movieId) =>
+                const moviesLength = movies?.list?.length ?? 0;
+                const movieList = Array.isArray(movies?.list)
+                    ? movies.list.map((movieId) =>
                           httpRequest.get(`movie/${movieId}`),
                       )
                     : [];
+                const tvList = Array.isArray(tvs?.list)
+                    ? tvs.list.map((tvId) => httpRequest.get(`tv/${tvId}`))
+                    : [];
 
-                const movieList = await Promise.all(list);
+                const result = await Promise.all([...movieList, ...tvList]);
 
-                setMovieList(movieList);
+                setMovieList(
+                    result.map((item, index) => {
+                        if (index < moviesLength)
+                            return {
+                                ...item,
+                                type: 'movie',
+                            };
+                        return {
+                            ...item,
+                            type: 'tv',
+                        };
+                    }),
+                );
             } catch (error) {
                 console.log('🚀 ~ getData ~ error', error);
             } finally {
@@ -44,13 +61,13 @@ const FavoritePage = () => {
 
     if (!user && !loading) return <PageNotFound />;
 
-    const handleClickFavorite = (event, movieId) => {
+    const handleClickFavorite = (event, id, type) => {
         event.preventDefault();
         setMovieList((movieList) =>
-            movieList.filter((movie) => movie.id !== movieId),
+            movieList.filter((movie) => movie.id !== id || movie.type !== type),
         );
         httpRequest
-            .post(`/user/${user?.uid}/favorites-movie?movieId=${movieId}`)
+            .post(`/user/${user?.uid}/favorites-${type}?${type}Id=${id}`)
             .then()
             .catch((error) => toast.error(error.message));
     };
@@ -67,7 +84,11 @@ const FavoritePage = () => {
                             <div className="group-hover:bg-opacity-20 transition-all absolute inset-0 bg-black bg-opacity-0">
                                 <button
                                     onClick={(e) =>
-                                        handleClickFavorite(e, movie.id)
+                                        handleClickFavorite(
+                                            e,
+                                            movie.id,
+                                            movie.type,
+                                        )
                                     }
                                     className="transition-all absolute top-[5px] right-2 flex items-center justify-center w-[22px] h-[22px] text-white bg-[rgba(0,0,0,.61961)] opacity-0 invisible group-hover:opacity-100 group-hover:visible hover:text-red-600"
                                 >

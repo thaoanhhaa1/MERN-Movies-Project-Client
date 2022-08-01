@@ -11,16 +11,16 @@ const HomePage = () => {
         <div>
             <Banner url="banner" />
             <MovieList className="mt-10" type="now_playing">
-                Movies Now Playing
+                Now Playing
             </MovieList>
             <MovieList movieUi="glass" className="mt-10" type="upcoming">
-                Movies Upcoming
+                Upcoming
             </MovieList>
             <MovieList className="mt-10" type="top_rated">
-                Movies Top Rated
+                Top Rated
             </MovieList>
             <MovieList movieUi="glass" className="mt-10" type="popular">
-                Movies Popular
+                Popular
             </MovieList>
         </div>
     );

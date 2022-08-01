@@ -15,7 +15,7 @@ const Banner = ({ url }) => {
             const index = [];
             const result = await httpRequest.get(url, {
                 params: {
-                    page: Math.floor(Math.random() * 10),
+                    page: Math.floor(Math.random() * 10) || 1,
                 },
             });
             const length = result?.results?.length ?? 0;

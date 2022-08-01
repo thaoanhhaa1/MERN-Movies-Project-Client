@@ -47,11 +47,15 @@ const CategoryPage = () => {
 
     useEffect(() => {
         async function getData() {
-            const result = await httpRequest.get(`movie/${category.type}`, {
-                params: { page },
-            });
-            setPageCount(Math.min(result?.total_pages, 500) ?? 0);
-            setMovies(result?.results ?? []);
+            try {
+                const result = await httpRequest.get(`movie/${category.type}`, {
+                    params: { page },
+                });
+                setPageCount(Math.min(result?.total_pages, 500) ?? 0);
+                setMovies(result?.results ?? []);
+            } catch (error) {
+                console.log('🚀 ~ getData ~ error', error);
+            }
         }
 
         if (category?.type) getData();

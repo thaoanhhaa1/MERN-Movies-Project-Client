@@ -1,5 +1,6 @@
 export { default as useBackToTop } from './useBackToTop';
 export { default as useDebounce } from './useDebounce';
+export { default as useLocationTV } from './useLocationTV';
 export { default as useOnClickOutside } from './useOnClickOutside';
 export { default as useProgressiveImage } from './useProgressiveImage';
 export { default as useSignInWithGoogle } from './useSignInWithGoogle';

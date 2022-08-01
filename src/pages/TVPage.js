@@ -11,10 +11,10 @@ const TVPage = () => {
         <div>
             <Banner url="tv/banner" />
             <MovieList className="mt-10" type="top_rated">
-                TV Top Rated
+                Top Rated
             </MovieList>
             <MovieList movieUi="glass" className="mt-10" type="popular">
-                TV Popular
+                Popular
             </MovieList>
         </div>
     );

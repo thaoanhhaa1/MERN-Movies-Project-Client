@@ -63,7 +63,7 @@ const profileMenu = [
 const Footer = () => {
     return (
         <div className="bg-[#181821]">
-            <div className="pt-[68px] pb-10 px-[15px] flex gap-[30px] w-full max-w-[1008px] mx-auto">
+            <div className="pl-5 pr-10 pt-[68px] pb-10 px-[15px] flex gap-[30px] max-w-[1100px] w-full mx-auto">
                 <div className="w-3/12">
                     <Logo textColor="white" />
                     <FooterCol iconColor="fill-white" menu={profileMenu} />

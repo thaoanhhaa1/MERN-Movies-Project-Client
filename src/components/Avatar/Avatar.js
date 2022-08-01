@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useEffect, useState } from 'react';
+import { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import Image from '~/components/Image';
 
@@ -12,14 +12,6 @@ const Avatar = (
     { src, alt, to, href, className = '', onClick = () => {} },
     ref,
 ) => {
-    const [avatar, setAvatar] = useState(src ?? '/no-avatar.png');
-
-    useEffect(() => {
-        if (src) setAvatar(src);
-    }, [src]);
-
-    const handleError = useCallback(() => setAvatar('/no-avatar.png'), []);
-
     let Component = 'span';
     const props = {};
 
@@ -38,7 +30,7 @@ const Avatar = (
             onClick={onClick}
             className={`${className} block rounded-full overflow-hidden`}
         >
-            <Image onError={handleError} src={avatar} alt={alt} />
+            <Image src={src ?? '/no-avatar.png'} alt={alt} />
         </Component>
     );
 };

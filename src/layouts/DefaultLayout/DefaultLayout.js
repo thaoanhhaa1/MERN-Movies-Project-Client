@@ -9,7 +9,7 @@ const DefaultLayout = ({ children }) => {
             <Header />
             <div className="flex">
                 <Navbar />
-                <div className="w-[calc(100vw_-_var(--navbar-width))] pr-10 pl-5 mt-4 pb-20">
+                <div className="max-w-[1920px] w-[calc(100vw_-_var(--navbar-width))] pr-10 pl-5 mt-4 mx-auto pb-20">
                     {children}
                 </div>
             </div>
