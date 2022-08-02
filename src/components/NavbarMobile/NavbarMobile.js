@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { v4 } from 'uuid';
+import { HomeSolidIcon, TVIcon } from '~/components/Icons';
+import Logo from '~/components/Logo';
 import config from '~/config';
 import { useWindowDimensions } from '~/hooks';
-import { HomeSolidIcon, TVIcon } from '../Icons';
-import Logo from '../Logo';
 
 const navbar = [
     {
@@ -27,7 +27,7 @@ const NavbarMobile = ({ isShow, onCloseNavbarMobile }) => {
             onClick={onCloseNavbarMobile}
             className={`${
                 isShow ? 'visible opacity-100' : 'invisible opacity-0'
-            } z-[99999] fixed inset-0 bg-[rgba(0,0,0,0.3)] transition-all duration-500 ease-ease`}
+            } z-100 fixed inset-0 bg-[rgba(0,0,0,0.3)] transition-all duration-500 ease-ease`}
         >
             <div
                 onClick={(e) => e.stopPropagation()}

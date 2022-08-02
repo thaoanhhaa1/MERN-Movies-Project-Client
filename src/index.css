@@ -62,4 +62,7 @@
   .banner-wrapper .swiper-scrollbar {
     @apply hidden;
   }
+  .tap-highlight-color-transparent {
+    -webkit-tap-highlight-color: transparent;
+  }
 }/*# sourceMappingURL=index.css.map */

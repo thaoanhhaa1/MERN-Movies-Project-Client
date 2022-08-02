@@ -5,7 +5,7 @@ const Submit = ({ children, className = '', ...props }) => {
     const { cols } = useForm();
 
     return (
-        <div className={`col-start-1 col-end-${cols + 1}`}>
+        <div className={`sm:col-start-1 sm:col-end-${cols + 1}`}>
             <Button {...props} large className={`mx-auto ${className}`} primary>
                 {children}
             </Button>

@@ -83,4 +83,9 @@
             @apply hidden;
         }
     }
+
+    // -webkit-tap-highlight-color
+    .tap-highlight-color-transparent {
+        -webkit-tap-highlight-color: transparent;
+    }
 }

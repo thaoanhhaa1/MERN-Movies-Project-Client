@@ -65,15 +65,15 @@ const EditProfileUser = () => {
         <div className="mt-[50px] mb-10 max-w-[800px] mx-auto">
             {(user && (
                 <>
-                    <h1 className="font-semibold text-3xl text-center">
+                    <h1 className="py-8 px-4 font-semibold text-3xl text-center">
                         Edit Personal Information
                     </h1>
                     <Form
                         onSubmit={handleSubmit(handleValid)}
                         cols={2}
-                        className="mt-[30px]"
+                        className="mt-[30px] px-10 grid-cols-1 sm:grid-cols-2"
                     >
-                        <div className="flex justify-center col-start-1 col-end-3">
+                        <div className="flex justify-center sm:col-start-1 sm:col-end-3">
                             <UploadPhoto
                                 name="avatar"
                                 value={avatarWatch}
@@ -94,6 +94,7 @@ const EditProfileUser = () => {
                                 type="date"
                                 control={control}
                                 name="birthday"
+                                placeholder="Enter your birthday"
                             ></Input>
                         </FormGroup>
                         <FormGroup>
@@ -126,17 +127,17 @@ const EditProfileUser = () => {
             )) || (
                 <>
                     <Skeleton
-                        containerClassName="flex justify-center"
+                        containerClassName="py-8 px-4 flex justify-center"
                         className="text-3xl w-[400px] !leading-9"
                     />
-                    <div className="mt-[30px] grid grid-cols-2 gap-3 mx-auto">
-                        <div className="flex justify-center col-start-1 col-end-3">
+                    <div className="mt-[30px] px-10 grid grid-cols-1 sm:grid-cols-2 gap-3 mx-auto">
+                        <div className="flex justify-center sm:col-start-1 sm:col-end-3">
                             <UploadPhotoSkeleton />
                         </div>
                         <FormGroupSkeleton />
                         <FormGroupSkeleton />
                         <FormGroupSkeleton type="checkbox" />
-                        <div className="flex justify-center col-start-1 col-end-3">
+                        <div className="flex justify-center sm:col-start-1 sm:col-end-3">
                             <Skeleton
                                 containerClassName="flex w-[140px]"
                                 className="h-11"

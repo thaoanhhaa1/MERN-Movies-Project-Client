@@ -5,13 +5,13 @@ const FormGroupSkeleton = ({ type }) => {
     return (
         <div className="flex flex-col gap-[11px]">
             <Skeleton
-                containerClassName="flex w-[80px]"
-                className="!leading-5"
+                containerClassName="flex w-[80px] h-5"
+                className="h-full"
             />
             {(type === 'checkbox' && <CheckboxSkeleton />) || (
                 <Skeleton
                     containerClassName="flex"
-                    className="h-[46px] !rounded-full"
+                    className="h-12 !rounded-full"
                 />
             )}
         </div>

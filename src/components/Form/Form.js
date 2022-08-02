@@ -6,7 +6,7 @@ const Form = ({ className = '', children, onSubmit, cols = 1 }) => {
         <FormProvider value={{ cols }}>
             <form
                 onSubmit={onSubmit}
-                className={`grid grid-cols-${cols} gap-3 mx-auto ${className}`}
+                className={`grid gap-3 mx-auto ${className}`}
             >
                 {children}
             </form>

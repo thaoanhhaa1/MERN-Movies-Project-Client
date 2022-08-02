@@ -11,7 +11,7 @@ const Input = ({ control, type = 'text', placeholder = '', name }) => {
     return (
         <input
             id={name}
-            className="mt-[11px] py-3 px-5 rounded-full border border-[rgba(22,24,35,.06)] bg-[rgba(22,24,35,.06)] text-sm text-black outline-none focus:border-[rgba(22,24,35,.15)] caret-primary"
+            className="w-full h-12 mt-[11px] py-3 px-5 rounded-full border border-[rgba(22,24,35,.06)] bg-[rgba(22,24,35,.06)] text-sm text-black outline-none focus:border-[rgba(22,24,35,.15)] caret-primary"
             type={type}
             placeholder={placeholder}
             {...field}

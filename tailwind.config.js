@@ -78,6 +78,11 @@ module.exports = {
             maxWidth: {
                 search: '420px',
             },
+            zIndex: {
+                5: 5,
+                99: 99,
+                100: 100,
+            },
         },
         screens: {
             xs: '540px',

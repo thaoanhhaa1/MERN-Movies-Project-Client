@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { memo } from 'react';
 import { v4 } from 'uuid';
 import FooterItem from './FooterItem';
 
@@ -31,4 +32,4 @@ FooterCol.propTypes = {
     className: PropTypes.string,
 };
 
-export default FooterCol;
+export default memo(FooterCol);

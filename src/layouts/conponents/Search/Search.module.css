@@ -10,32 +10,6 @@
   color: #434343;
 }
 
-.search-tippy-wrapper {
-  -webkit-animation: fadeIn 0.3s ease;
-          animation: fadeIn 0.3s ease;
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    transform: translateY(-10px);
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    transform: translateY(-10px);
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
 .search-tippy::-webkit-scrollbar-thumb {
   background-color: #d9d9d9;
 }/*# sourceMappingURL=Search.module.css.map */

@@ -55,7 +55,8 @@ const CastDetailsPage = () => {
         }
 
         getData();
-    }, [castId, height, isTV, page, width]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [castId, height, isTV, page]);
 
     if (!loading && movies?.length <= 0 && !totalPages) return <PageNotFound />;
 

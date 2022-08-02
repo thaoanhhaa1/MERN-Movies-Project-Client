@@ -6,7 +6,9 @@ const HeaderLayout = ({ children }) => {
     return (
         <div>
             <Header></Header>
-            <div>{children}</div>
+            <div className="mt-[calc(var(--header-pc-height)+20px)]">
+                {children}
+            </div>
             <Footer />
         </div>
     );

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {
     EmailIcon,
     ExpressIcon,
@@ -81,4 +82,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default memo(Footer);
