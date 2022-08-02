@@ -5,11 +5,12 @@ import slugify from 'slugify';
 import { FreeMode, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { v4 } from 'uuid';
-import MovieGlass from '~/components/MovieGlass';
-import MovieItemInImg from '~/components/MovieItemInImg';
+import MovieGlass, { MovieGlassSkeleton } from '~/components/MovieGlass';
+import MovieItemInImg, {
+    MovieItemInImgSkeleton,
+} from '~/components/MovieItemInImg';
 import { useTV, useWindowDimensions } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
-import MovieGlassSkeleton from '../MovieGlass/MovieGlassSkeleton';
 import MovieHeader from './MovieHeader';
 import MovieIemSkeleton from './MovieIemSkeleton';
 import MovieItem from './MovieItem';
@@ -65,11 +66,19 @@ const MovieList = ({ movieUi = '', children, type, className = '' }) => {
                     },
                 }}
             >
-                {movieList?.map((movie) => (
-                    <SwiperSlide key={movie.id}>
-                        <MovieItemInImg className="mx-2" data={movie} />
-                    </SwiperSlide>
-                ))}
+                {(movieList?.length > 0 &&
+                    movieList?.map((movie) => (
+                        <SwiperSlide key={movie.id}>
+                            <MovieItemInImg className="mx-2" data={movie} />
+                        </SwiperSlide>
+                    ))) ||
+                    new Array(width >= 768 ? 3 : width >= 540 ? 2 : 1)
+                        .fill(null)
+                        .map(() => (
+                            <SwiperSlide key={v4()}>
+                                <MovieItemInImgSkeleton />
+                            </SwiperSlide>
+                        ))}
             </Swiper>
         );
 

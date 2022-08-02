@@ -30,7 +30,7 @@ const SearchPage = () => {
         }
 
         getData();
-    }, [page, value]);
+    }, [isTV, page, value]);
 
     useBackToTop(page, value);
 

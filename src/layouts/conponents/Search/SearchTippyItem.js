@@ -19,9 +19,13 @@ const SearchTippyItem = ({ data, onClick = () => {} }) => {
             <Avatar
                 className="w-search-avatar h-search-avatar flex-shrink-0"
                 alt={data?.title || data?.name}
-                src={`${config.movieDB.image}${
-                    data.backdrop_path ?? data.poster_path
-                }`}
+                src={
+                    data.backdrop_path || data.poster_path
+                        ? `${config.movieDB.image}${
+                              data.backdrop_path ?? data.poster_path
+                          }`
+                        : '/no-avatar.png'
+                }
             />
             <h6 className="line-clamp-2 ml-3 text-sm leading-[1.6] text-[#292929]">
                 {data?.title || data?.name}

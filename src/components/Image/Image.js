@@ -28,7 +28,7 @@ const Image = ({ src, alt, className = '', onError }) => {
     return (
         <img
             ref={imgRef}
-            className={`${className} w-full h-full object-cover transition-all duration-[400] ease-in opacity-100`}
+            className={`${className} w-full h-full object-cover transition-all duration-[400ms] ease-in opacity-100`}
             src={src}
             alt={alt}
             onError={onError}
