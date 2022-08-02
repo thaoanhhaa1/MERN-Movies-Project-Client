@@ -64,7 +64,7 @@ const CategoryPage = () => {
     if (!params?.category || (!category && !loading)) return <PageNotFound />;
 
     return (
-        <div className="max-w-[960px] mx-auto mt-9 mb-24">
+        <div className="max-w-7xl mx-auto mt-[calc(var(--header-pc-height)+20px)] mb-24">
             {(movies?.length > 0 && (
                 <>
                     <header className="flex justify-center items-center h-24 bg-slate-400 text-white">
@@ -72,7 +72,9 @@ const CategoryPage = () => {
                             {category.name}
                         </h1>
                     </header>
-                    <div className="mt-4 grid grid-cols-5 gap-[10px]">
+                    <div
+                        className={`px-3 lg:px-10 xl:px-0 xs:px-5 mt-4 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[10px]`}
+                    >
                         {movies?.map((movie) => (
                             <MovieItem
                                 className="flex flex-col"
@@ -97,7 +99,9 @@ const CategoryPage = () => {
                             className="text-[28px] leading-tight"
                         />
                     </header>
-                    <div className="mt-4 grid grid-cols-5 gap-[10px]">
+                    <div
+                        className={`px-3 lg:px-10 xl:px-0 xs:px-5 mt-4 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[10px]`}
+                    >
                         {new Array(10).fill(null).map(() => (
                             <MovieIemSkeleton key={v4()} />
                         ))}
