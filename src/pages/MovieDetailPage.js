@@ -47,7 +47,6 @@ const MovieDetailPage = () => {
                         },
                     }),
                 ]);
-                console.log('🚀 ~ getData ~ movieDetail', movieDetail);
 
                 setMovieDetail(movieDetail);
                 setCredits(credits);

@@ -8,7 +8,9 @@ const MoviesGrid = ({ title, children }) => {
                     {title}
                 </header>
             )}
-            <div className="grid grid-cols-3 gap-x-5 gap-y-6">{children}</div>
+            <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 2xl:grid-cols-4 gap-x-5 gap-y-6">
+                {children}
+            </div>
         </div>
     );
 };

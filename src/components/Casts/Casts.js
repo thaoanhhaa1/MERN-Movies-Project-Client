@@ -4,14 +4,13 @@ import { useMovieDetails } from '~/context/MovieDetails';
 import Cast from './Cast';
 
 const Casts = () => {
-    const { movieId, credits } = useMovieDetails();
+    const { credits } = useMovieDetails();
     const casts = useMemo(() => {
         const acting = credits.cast.filter(
             (item) => item.known_for_department === 'Acting',
         );
         return acting?.slice(0, 12) || [];
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [movieId]);
+    }, [credits.cast]);
 
     return (
         <div>
