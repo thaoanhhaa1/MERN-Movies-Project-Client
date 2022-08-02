@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from 'react';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import Casts, { CastsSkeleton } from '~/components/Casts';
 import Episode from '~/components/Episode';
 import GridButtonSkeleton from '~/components/GridButtonSkeleton';

@@ -10,6 +10,7 @@ import {
     VercelIcon,
 } from '~/components/Icons';
 import Logo from '~/components/Logo';
+import { useWindowDimensions } from '~/hooks';
 import FooterCol from './FooterCol';
 
 const frameworkMenu = [
@@ -61,22 +62,20 @@ const profileMenu = [
 ];
 
 const Footer = () => {
+    const { width } = useWindowDimensions();
+    const isMinLg = width >= 1024;
+
     return (
-        <div className="bg-[#181821]">
-            <div className="pl-5 pr-10 pt-[68px] pb-10 px-[15px] flex gap-[30px] max-w-[1100px] w-full mx-auto">
-                <div className="w-3/12">
+        <div className="bg-[#181821] flex">
+            {isMinLg && <div className="w-[var(--navbar-width)]"></div>}
+            <div className="flex-1 pt-[68px] pb-10 px-[15px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-[1100px] w-full mx-auto">
+                <div>
                     <Logo textColor="white" />
                     <FooterCol iconColor="fill-white" menu={profileMenu} />
                 </div>
-                <FooterCol className="w-3/12" menu={frameworkMenu}>
-                    Framework
-                </FooterCol>
-                <FooterCol className="w-3/12" menu={repositoriesMenu}>
-                    Repositories
-                </FooterCol>
-                <FooterCol className="w-3/12" menu={deployMenu}>
-                    Deploy
-                </FooterCol>
+                <FooterCol menu={frameworkMenu}>Framework</FooterCol>
+                <FooterCol menu={repositoriesMenu}>Repositories</FooterCol>
+                <FooterCol menu={deployMenu}>Deploy</FooterCol>
             </div>
         </div>
     );

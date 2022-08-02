@@ -1,13 +1,11 @@
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import { useEffect, useState, useTransition } from 'react';
-import { Link } from 'react-router-dom';
 import { SearchIcon, SpinnerIcon } from '~/components/Icons';
 import Popup from '~/components/Popup';
-import { useDebounce } from '~/hooks';
+import { useDebounce, useWindowDimensions } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
 import styles from './Search.module.scss';
-import SearchTippyItem from './SearchTippyItem';
 import SearchTippyList from './SearchTippyList';
 
 const cx = classNames.bind(styles);
@@ -18,6 +16,8 @@ const SearchTippy = ({ value, handleResetSearch = () => {}, ...props }) => {
     const [tv, setTV] = useState([]);
     const [loading, setLoading] = useState(false);
     const [, startTransition] = useTransition();
+    const { width } = useWindowDimensions();
+    const isTablet = width <= 738;
 
     useEffect(() => {
         if (!value) {
@@ -47,9 +47,11 @@ const SearchTippy = ({ value, handleResetSearch = () => {}, ...props }) => {
     return (
         <Popup {...props}>
             <div
-                className={`${cx(
-                    'search-tippy',
-                )} w-search min-h-[50px] max-h-[calc(90vh-66px)] overflow-overlay py-3 px-6`}
+                className={`${cx('search-tippy')} ${
+                    isTablet
+                        ? 'left-0 w-[calc(100vw-32px)] max-w-search'
+                        : 'w-search'
+                } min-h-[50px] max-h-[calc(90vh-66px)] overflow-overlay py-3 px-6`}
             >
                 <div className="h-[26px] flex text-[#757575] items-center text-sm leading-sm">
                     {(loading && (

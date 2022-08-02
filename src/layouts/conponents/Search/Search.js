@@ -3,25 +3,42 @@ import classNames from 'classnames/bind';
 import { useLayoutEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CloseIcon, SearchIcon } from '~/components/Icons';
+import { useWindowDimensions } from '~/hooks';
 import styles from './Search.module.scss';
 import SearchTippy from './SearchTippy';
 
 const cx = classNames.bind(styles);
 
-const Search = () => {
+const Search = ({ isActive }) => {
     const [searchValue, setSearchValue] = useState('');
     const [isShow, setShow] = useState(true);
     const inputRef = useRef();
     const location = useLocation();
+    const { width } = useWindowDimensions();
+    const isTablet = width <= 739;
 
     useLayoutEffect(() => {
         setShow(false);
     }, [location]);
 
+    useLayoutEffect(() => {
+        if (isActive) inputRef.current?.focus();
+    }, [isActive]);
+
     const handleResetSearch = () => setSearchValue('');
 
     return (
-        <div className="relative">
+        <div
+            className={
+                isTablet
+                    ? `${
+                          isActive
+                              ? 'visible opacity-100'
+                              : 'invisible opacity-0 -translate-y-full'
+                      } shadow-md p-4 absolute top-[calc(var(--header-pc-height)-1px)] left-0 w-full -z-10 bg-white transition-all duration-300`
+                    : 'relative'
+            }
+        >
             <Tippy
                 interactive
                 visible={!!searchValue && isShow}
@@ -35,7 +52,11 @@ const Search = () => {
                     />
                 )}
             >
-                <div className="focus-within:border-[#444] transition-all duration-300 w-search h-search flex flex-row-reverse items-center border-2 border-[#e8e8e8] rounded-full overflow-hidden">
+                <div
+                    className={`focus-within:border-[#444] transition-all duration-300 ${
+                        isTablet ? 'mx-auto max-w-search w-full' : 'w-search'
+                    } h-search flex flex-row-reverse items-center border-2 border-[#e8e8e8] rounded-full overflow-hidden`}
+                >
                     {searchValue && (
                         <span
                             onClick={() => {

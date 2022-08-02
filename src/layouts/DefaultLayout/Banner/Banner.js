@@ -3,12 +3,15 @@ import Skeleton from 'react-loading-skeleton';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { v4 } from 'uuid';
+import { useWindowDimensions } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
 import BannerItem from './BannerItem';
 import BannerItemSkeleton from './BannerItemSkeleton';
 
 const Banner = ({ url }) => {
     const [banner, setBanner] = useState([]);
+    const { width } = useWindowDimensions();
+    const isShowPagination = width > 738;
 
     useEffect(() => {
         async function getData() {
@@ -40,7 +43,7 @@ const Banner = ({ url }) => {
                     modules={[Pagination, Navigation, Autoplay]}
                     spaceBetween={0}
                     slidesPerView={1}
-                    navigation
+                    navigation={isShowPagination}
                     pagination={{ clickable: true }}
                     scrollbar={{ draggable: true }}
                     autoplay={{

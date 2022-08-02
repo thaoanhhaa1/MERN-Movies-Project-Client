@@ -48,15 +48,25 @@ const MovieList = ({ movieUi = '', children, type, className = '' }) => {
         ) : (
             <Swiper
                 className="!-mx-2"
-                slidesPerView={3}
                 freeMode={true}
                 modules={[FreeMode, Scrollbar]}
                 scrollbar={{
                     hide: false,
                 }}
+                breakpoints={{
+                    0: {
+                        slidesPerView: 1,
+                    },
+                    540: {
+                        slidesPerView: 2,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                    },
+                }}
             >
                 {movieList?.map((movie) => (
-                    <SwiperSlide key={movie.id} className="!w-4/12">
+                    <SwiperSlide key={movie.id}>
                         <MovieItemInImg className="mx-2" data={movie} />
                     </SwiperSlide>
                 ))}
@@ -97,7 +107,7 @@ const MovieList = ({ movieUi = '', children, type, className = '' }) => {
                 </header>
             )}
             {movieUi ? (
-                <div className="grid grid-cols-4 gap-[20px]">
+                <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-[20px]">
                     {(movieList?.length > 0 &&
                         movieList?.map((movie) => (
                             <MovieGlass key={movie.id} data={movie} />

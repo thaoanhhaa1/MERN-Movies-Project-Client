@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
-import { FireSolidIcon, HomeSolidIcon, TVIcon } from '~/components/Icons';
+import { HomeSolidIcon, TVIcon } from '~/components/Icons';
 import config from '~/config';
 import styles from './Navbar.module.scss';
 import NavItem from './NavItem';

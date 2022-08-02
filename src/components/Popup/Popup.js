@@ -10,7 +10,7 @@ const Popup = ({ children, ...props }) => {
             {...props}
             className={`${cx(
                 'popup',
-            )} rounded-[10px] min-w-[230px] bg-white shadow-[0_-4px_32px_rgb(0,_0,_0,_0.2)]`}
+            )} rounded-[10px] bg-white shadow-[0_-4px_32px_rgb(0,_0,_0,_0.2)]`}
         >
             {children}
         </div>

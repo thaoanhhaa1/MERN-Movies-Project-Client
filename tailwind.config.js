@@ -75,9 +75,17 @@ module.exports = {
                 'loader-circles':
                     'loader-circles 1s ease-in-out alternate infinite',
             },
+            maxWidth: {
+                search: '420px',
+            },
         },
         screens: {
+            xs: '540px',
+            sm: '640px',
+            md: '768px',
+            lg: '1024px',
             gx: '1112px',
+            xl: '1280px',
         },
     },
     plugins: [
