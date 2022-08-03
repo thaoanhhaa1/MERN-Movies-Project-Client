@@ -39,7 +39,7 @@ const SearchPage = () => {
     return (
         <div>
             <h1 className="mb-5 text-xl">Results for "{value}"</h1>
-            <div className="grid grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 xxs:grid-cols-2 xs:grid-cols-3 lg:grid-cols-4 gap-[10px] sm:gap-5">
                 {(movies?.length > 0 &&
                     movies?.map((movie) => (
                         <MovieBackdropItem data={movie} key={movie.id} />
