@@ -48,8 +48,8 @@ const MovieList = ({ movieUi = '', children, type, className = '' }) => {
             </div>
         ) : (
             <Swiper
-                className="!-mx-2"
                 freeMode={true}
+                spaceBetween={16}
                 modules={[FreeMode, Scrollbar]}
                 scrollbar={{
                     hide: false,
@@ -69,7 +69,7 @@ const MovieList = ({ movieUi = '', children, type, className = '' }) => {
                 {(movieList?.length > 0 &&
                     movieList?.map((movie) => (
                         <SwiperSlide key={movie.id}>
-                            <MovieItemInImg className="mx-2" data={movie} />
+                            <MovieItemInImg data={movie} />
                         </SwiperSlide>
                     ))) ||
                     new Array(width >= 768 ? 3 : width >= 540 ? 2 : 1)

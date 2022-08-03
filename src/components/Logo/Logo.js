@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { LogoIcon } from '~/components/Icons';
 import config from '~/config';
 
-const Logo = ({ className = '', textColor = 'black' }) => {
+const Logo = ({ className = '', textColor = 'black', onClick = () => {} }) => {
     return (
         <div className={`${className} flex items-center`}>
-            <Link to={config.routes.home}>
+            <Link onClick={onClick} to={config.routes.home}>
                 <LogoIcon width="38px" height="38px" />
             </Link>
             <h5 className={`ml-4 font-bold text-sm text-${textColor}`}>

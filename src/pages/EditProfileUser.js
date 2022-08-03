@@ -14,6 +14,8 @@ import { db } from '~/firebase/firebaseConfig';
 import { useBackToTop } from '~/hooks';
 import PageNotFound from './PageNotFound';
 
+// FIXME Input Birthday
+
 const EditProfileUser = () => {
     const { user, setUser, loading } = useAuth();
     const {

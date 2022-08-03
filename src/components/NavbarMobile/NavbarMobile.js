@@ -43,7 +43,7 @@ const NavbarMobile = () => {
                         isMinXs ? 'pl-8' : 'pl-4'
                     } overflow-auto max-h-full`}
                 >
-                    <Logo className="my-8 ml-5" />
+                    <Logo onClick={onCloseNavbarMobile} className="my-8 ml-5" />
                     <NavbarMobileMenu menu={navbar} />
                 </div>
             </div>
