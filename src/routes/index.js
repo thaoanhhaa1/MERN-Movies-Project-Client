@@ -1,19 +1,18 @@
+import { lazy } from 'react';
 import config from '~/config';
-import HeaderLayout from '~/layouts/HeaderLayout';
-import SettingLayout from '~/layouts/SettingLayout';
-import {
-    CastDetailsPage,
-    CategoryPage,
-    FavoritePage,
-    HomePage,
-    LoginPage,
-    MovieDetailPage,
-    PersonalInformation,
-    RegisterPage,
-    SearchPage,
-} from '~/pages';
-import EditProfileUser from '~/pages/EditProfileUser';
-import TVPage from '~/pages/TVPage';
+const HeaderLayout = lazy(() => import('~/layouts/HeaderLayout'));
+const SettingLayout = lazy(() => import('~/layouts/SettingLayout'));
+const SearchPage = lazy(() => import('~/pages/SearchPage'));
+const RegisterPage = lazy(() => import('~/pages/RegisterPage'));
+const PersonalInformation = lazy(() => import('~/pages/PersonalInformation'));
+const MovieDetailPage = lazy(() => import('~/pages/MovieDetailPage'));
+const LoginPage = lazy(() => import('~/pages/LoginPage'));
+const HomePage = lazy(() => import('~/pages/HomePage'));
+const FavoritePage = lazy(() => import('~/pages/FavoritePage'));
+const CategoryPage = lazy(() => import('~/pages/CategoryPage'));
+const CastDetailsPage = lazy(() => import('~/pages/CastDetailsPage'));
+const EditProfileUser = lazy(() => import('~/pages/EditProfileUser'));
+const TVPage = lazy(() => import('~/pages/TVPage'));
 
 const routes = [
     {
