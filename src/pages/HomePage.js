@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import MovieList from '~/components/MovieList';
 import Banner from '~/layouts/DefaultLayout/Banner';
 
+// TODO Recently viewed
+
 const HomePage = () => {
     useEffect(() => {
         document.title = 'WMovies';

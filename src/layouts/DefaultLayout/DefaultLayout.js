@@ -8,7 +8,6 @@ import Navbar from './Navbar';
 const DefaultLayout = ({ children }) => {
     const { width } = useWindowDimensions();
     const isMinLg = width >= 1024;
-    console.log('🚀 ~ DefaultLayout ~ isMinLg', isMinLg);
 
     return (
         <Wrapper>

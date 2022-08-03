@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 import config from '~/config';
 import { db, signInWithFacebook } from '~/firebase/firebaseConfig';
 
+// FIXME Can only login with Facebook admin
+
 const useSignInWithFacebook = () => {
     const navigate = useNavigate();
 

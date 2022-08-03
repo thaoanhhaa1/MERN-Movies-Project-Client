@@ -1,18 +1,15 @@
 import Skeleton from 'react-loading-skeleton';
 import { v4 } from 'uuid';
 import Avatar from '~/components/Avatar';
-import Button from '~/components/Button';
 import EditInformationButton from '~/components/Button/EditInformationButton';
 import {
     CalendarIcon,
     EmailIcon,
     LockIcon,
-    PencilIcon,
     UserSolidIcon,
     UsersSolidIcon,
 } from '~/components/Icons';
 import PersonalInformationItem from '~/components/PersonalInformationItem';
-import config from '~/config';
 import useAuth from '~/context/Auth';
 import { useBackToTop, useWindowDimensions } from '~/hooks';
 import PageNotFound from './PageNotFound';

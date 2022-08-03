@@ -15,6 +15,7 @@ import { useBackToTop } from '~/hooks';
 import PageNotFound from './PageNotFound';
 
 // FIXME Input Birthday
+// FIXME When editing Avatar without clicking update, the avatar image you are using is still deleted
 
 const EditProfileUser = () => {
     const { user, setUser, loading } = useAuth();
