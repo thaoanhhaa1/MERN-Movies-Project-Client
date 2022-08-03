@@ -24,7 +24,7 @@ const Cast = ({ data }) => {
                         ? config.movieDB.image + data.profile_path
                         : null
                 }
-            ></Avatar>
+            />
             <h4 className="py-[15px] font-medium text-base text-center">
                 <Link to={to}>{data.name}</Link>
             </h4>

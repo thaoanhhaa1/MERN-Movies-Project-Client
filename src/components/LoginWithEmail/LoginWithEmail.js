@@ -43,7 +43,7 @@ const LoginWithEmail = () => {
                     control={control}
                     name="email"
                     placeholder="Email address"
-                ></Input>
+                />
             </FormGroup>
             <FormGroup>
                 <Label htmlFor="password">Password</Label>
@@ -52,7 +52,7 @@ const LoginWithEmail = () => {
                     type="password"
                     name="password"
                     placeholder="Password"
-                ></Input>
+                />
             </FormGroup>
             <Button isLoading={isSubmitting} className="w-full" large primary>
                 Login

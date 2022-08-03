@@ -27,8 +27,8 @@ const Button = ({
         props.href = href;
     }
 
-    if (large) style += ` py-[14px] h-11 min-w-[150px]`;
-    else style += ` py-[9px] min-w-[12px]`;
+    if (large) style += ` py-[14px] h-11 min-w-[150px] text-base`;
+    else style += ` py-[9px] min-w-[12px] text-sm`;
 
     if (primary) {
         style += ` bg-primary text-white`;
@@ -54,11 +54,11 @@ const Button = ({
             {...props}
             className={`${
                 disabled || isLoading ? 'opacity-60' : ''
-            } ${style} ${className} flex items-center justify-center gap-2 relative transition-all font-semibold text-sm leading-sm px-5`}
+            } ${style} ${className} flex items-center justify-center gap-2 relative transition-all font-semibold leading-sm px-5`}
         >
             {(isLoading && (
                 <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
-                    <span className="inline-block w-8 h-8 border-4 border-white border-t-red-500 rounded-full animate-spin"></span>
+                    <span className="inline-block w-8 h-8 border-4 border-white border-t-red-500 rounded-full animate-spin" />
                 </div>
             )) ||
                 children}

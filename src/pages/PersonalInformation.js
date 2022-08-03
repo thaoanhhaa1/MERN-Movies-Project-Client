@@ -2,6 +2,7 @@ import Skeleton from 'react-loading-skeleton';
 import { v4 } from 'uuid';
 import Avatar from '~/components/Avatar';
 import Button from '~/components/Button';
+import EditInformationButton from '~/components/Button/EditInformationButton';
 import {
     CalendarIcon,
     EmailIcon,
@@ -13,7 +14,7 @@ import {
 import PersonalInformationItem from '~/components/PersonalInformationItem';
 import config from '~/config';
 import useAuth from '~/context/Auth';
-import { useBackToTop } from '~/hooks';
+import { useBackToTop, useWindowDimensions } from '~/hooks';
 import PageNotFound from './PageNotFound';
 
 const personalInformation = [
@@ -46,6 +47,8 @@ const personalInformation = [
 
 const PersonalInformation = () => {
     const { user, loading } = useAuth();
+    const { width } = useWindowDimensions();
+    const isMinSm = width >= 640;
 
     useBackToTop();
 
@@ -55,10 +58,12 @@ const PersonalInformation = () => {
         <div className="relative p-[10px] pt-[35px]">
             {(loading && (
                 <>
-                    <Skeleton
-                        containerClassName="!absolute right-0 block w-[186px]"
-                        className="h-11 !rounded-lg"
-                    />
+                    {isMinSm && (
+                        <Skeleton
+                            containerClassName="!absolute right-0 block w-[186px]"
+                            className="h-11 !rounded-lg"
+                        />
+                    )}
                     <div>
                         <Skeleton
                             containerClassName="w-[100px] block mx-auto"
@@ -69,23 +74,26 @@ const PersonalInformation = () => {
                             className="text-[26px] !leading-[1.2]"
                         />
                     </div>
-                    <div className="mt-[25px] grid grid-cols-2 gap-x-10 gap-y-5">
+                    <div className="mt-[25px] grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
                         {new Array(5).fill(5).map(() => (
-                            <Skeleton className="h-[78px] !rounded-[10px]" />
+                            <Skeleton
+                                key={v4()}
+                                className="h-[78px] !rounded-[10px]"
+                            />
                         ))}
                     </div>
+                    {!isMinSm && (
+                        <Skeleton
+                            containerClassName="z-5 sticky bottom-0 mt-[15px] p-3 bg-slate-100 flex justify-center"
+                            className="!w-[205px] h-11 !rounded-lg"
+                        />
+                    )}
                 </>
             )) || (
                 <>
-                    <Button
-                        to={config.routes.personalInformationEdit}
-                        primary
-                        large
-                        className="!absolute right-0"
-                    >
-                        <PencilIcon className="w-5 h-5"></PencilIcon>
-                        Edit information
-                    </Button>
+                    {isMinSm && (
+                        <EditInformationButton className="!absolute right-0" />
+                    )}
                     <div>
                         <Avatar
                             className="w-[100px] h-[100px] mx-auto"
@@ -96,7 +104,7 @@ const PersonalInformation = () => {
                             {user?.name}
                         </h1>
                     </div>
-                    <div className="mt-[25px] grid grid-cols-2 gap-x-10 gap-y-5">
+                    <div className="mt-[25px] grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
                         {personalInformation.map((item) => (
                             <PersonalInformationItem
                                 key={v4()}
@@ -107,6 +115,8 @@ const PersonalInformation = () => {
                                 </PersonalInformationItem.Title>
                                 <PersonalInformationItem.Description>
                                     {(item.attribute === 'gender' &&
+                                        typeof user?.[item.attribute] ===
+                                            'boolean' &&
                                         (user?.[item.attribute]
                                             ? 'Male'
                                             : 'Female')) ||
@@ -115,6 +125,11 @@ const PersonalInformation = () => {
                             </PersonalInformationItem>
                         ))}
                     </div>
+                    {!isMinSm && (
+                        <div className="sticky bottom-0 mt-[15px] p-3 bg-slate-100 flex justify-center">
+                            <EditInformationButton className="w-fit" />
+                        </div>
+                    )}
                 </>
             )}
         </div>

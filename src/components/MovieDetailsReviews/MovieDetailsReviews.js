@@ -84,7 +84,7 @@ const MovieDetailsReviews = ({ className = '' }) => {
                         <textarea
                             placeholder="Write a comment..."
                             className="flex-1 py-2 px-4 text-inherit leading-[32px] h-[48px] bg-[#fff] text-xs outline-none resize-none"
-                        ></textarea>
+                        />
                         <SendIcon className="w-6 h-6 rotate-45 fill-current cursor-pointer hover:fill-primary ease-ease duration-300" />
                     </form>
                 </div>

@@ -23,7 +23,7 @@ const MovieGlass = ({ data }) => {
                 <h4 className="flex-1 font-medium text-white text-sm line-clamp-1">
                     {data.title || data.name}
                 </h4>
-                <div className="relative mx-4 w-[1px] h-5 bg-gradient-to-b from-transparent via-white to-transparent"></div>
+                <div className="relative mx-4 w-[1px] h-5 bg-gradient-to-b from-transparent via-white to-transparent" />
                 <div className="flex gap-1 text-xs text-white">
                     <StarSolidIcon />
                     <span>{(data?.vote_average ?? 0).toFixed(1)}</span>

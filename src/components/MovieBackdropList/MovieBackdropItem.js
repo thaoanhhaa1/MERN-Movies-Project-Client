@@ -23,7 +23,7 @@ const MovieBackdropItem = ({ data, render }) => {
                             ? config.movieDB.image + data?.backdrop_path
                             : config.imageBackup
                     }`}
-                ></Image>
+                />
                 {render}
             </Link>
             <div>
