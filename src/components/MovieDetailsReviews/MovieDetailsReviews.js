@@ -5,6 +5,7 @@ import Button from '~/components/Button';
 import { SendIcon } from '~/components/Icons';
 import MovieDetailsReview from '~/components/MovieDetailsReview';
 import { Select } from '~/context';
+import useAuth from '~/context/Auth';
 import { useMovieDetails } from '~/context/MovieDetails';
 import { useTV } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
@@ -17,6 +18,7 @@ const MovieDetailsReviews = ({ className = '' }) => {
     const [loading, setLoading] = useState(true);
     const [reviews, setReviews] = useState(() => ({ results: [] }));
     const isTV = useTV();
+    const { user } = useAuth();
 
     const handleLoadMore = () => setPage((page) => page + 1);
 
@@ -78,7 +80,7 @@ const MovieDetailsReviews = ({ className = '' }) => {
                     <Avatar
                         className="w-10 h-10"
                         alt=""
-                        src="https://vietartproductions.com/wp-content/uploads/2022/04/chup-anh-dep-anh-sang-min.jpg"
+                        src={user?.avatar?.url}
                     />
                     <form className="flex-1 flex items-center pr-4 text-[#9b9b9b] bg-[#fff] rounded-3xl overflow-hidden">
                         <textarea

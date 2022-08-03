@@ -10,9 +10,9 @@ import {
     UsersSolidIcon,
 } from '~/components/Icons';
 import PersonalInformationItem from '~/components/PersonalInformationItem';
+import RequestLogin from '~/components/RequestLogin';
 import useAuth from '~/context/Auth';
 import { useBackToTop, useWindowDimensions } from '~/hooks';
-import PageNotFound from './PageNotFound';
 
 const personalInformation = [
     {
@@ -49,7 +49,7 @@ const PersonalInformation = () => {
 
     useBackToTop();
 
-    if (!loading && !user) return <PageNotFound />;
+    if (!loading && !user) return <RequestLogin />;
 
     return (
         <div className="relative p-[10px] pt-[35px]">

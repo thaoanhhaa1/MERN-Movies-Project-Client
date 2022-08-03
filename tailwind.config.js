@@ -82,6 +82,7 @@ module.exports = {
                 5: 5,
                 99: 99,
                 100: 100,
+                full: 9999,
             },
         },
         screens: {

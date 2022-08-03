@@ -8,11 +8,11 @@ import Form from '~/components/Form';
 import FormGroup, { FormGroupSkeleton } from '~/components/FormGroup';
 import Input from '~/components/Input';
 import Label from '~/components/Label';
+import RequestLogin from '~/components/RequestLogin';
 import UploadPhoto, { UploadPhotoSkeleton } from '~/components/UploadPhoto';
 import useAuth from '~/context/Auth';
 import { db } from '~/firebase/firebaseConfig';
 import { useBackToTop } from '~/hooks';
-import PageNotFound from './PageNotFound';
 
 // FIXME Input Birthday
 // FIXME When editing Avatar without clicking update, the avatar image you are using is still deleted
@@ -59,7 +59,7 @@ const EditProfileUser = () => {
         reset(defaultValues);
     }, [reset, user]);
 
-    if (!user && !loading) return <PageNotFound />;
+    if (!user && !loading) return <RequestLogin />;
 
     const genderWatch = watch('gender');
     const avatarWatch = watch('avatar');

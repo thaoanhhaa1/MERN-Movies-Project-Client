@@ -6,13 +6,13 @@ import {
     MovieBackdropItem,
     MovieBackdropItemSkeleton,
 } from '~/components/MovieBackdropList';
+import RequestLogin from '~/components/RequestLogin';
 import useAuth from '~/context/Auth';
 import { useWindowDimensions } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
-import PageNotFound from './PageNotFound';
 
 const FavoritePage = () => {
-    const { user } = useAuth();
+    const { user, loading: loadingUser } = useAuth();
     const [movieList, setMovieList] = useState([]);
     const [loading, setLoading] = useState(true);
     const { width } = useWindowDimensions();
@@ -62,7 +62,7 @@ const FavoritePage = () => {
         if (user?.uid) getData();
     }, [user?.uid]);
 
-    if (!user && !loading) return <PageNotFound />;
+    if (!user && !loadingUser) return <RequestLogin />;
 
     const handleClickFavorite = (event, id, type) => {
         event.preventDefault();
