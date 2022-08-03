@@ -1,5 +1,5 @@
-import { ButtonLogin } from '../Button';
-import { GoogleIcon } from '../Icons';
+import { ButtonLogin } from '~/components/Button';
+import { GoogleIcon } from '~/components/Icons';
 
 const Google = ({ onClick = () => {} }) => {
     return (

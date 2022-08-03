@@ -1,5 +1,5 @@
 import useForm from '~/context/Form';
-import Button from '../Button';
+import Button from '~/components/Button';
 
 const Submit = ({ children, className = '', ...props }) => {
     const { cols } = useForm();

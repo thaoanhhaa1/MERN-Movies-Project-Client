@@ -1,5 +1,5 @@
 import Skeleton from 'react-loading-skeleton';
-import { CheckboxSkeleton } from '../Checkbox';
+import { CheckboxSkeleton } from '~/components/Checkbox';
 
 const FormGroupSkeleton = ({ type }) => {
     return (

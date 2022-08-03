@@ -23,9 +23,11 @@ const navMenu = [
     },
 ];
 
-const Navbar = () => {
+// TODO Navbar Scrollbar when screen < 640px
+
+const Navbar = ({ className }) => {
     return (
-        <div className="w-3/12">
+        <div className={className}>
             <ul className="flex flex-col gap-[10px] shadow-md py-[15px] rounded-[10px]">
                 {navMenu.map(({ title, ...props }) => (
                     <NavbarItem key={v4()} {...props}>

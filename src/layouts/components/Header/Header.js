@@ -6,8 +6,9 @@ import NavbarMobile from '~/components/NavbarMobile';
 import UserActions from '~/components/UserActions';
 import config from '~/config';
 import useAuth from '~/context/Auth';
+import { NavbarMobileProvider } from '~/context/NavbarMobile';
 import { useWindowDimensions } from '~/hooks';
-import Search from '~/layouts/conponents/Search';
+import Search from '~/layouts/components/Search';
 
 const Header = () => {
     const { user } = useAuth();
@@ -24,12 +25,18 @@ const Header = () => {
         if (isMinLg) setShowNavbarMobile(false);
     }, [isMinLg, isShowNavbarMobile]);
 
+    const onCloseNavbarMobile = () => setShowNavbarMobile(false);
+    const onOpenNavbarMobile = () => setShowNavbarMobile(true);
+
     return (
-        <>
-            <NavbarMobile
-                onCloseNavbarMobile={() => setShowNavbarMobile(false)}
-                isShow={isShowNavbarMobile}
-            />
+        <NavbarMobileProvider
+            value={{
+                onCloseNavbarMobile,
+                onOpenNavbarMobile,
+                isShowNavbarMobile,
+            }}
+        >
+            <NavbarMobile />
             <div
                 className={`border-b border-[#e8ebed] h-header-pc flex items-center justify-between ${
                     isMinLg ? 'pl-5 pr-10' : 'px-5'
@@ -37,11 +44,11 @@ const Header = () => {
             >
                 {/* Logo */}
                 {(isMinLg && <Logo className="flex-1" />) || (
-                    <div
-                        onClick={() => setShowNavbarMobile(true)}
-                        className="tap-highlight-color-transparent cursor-pointer flex-1 p-2 -ml-2"
-                    >
-                        <MenuIcon className="w-5 h-5" />
+                    <div className="flex-1">
+                        <MenuIcon
+                            onClick={onOpenNavbarMobile}
+                            className="w-9 h-9 tap-highlight-color-transparent cursor-pointer p-2 -ml-2"
+                        />
                     </div>
                 )}
 
@@ -67,7 +74,7 @@ const Header = () => {
                     )}
                 </div>
             </div>
-        </>
+        </NavbarMobileProvider>
     );
 };
 

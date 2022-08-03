@@ -924,6 +924,7 @@ export const MenuIcon = ({
     width = '14px',
     height = '14px',
     className = '',
+    ...props
 }) => (
     <svg
         width={width}
@@ -932,6 +933,7 @@ export const MenuIcon = ({
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
+        {...props}
     >
         <path
             fillRule="evenodd"

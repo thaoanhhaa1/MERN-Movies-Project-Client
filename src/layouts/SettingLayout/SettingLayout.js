@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
-import Footer from '~/layouts/conponents/Footer';
-import Header from '~/layouts/conponents/Header';
+import Footer from '~/layouts/components/Footer';
+import Header from '~/layouts/components/Header';
+import Wrapper from '~/layouts/components/Wrapper';
 import Navbar from './Navbar';
 
 const SettingLayout = ({ children }) => {
     return (
-        <div>
+        <Wrapper>
             <Header></Header>
-            <div className="w-full max-w-5xl mx-auto mb-10 pt-[55px] flex gap-5">
-                <Navbar />
-                <div className="w-8/12">{children}</div>
+            <div className="flex-1 px-[15px] lg:pr-0 gx:pl-0 w-full max-w-7xl mx-auto mb-10 pt-[calc(var(--header-pc-height)+20px)] flex flex-wrap justify-center gap-5">
+                <Navbar className="w-full lg:w-3/12" />
+                <div className="w-full lg:w-8/12">{children}</div>
             </div>
             <Footer />
-        </div>
+        </Wrapper>
     );
 };
 

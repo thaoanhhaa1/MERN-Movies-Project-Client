@@ -7,6 +7,7 @@ import {
     MovieBackdropItemSkeleton,
 } from '~/components/MovieBackdropList';
 import useAuth from '~/context/Auth';
+import { useWindowDimensions } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
 import PageNotFound from './PageNotFound';
 
@@ -14,6 +15,8 @@ const FavoritePage = () => {
     const { user } = useAuth();
     const [movieList, setMovieList] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { width } = useWindowDimensions();
+    const isMinMd = width >= 768;
 
     useEffect(() => {
         async function getData() {
@@ -73,7 +76,11 @@ const FavoritePage = () => {
     };
 
     return (
-        <div className="grid grid-cols-3 gap-x-[30px] gap-y-[10px]">
+        <div
+            className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 ${
+                isMinMd ? 'gap-x-[30px]' : 'gap-x-[15px]'
+            } gap-y-[10px]`}
+        >
             {(loading &&
                 new Array(6)
                     .fill(null)

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { ButtonLogin } from '../Button';
-import { FacebookIcon } from '../Icons';
+import { ButtonLogin } from '~/components/Button';
+import { FacebookIcon } from '~/components/Icons';
 
 const Facebook = (props) => {
     return (

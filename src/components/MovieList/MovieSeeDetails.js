@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ChevronRightIcon } from '../Icons';
+import { ChevronRightIcon } from '~/components/Icons';
 
 const MovieSeeDetails = ({ to }) => {
     return (

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useController } from 'react-hook-form';
-import { CheckIcon } from '../Icons';
+import { CheckIcon } from '~/components/Icons';
 
 const Checkbox = ({ children, className = '', control, name, value }) => {
     const { field } = useController({ control, name, defaultValues: value });

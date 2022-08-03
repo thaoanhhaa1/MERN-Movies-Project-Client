@@ -1,5 +1,5 @@
-import { ButtonLogin } from '../Button';
-import { UserIcon } from '../Icons';
+import { ButtonLogin } from '~/components/Button';
+import { UserIcon } from '~/components/Icons';
 import PropTypes from 'prop-types';
 
 const Email = (props) => {

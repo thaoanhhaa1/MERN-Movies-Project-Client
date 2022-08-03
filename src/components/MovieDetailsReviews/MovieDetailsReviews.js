@@ -1,13 +1,13 @@
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import Avatar from '~/components/Avatar';
+import Button from '~/components/Button';
 import { SendIcon } from '~/components/Icons';
 import MovieDetailsReview from '~/components/MovieDetailsReview';
 import { Select } from '~/context';
 import { useMovieDetails } from '~/context/MovieDetails';
-import PropTypes from 'prop-types';
-import Button from '../Button';
-import { useEffect, useState } from 'react';
-import * as httpRequest from '~/utils/httpRequest';
 import { useTV } from '~/hooks';
+import * as httpRequest from '~/utils/httpRequest';
 
 const MovieDetailsReviews = ({ className = '' }) => {
     const { movieId } = useMovieDetails();
