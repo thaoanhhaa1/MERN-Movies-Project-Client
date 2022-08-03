@@ -1,24 +1,21 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 import Avatar from '~/components/Avatar';
 import MovieDetailsReviewActions from '~/components/MovieDetailsReviewActions';
+import config from '~/config';
 import getDMY from '~/utils/getDMY';
 
-const MovieDetailsReview = ({ data, className = '' }) => {
-    const [avatar, setAvatar] = useState(
-        data?.author_details?.avatar_path?.slice?.(1) ?? '',
-    );
+// TODO See comment details
 
+const MovieDetailsReview = ({ data, className = '' }) => {
     return (
         <div className={className + 'flex gap-6 mb-6'}>
             <Avatar
                 className="flex-shrink-0 w-10 h-10"
                 alt=""
-                src={avatar}
-                onError={() =>
-                    setAvatar(
-                        'https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png',
-                    )
+                src={
+                    data?.author_details?.avatar_path
+                        ? `${config.movieDB.image}${data?.author_details?.avatar_path}`
+                        : '/no-avatar.png'
                 }
             />
             <div>
@@ -30,7 +27,9 @@ const MovieDetailsReview = ({ data, className = '' }) => {
                         {getDMY(new Date(data?.updated_at || data?.created_at))}
                     </span>
                 </div>
-                <p className="mb-2 text-sm leading-[1.35]">{data?.content}</p>
+                <p className="mb-2 text-sm leading-[1.35] line-clamp-3">
+                    {data?.content}
+                </p>
 
                 <MovieDetailsReviewActions />
             </div>

@@ -10,14 +10,14 @@ const MovieDetailsReviewsSkeleton = ({ className = '' }) => {
                 className="mb-4 !leading-6"
             />
 
-            <div className="w-9/12 p-6 bg-slate-200 rounded">
-                <div className="flex justify-between items-center">
+            <div className="w-full md:w-9/12 p-6 bg-slate-200 rounded">
+                <div className="flex flex-wrap gap-[15px] justify-between items-center">
                     <Skeleton
                         baseColor="#999"
-                        containerClassName="w-1/4"
+                        containerClassName="w-full xs:w-1/4"
                         className="text-sm !leading-snug"
                     />
-                    <div className="flex-1 flex justify-end items-center">
+                    <div className="w-full xs:flex-1 flex xs:justify-end items-center">
                         <Skeleton
                             baseColor="#999"
                             width="95px"

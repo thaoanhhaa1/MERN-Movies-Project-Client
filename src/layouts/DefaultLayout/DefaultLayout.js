@@ -8,6 +8,7 @@ import Navbar from './Navbar';
 const DefaultLayout = ({ children }) => {
     const { width } = useWindowDimensions();
     const isMinLg = width >= 1024;
+    console.log('🚀 ~ DefaultLayout ~ isMinLg', isMinLg);
 
     return (
         <Wrapper>
@@ -18,7 +19,7 @@ const DefaultLayout = ({ children }) => {
                     className={`max-w-[1920px] ${
                         isMinLg
                             ? 'pl-7 pr-10 w-[calc(100vw_-_var(--navbar-width))]'
-                            : 'px-5 w-screen'
+                            : 'px-[15px] lg:px-5 w-screen'
                     } mt-4 mx-auto pb-20`}
                 >
                     {children}

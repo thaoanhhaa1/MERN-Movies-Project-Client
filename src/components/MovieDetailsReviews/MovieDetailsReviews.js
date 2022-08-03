@@ -9,6 +9,8 @@ import { useMovieDetails } from '~/context/MovieDetails';
 import { useTV } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
 
+// TODO Sort, Upload, Like & Reply Comments
+
 const MovieDetailsReviews = ({ className = '' }) => {
     const { movieId } = useMovieDetails();
     const [page, setPage] = useState(1);
@@ -49,12 +51,12 @@ const MovieDetailsReviews = ({ className = '' }) => {
     return (
         <div className={className + ' mt-12'}>
             <h5 className="mb-4 font-medium text-base">Comments</h5>
-            <div className="w-9/12 p-6 bg-slate-200 rounded">
-                <div className="flex justify-between items-center">
-                    <span className="flex-shrink-0 w-1/4 text-sm leading-snug">
+            <div className="w-full md:w-9/12 p-6 bg-slate-200 rounded">
+                <div className="flex flex-wrap gap-[15px] justify-between items-center">
+                    <span className="flex-shrink-0 w-full xs:w-1/4 text-sm leading-snug">
                         {reviews?.results?.length || 0} comments
                     </span>
-                    <div className="flex-1 flex justify-end items-center">
+                    <div className="w-full xs:flex-1 flex xs:justify-end items-center">
                         <span className="text-sm leading-snug mr-4">
                             Sắp xếp theo:
                         </span>

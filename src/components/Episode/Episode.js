@@ -11,7 +11,7 @@ const Episode = () => {
     return (
         <div className="mt-12">
             <h3 className="font-medium text-[25px] leading-[1.2]">Episode</h3>
-            <div className="mt-[25px] grid grid-cols-6 gap-x-[30px] gap-y-[15px]">
+            <div className="mt-[25px] grid grid-cols-4 lg:grid-cols-6 gap-x-[30px] gap-y-[15px]">
                 {new Array(Math.min(movieDetail.number_of_episodes, 18))
                     .fill(null)
                     .map((item, index) => (

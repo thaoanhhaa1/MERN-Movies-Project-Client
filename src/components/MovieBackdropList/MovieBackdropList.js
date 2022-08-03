@@ -38,7 +38,25 @@ const MovieBackdropList = ({ className, children }) => {
                         spaceBetween={20}
                         freeMode={true}
                         scrollbar={{
-                            hide: true,
+                            hide: false,
+                        }}
+                        breakpoints={{
+                            0: {
+                                slidesPerView: 1,
+                                spaceBetween: 10,
+                            },
+                            540: {
+                                slidesPerView: 2,
+                                spaceBetween: 10,
+                            },
+                            640: {
+                                slidesPerView: 3,
+                                spaceBetween: 10,
+                            },
+                            1024: {
+                                slidesPerView: 4,
+                                spaceBetween: 20,
+                            },
                         }}
                         modules={[Scrollbar, FreeMode]}
                     >

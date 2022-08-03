@@ -83,10 +83,10 @@ const MovieDetailsInfo = () => {
     ];
 
     return (
-        <div className="flex mt-10">
+        <div className="flex flex-wrap mt-10">
             <Link
                 to={`/movie/${slug}?id=${movieId}`}
-                className="group relative w-2/12 rounded-[5px] overflow-hidden aspect-[2/3]"
+                className="group relative w-4/12 lg:w-2/12 rounded-[5px] overflow-hidden aspect-[2/3]"
             >
                 <Image
                     alt={movieDetail?.title || movieDetail?.name}
@@ -98,7 +98,7 @@ const MovieDetailsInfo = () => {
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-0 ease-linear duration-[400ms]" />
             </Link>
-            <div className="w-6/12 px-[15px]">
+            <div className="w-8/12 lg:w-6/12 pl-[15px] lg:pr-[15px] pr-0">
                 <h3
                     className="mb-1 font-medium text-2xl"
                     title={movieDetail?.title || movieDetail?.name}
@@ -129,7 +129,7 @@ const MovieDetailsInfo = () => {
                     </p>
                 </div>
             </div>
-            <div className="w-4/12 px-[15px]">
+            <div className="w-6/12 lg:w-4/12 pt-[15px] lg:pt-0 lg:px-[15px]">
                 {movieInfoMenu.map((item) => {
                     if (
                         !item.children ||
@@ -139,7 +139,7 @@ const MovieDetailsInfo = () => {
                         return null;
                     return (
                         <div key={v4()} className="flex gap-[10px]">
-                            <h5 className="w-[30%] flex-shrink-0 font-bold text-sm pb-1">
+                            <h5 className="w-2/5 sm:w-[30%] flex-shrink-0 font-bold text-sm pb-1">
                                 {item.title}
                             </h5>
                             <span className="text-sm pb-1 flex-1">
