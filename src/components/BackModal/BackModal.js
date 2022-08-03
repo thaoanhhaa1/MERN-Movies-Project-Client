@@ -4,7 +4,7 @@ import { ChevronLeftIcon } from '~/components/Icons';
 const BackModal = ({ isShowBack, children, onBack = () => {} }) => {
     return (
         <div className="flex items-center justify-center min-h-screen bg-[url(https://www.cantechletter.com/wp-content/uploads/Netflix.jpg)] bg-center bg-cover">
-            <div className="relative py-12 w-[640px] bg-white rounded-lg">
+            <div className="relative mx-4 px-4 py-12 w-full max-w-[640px] bg-white rounded-lg">
                 {isShowBack && (
                     <span
                         onClick={onBack}

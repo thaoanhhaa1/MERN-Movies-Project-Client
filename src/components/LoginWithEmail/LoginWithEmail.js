@@ -33,7 +33,10 @@ const LoginWithEmail = () => {
     };
 
     return (
-        <Form onSubmit={handleSubmit(handleValid)} className="w-[380px]">
+        <Form
+            onSubmit={handleSubmit(handleValid)}
+            className="w-full max-w-[380px]"
+        >
             <FormGroup>
                 <Label htmlFor="email">Email Address</Label>
                 <Input
