@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import Avatar from '~/components/Avatar';
 import Button from '~/components/Button';
 import { SendIcon } from '~/components/Icons';
@@ -10,7 +10,7 @@ import { useMovieDetails } from '~/context/MovieDetails';
 import { useTV } from '~/hooks';
 import * as httpRequest from '~/utils/httpRequest';
 
-// TODO Sort, Upload, Like & Reply Comments
+// TODO Upload, Like & Reply Comments
 
 const MovieDetailsReviews = ({ className = '' }) => {
     const { movieId } = useMovieDetails();
@@ -19,6 +19,7 @@ const MovieDetailsReviews = ({ className = '' }) => {
     const [reviews, setReviews] = useState(() => ({ results: [] }));
     const isTV = useTV();
     const { user } = useAuth();
+    const [sort, setSort] = useState();
 
     const handleLoadMore = () => setPage((page) => page + 1);
 
@@ -50,6 +51,35 @@ const MovieDetailsReviews = ({ className = '' }) => {
         if (movieId) getData();
     }, [isTV, movieId, page]);
 
+    useLayoutEffect(() => {
+        function sortComment() {
+            if (!(reviews?.results?.length > 0)) return;
+
+            let commentList = reviews?.results;
+
+            if (sort === 'latest') {
+                commentList = commentList.sort(
+                    (a, b) =>
+                        new Date(b?.updated_at || b?.created_at).getTime() -
+                        new Date(a?.updated_at || a?.created_at).getTime(),
+                );
+            } else if (sort === 'oldest') {
+                commentList = commentList.sort(
+                    (a, b) =>
+                        new Date(a?.updated_at || a?.created_at).getTime() -
+                        new Date(b?.updated_at || b?.created_at).getTime(),
+                );
+            }
+
+            setReviews((reviews) => ({
+                ...reviews,
+                results: commentList,
+            }));
+        }
+
+        if (sort) sortComment();
+    }, [reviews?.results, sort]);
+
     return (
         <div className={className + ' mt-12'}>
             <h5 className="mb-4 font-medium text-base">Comments</h5>
@@ -60,17 +90,26 @@ const MovieDetailsReviews = ({ className = '' }) => {
                     </span>
                     <div className="w-full xs:flex-1 flex xs:justify-end items-center">
                         <span className="text-sm leading-snug mr-4">
-                            Sắp xếp theo:
+                            Sorted by:
                         </span>
                         <Select>
-                            <Select.Option value="frontend">
-                                Frontend
+                            <Select.Option
+                                onClick={() => setSort('latest')}
+                                value="latest"
+                            >
+                                Latest
                             </Select.Option>
-                            <Select.Option value="backend">
-                                Backend
+                            <Select.Option
+                                onClick={() => setSort('most-like')}
+                                value="most-like"
+                            >
+                                The most likes
                             </Select.Option>
-                            <Select.Option value="fullstack">
-                                Fullstack
+                            <Select.Option
+                                onClick={() => setSort('oldest')}
+                                value="oldest"
+                            >
+                                Oldest
                             </Select.Option>
                         </Select>
                     </div>

@@ -27,7 +27,7 @@ export const useSelect = () => {
     return useContext(SelectContext);
 };
 
-const Select = ({ children }) => {
+const Select = ({ children, placeholder = '' }) => {
     const [show, setShow] = useState(false);
     const selectRef = useRef();
 
@@ -41,7 +41,7 @@ const Select = ({ children }) => {
                 className="relative min-w-[144px] py-2 px-3 bg-white rounded-2xl cursor-pointer select-none"
             >
                 <div className="flex items-center justify-between">
-                    <Label>Select</Label>
+                    <Label>{placeholder}</Label>
                     <SortIcon className="w-4 h-4 fill-slate-400" />
                 </div>
                 {show && <Options children={children} />}

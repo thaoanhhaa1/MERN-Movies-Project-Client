@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Image from '~/components/Image';
 
@@ -12,6 +12,8 @@ const Avatar = (
     { src, alt, to, href, className = '', onClick = () => {} },
     ref,
 ) => {
+    const [avatar, setAVatar] = useState(src ?? '/no-avatar.png');
+
     let Component = 'span';
     const props = {};
 
@@ -30,7 +32,11 @@ const Avatar = (
             onClick={onClick}
             className={`${className} block rounded-full overflow-hidden`}
         >
-            <Image src={src ?? '/no-avatar.png'} alt={alt} />
+            <Image
+                onError={() => setAVatar('/no-avatar.png')}
+                src={avatar}
+                alt={alt}
+            />
         </Component>
     );
 };
