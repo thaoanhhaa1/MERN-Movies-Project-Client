@@ -1,5 +1,5 @@
 import Tippy from '@tippyjs/react/headless';
-import { memo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import Avatar from '~/components/Avatar';
 import useAuth from '~/context/Auth';
 import UserActionsPopup from './UserActionsPopup';
@@ -8,7 +8,7 @@ const UserActions = () => {
     const [show, setShow] = useState(false);
     const { user } = useAuth();
 
-    const handleClickAvatar = () => setShow((show) => !show);
+    const handleClickAvatar = useCallback(() => setShow((show) => !show), []);
     const handleClickMenu = () => setShow(false);
 
     return (
