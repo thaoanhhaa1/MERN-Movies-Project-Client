@@ -1,6 +1,6 @@
 import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { memo, useLayoutEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CloseIcon, SearchIcon } from '~/components/Icons';
 import { useWindowDimensions } from '~/hooks';
@@ -91,4 +91,4 @@ const Search = ({ isActive }) => {
     );
 };
 
-export default Search;
+export default memo(Search);

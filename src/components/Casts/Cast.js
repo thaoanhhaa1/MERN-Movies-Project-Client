@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Avatar from '~/components/Avatar';
 import config from '~/config';
@@ -40,4 +40,4 @@ Cast.propTypes = {
     }).isRequired,
 };
 
-export default Cast;
+export default memo(Cast);

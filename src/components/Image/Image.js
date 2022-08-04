@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { memo, useEffect, useRef, useState } from 'react';
+import config from '~/config';
 
 const Image = ({ src, alt, className = '', onError }) => {
     const [loaded, setLoaded] = useState(false);
+    const [avatar, setAvatar] = useState(src);
     const imgRef = useRef();
 
     useEffect(() => {
@@ -10,7 +12,7 @@ const Image = ({ src, alt, className = '', onError }) => {
 
         const observer = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
-                img.setAttribute('src', src);
+                img.setAttribute('src', avatar);
             }
         });
 
@@ -23,7 +25,7 @@ const Image = ({ src, alt, className = '', onError }) => {
                 observer.unobserve(img);
             }
         };
-    }, [src]);
+    }, [avatar]);
 
     return (
         <img
@@ -31,7 +33,7 @@ const Image = ({ src, alt, className = '', onError }) => {
             className={`${className} w-full h-full object-cover transition-all duration-[400ms] ease-in opacity-100`}
             src={src}
             alt={alt}
-            onError={onError}
+            onError={onError ? onError : () => setAvatar(config.imageBackup)}
             style={{
                 opacity: loaded ? '1' : '0',
             }}

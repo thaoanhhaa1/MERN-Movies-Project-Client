@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { v4 } from 'uuid';
 import CastSkeleton from './CastSkeleton';
@@ -18,4 +19,4 @@ const CastsSkeleton = () => {
     );
 };
 
-export default CastsSkeleton;
+export default memo(CastsSkeleton);

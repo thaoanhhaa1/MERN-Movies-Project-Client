@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useMovieDetails } from '~/context/MovieDetails';
 import Cast from './Cast';
@@ -28,4 +28,4 @@ const Casts = () => {
     );
 };
 
-export default Casts;
+export default memo(Casts);

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useMemo } from 'react';
 import Avatar from '~/components/Avatar';
 import MovieDetailsReviewActions from '~/components/MovieDetailsReviewActions';
 import config from '~/config';
@@ -7,16 +8,21 @@ import getDMY from '~/utils/getDMY';
 // TODO See comment details
 
 const MovieDetailsReview = ({ data, className = '' }) => {
+    const avatar = useMemo(() => {
+        if (data?.author_details?.avatar_path) {
+            if (data?.author_details?.avatar_path.startsWith('/https'))
+                return data?.author_details?.avatar_path.slice(1);
+            return `${config.movieDB.image}${data?.author_details?.avatar_path}`;
+        }
+        return '/no-avatar.png';
+    }, [data?.author_details?.avatar_path]);
+
     return (
         <div className={className + 'flex gap-6 mb-6'}>
             <Avatar
                 className="flex-shrink-0 w-10 h-10"
-                alt=""
-                src={
-                    data?.author_details?.avatar_path
-                        ? `${config.movieDB.image}${data?.author_details?.avatar_path}`
-                        : '/no-avatar.png'
-                }
+                alt={data?.author_details?.username}
+                src={avatar}
             />
             <div>
                 <div className="mb-2 flex items-end">

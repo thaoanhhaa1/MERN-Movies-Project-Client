@@ -1,5 +1,5 @@
 import Tippy from '@tippyjs/react/headless';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import Avatar from '~/components/Avatar';
 import useAuth from '~/context/Auth';
 import UserActionsPopup from './UserActionsPopup';
@@ -31,4 +31,4 @@ const UserActions = () => {
     );
 };
 
-export default UserActions;
+export default memo(UserActions);

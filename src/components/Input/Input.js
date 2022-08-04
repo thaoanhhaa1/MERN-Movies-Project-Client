@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { memo } from 'react';
 import { useController } from 'react-hook-form';
 
 const Input = ({ control, type = 'text', placeholder = '', name }) => {
@@ -25,4 +26,4 @@ Input.propTypes = {
     name: PropTypes.string,
 };
 
-export default Input;
+export default memo(Input);

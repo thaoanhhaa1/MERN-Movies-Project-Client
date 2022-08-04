@@ -12,7 +12,7 @@ const Avatar = (
     { src, alt, to, href, className = '', onClick = () => {} },
     ref,
 ) => {
-    const [avatar, setAVatar] = useState(src ?? '/no-avatar.png');
+    const [avatar, setAvatar] = useState(src ?? '/no-avatar.png');
 
     let Component = 'span';
     const props = {};
@@ -33,7 +33,7 @@ const Avatar = (
             className={`${className} block rounded-full overflow-hidden`}
         >
             <Image
-                onError={() => setAVatar('/no-avatar.png')}
+                onError={() => setAvatar('/no-avatar.png')}
                 src={avatar}
                 alt={alt}
             />

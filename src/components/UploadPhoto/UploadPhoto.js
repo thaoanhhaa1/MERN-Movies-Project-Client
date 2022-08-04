@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import Avatar from '~/components/Avatar';
 import { CameraIcon } from '~/components/Icons';
 import deleteImage from '~/firebase/deleteImage';
@@ -69,4 +69,4 @@ UploadPhoto.propTypes = {
     setValue: PropTypes.func.isRequired,
 };
 
-export default UploadPhoto;
+export default memo(UploadPhoto);
