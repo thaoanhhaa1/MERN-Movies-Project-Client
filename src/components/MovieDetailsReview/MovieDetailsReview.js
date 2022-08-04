@@ -27,7 +27,7 @@ const MovieDetailsReview = ({ data, className = '' }) => {
                         {getDMY(new Date(data?.updated_at || data?.created_at))}
                     </span>
                 </div>
-                <p className="mb-2 text-sm leading-[1.35] line-clamp-3">
+                <p className="mb-2 text-sm leading-[1.35] line-clamp-3 break-all">
                     {data?.content}
                 </p>
 
