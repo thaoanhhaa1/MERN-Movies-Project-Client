@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { Autoplay, Navigation, Pagination } from 'swiper';
@@ -53,7 +54,7 @@ const Banner = ({ url }) => {
                     loop
                 >
                     {banner?.map((item) => (
-                        <SwiperSlide key={item.id} className="!w-full">
+                        <SwiperSlide key={item.id}>
                             <BannerItem data={item} />
                         </SwiperSlide>
                     ))}
@@ -75,6 +76,10 @@ const Banner = ({ url }) => {
             )}
         </div>
     );
+};
+
+Banner.propTypes = {
+    url: PropTypes.string,
 };
 
 export default Banner;

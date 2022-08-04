@@ -5,7 +5,7 @@ import slugify from 'slugify';
 import { FreeMode, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { v4 } from 'uuid';
-import MovieGlass, { MovieGlassSkeleton } from '~/components/MovieGlass';
+import MovieGlass from '~/components/MovieGlass';
 import MovieItemInImg, {
     MovieItemInImgSkeleton,
 } from '~/components/MovieItemInImg';
@@ -115,19 +115,7 @@ const MovieList = ({ movieUi = '', children, type, className = '' }) => {
                     )}
                 </header>
             )}
-            {movieUi ? (
-                <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-[20px]">
-                    {(movieList?.length > 0 &&
-                        movieList?.map((movie) => (
-                            <MovieGlass key={movie.id} data={movie} />
-                        ))) ||
-                        new Array(8)
-                            .fill(null)
-                            .map(() => <MovieGlassSkeleton key={v4()} />)}
-                </div>
-            ) : (
-                renderMovieList
-            )}
+            {movieUi ? <MovieGlass data={movieList} /> : renderMovieList}
         </div>
     );
 };
@@ -136,6 +124,7 @@ MovieList.propTypes = {
     type: PropTypes.string.isRequired,
     children: PropTypes.string.isRequired,
     className: PropTypes.string,
+    movieUi: PropTypes.string,
 };
 
 export default MovieList;

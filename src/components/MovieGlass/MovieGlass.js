@@ -1,44 +1,24 @@
-import { Link } from 'react-router-dom';
-import config from '~/config';
-import { useProgressiveImage, useSlug, useTV } from '~/hooks';
-import { StarSolidIcon } from '~/components/Icons';
 import PropTypes from 'prop-types';
+import { v4 } from 'uuid';
+import MovieGlassItem from './MovieGlassItem';
+import MovieGlassSkeleton from './MovieGlassSkeleton';
 
-const MovieGlass = ({ data }) => {
-    const slug = useSlug(data.title ?? data.name);
-    const loaded = useProgressiveImage(
-        `${config.movieDB.image}${data.backdrop_path}`,
-    );
-    const isTV = useTV();
-
+const MovieGlass = ({ data = [] }) => {
     return (
-        <Link
-            to={`/${isTV ? 'tv' : 'movie'}/${slug}?id=${data.id}`}
-            className="relative w-full aspect-video bg-cover bg-center bg-no-repeat rounded-lg overflow-hidden"
-            style={{
-                backgroundImage: `url(${loaded})`,
-            }}
-        >
-            <div className="absolute left-0 bottom-0 flex items-center w-full px-4 py-2 bg-white bg-opacity-10 backdrop-blur">
-                <h4 className="flex-1 font-medium text-white text-sm line-clamp-1">
-                    {data.title || data.name}
-                </h4>
-                <div className="relative mx-4 w-[1px] h-5 bg-gradient-to-b from-transparent via-white to-transparent" />
-                <div className="flex gap-1 text-xs text-white">
-                    <StarSolidIcon />
-                    <span>{(data?.vote_average ?? 0).toFixed(1)}</span>
-                </div>
-            </div>
-        </Link>
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-[20px]">
+            {(data?.length > 0 &&
+                data?.map((movie) => (
+                    <MovieGlassItem key={movie.id} data={movie} />
+                ))) ||
+                new Array(8)
+                    .fill(null)
+                    .map(() => <MovieGlassSkeleton key={v4()} />)}
+        </div>
     );
 };
 
 MovieGlass.propTypes = {
-    data: PropTypes.shape({
-        title: PropTypes.string,
-        backdrop_path: PropTypes.string,
-        id: PropTypes.number,
-    }).isRequired,
+    data: PropTypes.array,
 };
 
 export default MovieGlass;

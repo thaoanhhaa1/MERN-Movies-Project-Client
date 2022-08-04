@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import Casts, { CastsSkeleton } from '~/components/Casts';
 import Episode from '~/components/Episode';
@@ -33,6 +33,21 @@ const MovieDetailPage = () => {
     const movieId = params.get('id');
 
     useBackToTop(movieId);
+
+    useEffect(() => {
+        async function postData() {
+            try {
+                await httpRequest.post(`user/${user.uid}/recently-viewed`, {
+                    type: isTV ? 'tv' : 'movie',
+                    id: movieId,
+                });
+            } catch (error) {
+                console.log('🚀 ~ postData ~ error', error);
+            }
+        }
+
+        if (user?.uid && movieDetail) postData();
+    }, [isTV, movieDetail, movieId, user?.uid]);
 
     useLayoutEffect(() => {
         document.title = movieDetail?.title || 'WMovies';
