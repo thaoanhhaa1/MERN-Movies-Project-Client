@@ -30,8 +30,10 @@ const MovieDetailPage = () => {
     const isTV = useTV();
 
     const movieId = params.get('id');
+    const seasons = params.get('seasons');
+    const episode = params.get('episode');
 
-    useBackToTop(movieId);
+    useBackToTop(movieId, seasons, episode);
 
     useEffect(() => {
         async function postData() {
