@@ -19,7 +19,7 @@ const MovieGlassItem = ({ data }) => {
                 backgroundImage: `url(${loaded})`,
             }}
         >
-            <div className="absolute left-0 bottom-0 flex items-center w-full px-4 py-2 bg-white bg-opacity-10 backdrop-blur">
+            <div className="absolute left-0 right-0 bottom-0 flex items-center px-4 py-2 bg-white bg-opacity-10 backdrop-blur">
                 <h4 className="flex-1 font-medium text-white text-sm line-clamp-1">
                     {data.title || data.name}
                 </h4>

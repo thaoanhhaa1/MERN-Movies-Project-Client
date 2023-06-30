@@ -3,13 +3,11 @@ import { useSearchParams } from 'react-router-dom';
 import { useMovieDetails } from '~/context/MovieDetails';
 import { useTV } from '~/hooks';
 
-// https://2embed.org/embed/${id}/${seasonTv}/${espTv}
-// https://2embed.org/embed/${id}
 const Video = ({ className }) => {
-    const { movieId } = useMovieDetails();
+    const { movieDetail } = useMovieDetails();
     const [params] = useSearchParams();
     const isTV = useTV();
-    let src = `https://2embed.org/embed/${movieId}`;
+    let src = `https://www.youtube.com/embed/${movieDetail.videoKey}`;
     if (isTV)
         src += `/${params.get('seasons') ?? 1}/${params.get('episode') ?? 1}`;
 
