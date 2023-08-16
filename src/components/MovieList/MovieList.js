@@ -91,6 +91,7 @@ const MovieList = ({ movieUi = '', children, type, className = '' }) => {
                 locale: 'vi',
                 lower: true,
                 strict: true,
+                replacement: '_',
             })}`,
         [children],
     );

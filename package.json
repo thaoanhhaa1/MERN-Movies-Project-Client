@@ -1,5 +1,6 @@
 {
     "name": "client",
+    "homepage": "mern-movies-project-client.iuh-mern.id.vn",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
